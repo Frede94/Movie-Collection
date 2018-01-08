@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import movie_project.be.Category;
 
 /**
  *
@@ -44,6 +45,8 @@ public class BrugerFladeMainController implements Initializable
     private JFXButton searchBtn;
     @FXML
     private Button btnDeleteMovie;
+    
+    private CategoryModel catModel;
     
     private void handleButtonAction(ActionEvent event)
     {
@@ -145,6 +148,8 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void NewCatAction(ActionEvent event)
     {
+        Category c = new Category ();
+        catModel.addNewCat(c);
     }
 
     /**
