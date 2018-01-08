@@ -32,7 +32,7 @@ import movie_project.be.Movies;
  */
 public class BrugerFladeMainController implements Initializable
 {
-    
+
     private Label label;
     @FXML
     private TableView<Movies> movieView;
@@ -48,47 +48,48 @@ public class BrugerFladeMainController implements Initializable
     private JFXButton searchBtn;
     @FXML
     private Button btnDeleteMovie;
-    
+
     private MovieModel movieModel = new MovieModel();
-    
+
     private Movies selectedMovie;
-    
+
     private void handleButtonAction(ActionEvent event)
     {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
-/**
- * on action once a movie is selected.
- * @param event 
- */
+    }
+
+    /**
+     * on action once a movie is selected.
+     *
+     * @param event
+     */
     @FXML
     private void onSelectedMovie(MouseEvent event)
     {
     }
 
-    
     /**
      * Opens a new window when you press new movie
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void newMovieOnAction(ActionEvent event)
     {
-        
-       
+
         try
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             AddWindowController ewc = fxmlLoader.getController();
-           // ewc.setSongModel(songModel);
+            // ewc.setSongModel(songModel);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("New Movie");
@@ -100,13 +101,12 @@ public class BrugerFladeMainController implements Initializable
         }
 
     }
-        
-        
+
     /**
      * opens a new window when you press edit movie.
-     * @param event 
+     *
+     * @param event
      */
-
     @FXML
     private void editMovieOnAction(ActionEvent event)
     {
@@ -115,8 +115,8 @@ public class BrugerFladeMainController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             AddWindowController ewc = fxmlLoader.getController();
-           // ewc.setSongModel(songModel);
-         //   ewc.setEditSong(songsList.getSelectionModel().getSelectedItem());
+            // ewc.setSongModel(songModel);
+            //   ewc.setEditSong(songsList.getSelectionModel().getSelectedItem());
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit Movie");
@@ -126,30 +126,35 @@ public class BrugerFladeMainController implements Initializable
         {
             e.printStackTrace();
         }
-        
+
     }
 
     /**
      * Plays the selected movie
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
-        
+
     }
-/**
- * Searches in the tableview.
- * @param event 
- */
+
+    /**
+     * Searches in the tableview.
+     *
+     * @param event
+     */
     @FXML
     private void searchAction(ActionEvent event)
     {
     }
-/**
- * adds a new categori to the list.
- * @param event 
- */
+
+    /**
+     * adds a new categori to the list.
+     *
+     * @param event
+     */
     @FXML
     private void NewCatAction(ActionEvent event)
     {
@@ -157,12 +162,15 @@ public class BrugerFladeMainController implements Initializable
 
     /**
      * deletes the selected movie from the list
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void clickDeleteAction(ActionEvent event)
     {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Look, a Confirmation Dialog");
         alert.setContentText("Are you ok with this?");
@@ -170,14 +178,16 @@ public class BrugerFladeMainController implements Initializable
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK)
         {
+
             Movies selectredMovie = movieView.getSelectionModel().getSelectedItem();
 
             movieModel.remove(selectedMovie);
+
             // ... user chose OK
         } else
         {
             // ... user chose CANCEL or closed the dialog
         }
+
     }
-    
 }
