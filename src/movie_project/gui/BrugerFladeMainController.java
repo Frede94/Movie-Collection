@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package movie.collection;
+package movie_project.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
  *
  * @author Frederik Bærbar
  */
-public class MainWindowFXMLController implements Initializable
+public class BrugerFladeMainController implements Initializable
 {
     
     @FXML
