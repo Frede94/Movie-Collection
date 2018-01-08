@@ -5,11 +5,21 @@
  */
 package movie_project.bll;
 
+import movie_project.be.Movies;
+import movie_project.dal.MovieDAO;
+
 /**
  *
  * @author Frederik Bærbar
  */
 public class MovieManager
 {
+
+    private static MovieDAO movieDAO = new MovieDAO();
+    
+    public static void remove(Movies selectedMovie)
+    {
+        movieDAO.remove(selectedMovie);
+    }
     
 }
