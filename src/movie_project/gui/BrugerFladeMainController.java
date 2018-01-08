@@ -8,6 +8,7 @@ package movie_project.gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +16,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -154,6 +157,24 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickDeleteAction(ActionEvent event)
     {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            //Song selectedSong = songsList.getSelectionModel().getSelectedItem();
+
+           // songModel.remove(selectedSong);
+            // ... user chose OK
+        } else
+        {
+            // ... user chose CANCEL or closed the dialog
+        }
+        
+        
     }
     
 }
