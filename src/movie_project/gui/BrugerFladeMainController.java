@@ -67,7 +67,7 @@ public class BrugerFladeMainController implements Initializable
 
     
     /**
-     * Opens a new window when u press new movie
+     * Opens a new window when you press new movie
      * @param event 
      */
     @FXML
@@ -95,7 +95,7 @@ public class BrugerFladeMainController implements Initializable
         
         
     /**
-     * opens a new window when u press edit movie.
+     * opens a new window when you press edit movie.
      * @param event 
      */
 
