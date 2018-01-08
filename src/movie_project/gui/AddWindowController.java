@@ -32,6 +32,8 @@ public class AddWindowController implements Initializable
     private TextField txtImdbRating;
     @FXML
     private TextField txtTitle;
+    @FXML
+    private TextField txtImdbRating1;
 
     /**
      * Initializes the controller class.
