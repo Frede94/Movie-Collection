@@ -38,6 +38,8 @@ public class BrugerFladeMainController implements Initializable
     private JFXTextField filterField;
     @FXML
     private JFXButton searchBtn;
+    @FXML
+    private Button btnDeleteMovie;
     
     private void handleButtonAction(ActionEvent event)
     {
@@ -78,6 +80,11 @@ public class BrugerFladeMainController implements Initializable
 
     @FXML
     private void NewCatAction(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void clickDeleteAction(ActionEvent event)
     {
     }
     
