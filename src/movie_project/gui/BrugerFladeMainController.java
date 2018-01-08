@@ -35,8 +35,6 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private Button playMovieBtn;
     @FXML
-    private ComboBox<?> comboMovie;
-    @FXML
     private JFXTextField filterField;
     @FXML
     private JFXButton searchBtn;
@@ -79,7 +77,7 @@ public class BrugerFladeMainController implements Initializable
     }
 
     @FXML
-    private void clickAddAction(ActionEvent event)
+    private void NewCatAction(ActionEvent event)
     {
     }
     
