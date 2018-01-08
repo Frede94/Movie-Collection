@@ -11,12 +11,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  *
@@ -59,11 +63,49 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void newMovieOnAction(ActionEvent event)
     {
+        
+       
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            AddWindowController ewc = fxmlLoader.getController();
+           // ewc.setSongModel(songModel);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("New Movie");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
+        
+        
+    
 
     @FXML
     private void editMovieOnAction(ActionEvent event)
     {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            AddWindowController ewc = fxmlLoader.getController();
+           // ewc.setSongModel(songModel);
+         //   ewc.setEditSong(songsList.getSelectionModel().getSelectedItem());
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Edit Movie");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
     }
 
     @FXML
