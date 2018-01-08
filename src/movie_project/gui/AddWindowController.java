@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import movie_project.be.Movies;
 
 /**
  * FXML Controller class
@@ -34,6 +35,8 @@ public class AddWindowController implements Initializable
     private TextField txtTitle;
     @FXML
     private TextField txtImdbRating1;
+    @FXML
+    private TextField txtPath;
 
     /**
      * Initializes the controller class.
@@ -52,6 +55,11 @@ public class AddWindowController implements Initializable
     @FXML
     private void clickSaveAction(ActionEvent event)
     {
+//        Movies m = new Movies();
+//        m.setName(txtTitle);
+//        m.setPersonalRating(Float.parseFloat(txtImdbRating1));
+//        m.setRating(Float.parseFloat(txtImdbRating));
+//        m.setFileLink(txtPath);
     }
 
     @FXML

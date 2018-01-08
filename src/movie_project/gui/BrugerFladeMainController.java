@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -52,6 +53,8 @@ public class BrugerFladeMainController implements Initializable
     private MovieModel movieModel = new MovieModel();
 
     private Movies selectedMovie;
+    @FXML
+    private ListView<?> catList;
 
     private void handleButtonAction(ActionEvent event)
     {
