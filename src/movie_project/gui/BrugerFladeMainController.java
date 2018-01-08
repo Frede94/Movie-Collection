@@ -28,7 +28,6 @@ import javafx.stage.Stage;
 import movie_project.be.Category;
 import movie_project.be.Movies;
 
-
 /**
  *
  * @author Frederik Bærbar
@@ -52,15 +51,15 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private Button btnDeleteMovie;
 
-    
     private CategoryModel catModel;
-
 
     private MovieModel movieModel = new MovieModel();
 
     private Movies selectedMovie;
     @FXML
     private ListView<?> catList;
+    @FXML
+    private Button newCatBtn;
 
     private void handleButtonAction(ActionEvent event)
     {
@@ -167,8 +166,25 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void NewCatAction(ActionEvent event)
     {
-        Category c = new Category ();
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddCategory.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            AddCategoryController categoryController = fxmlLoader.getController();
+            //categoryController.setPlaylistModel(CategoryModel);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("New Playlist");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        Category c = new Category();
         catModel.addNewCat(c);
+
     }
 
     /**

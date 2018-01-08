@@ -84,4 +84,23 @@ public class CategoryDAO
         return categories;
     }
     
+    
+    public void save(Category c)
+    {
+        
+         try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            String sql = "INSERT INTO Playlists (CategoryName) VALUES (?)";
+            PreparedStatement st = con.prepareStatement(sql); //,stmt.RETURN_GENERATED_KEYS
+            st.setString(1, c.getCatName());
+            st.execute();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        
+        
+    }
 }

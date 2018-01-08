@@ -29,4 +29,11 @@ public class CategoryModel
         catManager.addNewCat(c);
     }
     
+    
+    
+    void saveCategory(Category c)
+    {
+        categories.add(c);
+        catManager.save(c);
+    }
 }

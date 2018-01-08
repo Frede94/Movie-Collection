@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movie_project.gui.BrugerFladeMainController">
+<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movie_project.gui.BrugerFladeMainController">
    <children>
       <TableView fx:id="movieView" layoutX="217.0" layoutY="51.0" onMouseClicked="#onSelectedMovie" prefHeight="398.0" prefWidth="432.0">
         <columns>
@@ -32,7 +32,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="458.0" mnemonicParsing="false" onAction="#NewCatAction" text="Add Category" />
+      <Button fx:id="newCatBtn" layoutX="14.0" layoutY="458.0" mnemonicParsing="false" onAction="#NewCatAction" text="Add Category" />
       <Button fx:id="btnDeleteMovie" layoutX="476.0" layoutY="458.0" mnemonicParsing="false" onAction="#clickDeleteAction" text="Delete Movie" />
    </children>
 </AnchorPane>

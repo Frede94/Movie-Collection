@@ -26,4 +26,9 @@ public class CategoryManager
         catDAO.addNewCat(c);
     }
     
+    public void save (Category c)
+    {
+       catDAO.save(c);
+    }
+    
 }
