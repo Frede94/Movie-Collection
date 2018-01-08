@@ -56,12 +56,20 @@ public class BrugerFladeMainController implements Initializable
     {
         // TODO
     }    
-
+/**
+ * on action once a movie is selected.
+ * @param event 
+ */
     @FXML
     private void onSelectedMovie(MouseEvent event)
     {
     }
 
+    
+    /**
+     * Opens a new window when u press new movie
+     * @param event 
+     */
     @FXML
     private void newMovieOnAction(ActionEvent event)
     {
@@ -86,7 +94,10 @@ public class BrugerFladeMainController implements Initializable
     }
         
         
-    
+    /**
+     * opens a new window when u press edit movie.
+     * @param event 
+     */
 
     @FXML
     private void editMovieOnAction(ActionEvent event)
@@ -110,21 +121,36 @@ public class BrugerFladeMainController implements Initializable
         
     }
 
+    /**
+     * Plays the selected movie
+     * @param event 
+     */
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
+        
     }
-
+/**
+ * Searches in the tableview.
+ * @param event 
+ */
     @FXML
     private void searchAction(ActionEvent event)
     {
     }
-
+/**
+ * adds a new categori to the list.
+ * @param event 
+ */
     @FXML
     private void NewCatAction(ActionEvent event)
     {
     }
 
+    /**
+     * deletes the selected movie from the list
+     * @param event 
+     */
     @FXML
     private void clickDeleteAction(ActionEvent event)
     {
