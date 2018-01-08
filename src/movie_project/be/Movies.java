@@ -17,26 +17,26 @@ public class Movies
     private float rating;
     private String FileLink;
     private String LastView;
-    private String PersonalRating;
+    private float personalRating;
 
     /**
-     * Get the value of PersonalRating
+     * Get the value of personalRating
      *
-     * @return the value of PersonalRating
+     * @return the value of personalRating
      */
-    public String getPersonalRating()
+    public float getPersonalRating()
     {
-        return PersonalRating;
+        return personalRating;
     }
 
     /**
-     * Set the value of PersonalRating
+     * Set the value of personalRating
      *
-     * @param PersonalRating new value of PersonalRating
+     * @param personalRating new value of personalRating
      */
-    public void setPersonalRating(String PersonalRating)
+    public void setPersonalRating(float personalRating)
     {
-        this.PersonalRating = PersonalRating;
+        this.personalRating = personalRating;
     }
 
     /**
@@ -142,7 +142,7 @@ public class Movies
     @Override
     public String toString()
     {
-        return "Movies{" + "Id=" + Id + ", Name=" + Name + ", rating=" + rating + ", FileLink=" + FileLink + ", LastView=" + LastView + ", PersonalRating=" + PersonalRating + '}';
+        return "Movies{" + "Id=" + Id + ", Name=" + Name + ", rating=" + rating + ", FileLink=" + FileLink + ", LastView=" + LastView + ", personalRating=" + personalRating + '}';
     }
 
 }

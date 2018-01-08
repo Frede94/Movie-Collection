@@ -21,5 +21,10 @@ public class MovieManager
     {
         movieDAO.remove(selectedMovie);
     }
+
+    public void saveMovie(Movies m)
+    {
+        movieDAO.saveMovie(m);
+    }
     
 }

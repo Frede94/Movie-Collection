@@ -17,12 +17,20 @@ import movie_project.bll.MovieManager;
 public class MovieModel
 {
     
+    MovieManager movieManager = new MovieManager();
+    
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
 
     void remove(Movies selectedMovie)
     {
         movies.remove(selectedMovie);
         MovieManager.remove(selectedMovie);
+    }
+
+    void saveMovie(Movies m)
+    {
+        movies.add(m);
+        movieManager.saveMovie(m);
     }
     
 }
