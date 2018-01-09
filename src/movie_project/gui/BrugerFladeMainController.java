@@ -174,7 +174,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
-movieModel.loadMovies();
+    movieModel.loadMovies();
     }
 
     

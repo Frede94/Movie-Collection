@@ -25,7 +25,7 @@ public class MovieDAO
 {
 
     private ObservableList<Movies> moviesInList;
-    private MovieDAO movieDao = new MovieDAO();
+//    private MovieDAO movieDao = new MovieDAO();
     private DataBaseConnector dataBaseConnector;
     
     DataBaseConnector dbc = new DataBaseConnector();
@@ -45,10 +45,10 @@ public class MovieDAO
                 Movies currentMovie = new Movies();
                 currentMovie.setId(rs.getInt("Id"));
                 currentMovie.setName(rs.getString("Name"));
-                currentMovie.setRating(rs.getFloat("Rating"));
+                currentMovie.setRating(rs.getFloat("RatingIMDB"));
                 currentMovie.setFileLink(rs.getString("FileLink"));
                 currentMovie.setLastView(rs.getString("LastView"));
-                currentMovie.setPersonalRating(rs.getFloat("PersonalRating"));
+                currentMovie.setPersonalRating(rs.getFloat("RatingOwn")); // PersonalRating
 
                 movies.add(currentMovie);
 
