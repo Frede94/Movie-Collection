@@ -26,6 +26,7 @@ public class MovieModel
     MovieManager movieManager = new MovieManager();
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
     private ObservableList<Category> categories;
+    private ObservableList<Movies> movieView = FXCollections.observableArrayList();
 
     /**
      * Constructor til MovieModel klassen
