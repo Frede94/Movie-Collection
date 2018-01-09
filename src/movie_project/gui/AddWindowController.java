@@ -19,6 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import movie_project.be.Category;
 import movie_project.be.Movies;
 
 /**
@@ -30,7 +31,7 @@ public class AddWindowController implements Initializable
 {
 
     @FXML
-    private ComboBox<?> comboCategory;
+    private ComboBox<Category> comboCategory;
     @FXML
     private Button saveMovieBtn;
     @FXML
@@ -47,6 +48,7 @@ public class AddWindowController implements Initializable
     private Movies editMovie;
 
     private MovieModel movieModel = new MovieModel();
+    private CategoryModel catModel = new CategoryModel();
 
     /**
      * Initializes the controller class.
@@ -54,7 +56,17 @@ public class AddWindowController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        
+    }
+    
+    /**
+     * Sætter CategoryModel i denne klasse og henter Categories
+     * @param categoryModel 
+     */
+    public void setCategoryModel(CategoryModel categoryModel)
+    {
+        this.catModel = categoryModel;
+        comboCategory.setItems(categoryModel.getCategories());;
     }
 
     @FXML
@@ -115,7 +127,7 @@ public class AddWindowController implements Initializable
         {
             Logger.getLogger(AddWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
+
     }
 
 }

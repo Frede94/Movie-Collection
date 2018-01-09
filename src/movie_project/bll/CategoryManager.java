@@ -18,7 +18,10 @@ public class CategoryManager
     
     private CategoryDAO catDAO = new CategoryDAO();
     
-
+    /**
+     * Sender den ny kategori til DAL laget
+     * @param c 
+     */
     public void save (Category c)
     {
        catDAO.save(c);
