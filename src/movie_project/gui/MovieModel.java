@@ -5,6 +5,7 @@
  */
 package movie_project.gui;
 
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import movie_project.be.Movies;
@@ -21,6 +22,15 @@ public class MovieModel
     
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
 
+    
+    public MovieModel()
+    {
+        this.movies = FXCollections.observableArrayList();
+        movies.addAll(movieManager.getAllMovies());
+        
+        loadMovies();
+    }
+    
     void remove(Movies selectedMovie)
     {
         movies.remove(selectedMovie);
@@ -33,4 +43,16 @@ public class MovieModel
         movieManager.saveMovie(m);
     }
     
+    void loadMovies()
+    {
+        List<Movies> loadedMovies = movieManager.getAllMovies();
+        
+        movies.clear();
+        movies.addAll(loadedMovies);
+    }
+    
+    public ObservableList<Movies> getMovies()
+    {
+        return movies;
+    }
 }

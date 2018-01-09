@@ -21,7 +21,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -60,6 +62,14 @@ public class BrugerFladeMainController implements Initializable
     private ListView<?> catList;
     @FXML
     private Button newCatBtn;
+    @FXML
+    private TableColumn<Movies, String> tableColumnName;
+    @FXML
+    private TableColumn<Movies, Integer> tableColumnRating;
+    @FXML
+    private TableColumn<Movies, String> tableColumnLastView;
+    @FXML
+    private TableColumn<Movies, Integer> tableColumnOwnRating;
 
     private void handleButtonAction(ActionEvent event)
     {
@@ -70,7 +80,19 @@ public class BrugerFladeMainController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+      
+        tableColumnName.setCellValueFactory(new PropertyValueFactory("Name"));
+        tableColumnRating.setCellValueFactory(new PropertyValueFactory("RatingIMDB"));
+        tableColumnLastView.setCellValueFactory(new PropertyValueFactory("LastView"));
+        tableColumnOwnRating.setCellValueFactory(new PropertyValueFactory("RatingOwn"));
+        
+        
+     
+      movieView.setItems(movieModel.getMovies());
+      movieModel.loadMovies();
+        
+      
+      
     }
 
     /**
@@ -92,6 +114,7 @@ public class BrugerFladeMainController implements Initializable
     private void newMovieOnAction(ActionEvent event)
     {
 
+        movieModel.loadMovies();
         try
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
@@ -145,9 +168,11 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
-
+movieModel.loadMovies();
     }
 
+    
+    
     /**
      * Searches in the tableview.
      *

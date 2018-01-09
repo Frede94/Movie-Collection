@@ -5,6 +5,9 @@
  */
 package movie_project.bll;
 
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import movie_project.be.Movies;
 import movie_project.dal.MovieDAO;
 
@@ -16,6 +19,7 @@ public class MovieManager
 {
 
     private static MovieDAO movieDAO = new MovieDAO();
+    private static ObservableList<Movies> movies = FXCollections.observableArrayList();
     
     public static void remove(Movies selectedMovie)
     {
@@ -25,6 +29,16 @@ public class MovieManager
     public void saveMovie(Movies m)
     {
         movieDAO.saveMovie(m);
+    }
+    
+    public MovieManager()
+    {
+        movieDAO = new MovieDAO();
+    }
+    
+    public List<Movies> getAllMovies()
+    {
+        return movieDAO.getAllMovies();
     }
     
 }

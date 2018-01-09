@@ -14,10 +14,10 @@
    <children>
       <TableView fx:id="movieView" layoutX="217.0" layoutY="51.0" onMouseClicked="#onSelectedMovie" prefHeight="398.0" prefWidth="432.0">
         <columns>
-          <TableColumn prefWidth="105.0" text="Name" />
-          <TableColumn prefWidth="101.0" text="Imdb Rating" />
-            <TableColumn prefWidth="112.0" text="Last viewed" />
-            <TableColumn prefWidth="113.0" text="My Rating" />
+          <TableColumn fx:id="tableColumnName" prefWidth="105.0" text="Name" />
+          <TableColumn fx:id="tableColumnRating" prefWidth="101.0" text="Imdb Rating" />
+            <TableColumn fx:id="tableColumnLastView" prefWidth="112.0" text="Last viewed" />
+            <TableColumn fx:id="tableColumnOwnRating" prefWidth="113.0" text="My Rating" />
         </columns>
       </TableView>
       <Button fx:id="newMovieBtn" layoutX="307.0" layoutY="458.0" mnemonicParsing="false" onAction="#newMovieOnAction" text="New Movie" />
