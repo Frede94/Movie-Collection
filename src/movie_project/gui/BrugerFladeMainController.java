@@ -81,23 +81,16 @@ public class BrugerFladeMainController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
 
-        
         catList.setItems(catModel.getCategories());
         catModel.loadCategories();
 
-      
         tableColumnName.setCellValueFactory(new PropertyValueFactory("Name"));
         tableColumnRating.setCellValueFactory(new PropertyValueFactory("RatingIMDB"));
         tableColumnLastView.setCellValueFactory(new PropertyValueFactory("LastView"));
         tableColumnOwnRating.setCellValueFactory(new PropertyValueFactory("RatingOwn"));
-        
-        
-     
-      movieView.setItems(movieModel.getMovies());
-      movieModel.loadMovies();
-        
-      
-      
+
+        movieView.setItems(movieModel.getMovies());
+        movieModel.loadMovies();
 
     }
 
@@ -174,11 +167,9 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
-    movieModel.loadMovies();
+        movieModel.loadMovies();
     }
 
-    
-    
     /**
      * Searches in the tableview.
      *
@@ -186,7 +177,7 @@ public class BrugerFladeMainController implements Initializable
      */
     @FXML
     private void searchAction(ActionEvent event)
-    { 
+    {
         String searchText = filterField.getText().trim();
         if (!searchText.isEmpty())
         {
