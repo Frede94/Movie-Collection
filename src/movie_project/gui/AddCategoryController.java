@@ -29,9 +29,9 @@ public class AddCategoryController implements Initializable
     private Button saveCategoryBtn;
     @FXML
     private Button cancelCategoryBtn;
-    
-    private CategoryModel categoryModel;
-    private Category editCategory;
+
+    private CategoryModel categoryModel = new CategoryModel();
+
 
     /**
      * Initializes the controller class.
@@ -39,44 +39,36 @@ public class AddCategoryController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
-    }    
+    }
+
 
     /**
      * Gemmer den indskrevne "category" til databasen.
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void saveCategoryOnAction(ActionEvent event)
     {
-        if (editCategory == null)
-        {
-            
-            Category c = new Category();
-            c.setCatName(categoryName.getText());
-            categoryModel.saveCategory(c);
-        }
-//else
-//        {
-//            editCategory.setCatName(catName);
-//            categoryModel.saveCategory(editCategory);
-//        }
-    }
+        Category c = new Category();
+        c.setCatName(categoryName.getText());
+        categoryModel.saveCategory(c);
+        categoryName.clear();
+    }    
 
     /**
-     * Annulerer indtastningen af "category", og vender tilbage til brugerFladeMain.
-     * @param event 
+     * Annulerer indtastningen af "category", og vender tilbage til
+     * brugerFladeMain.
+     *
+     * @param event
      */
     @FXML
     private void cancelCategoryOnAction(ActionEvent event)
     {
-        
+
         Stage stage = (Stage) cancelCategoryBtn.getScene().getWindow();
         stage.close();
-        
+
     }
-    
-    
-    
 
 }

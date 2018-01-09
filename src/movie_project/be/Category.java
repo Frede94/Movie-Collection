@@ -5,6 +5,8 @@
  */
 package movie_project.be;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Frederik Bærbar
@@ -15,15 +17,6 @@ public class Category
     private String catName;
     private int catId;
 
-    public Category(int id, String name)
-    {
-        this.catId = id;
-        this.catName = name;
-    }
-
-    public Category()
-    {
-    }
 
     /**
      * Get the value of catId

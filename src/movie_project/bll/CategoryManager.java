@@ -15,17 +15,9 @@ import movie_project.dal.CategoryDAO;
 public class CategoryManager
 {
     
-    private CategoryDAO catDAO;
+    private CategoryDAO catDAO = new CategoryDAO();
     
-    /**
-     * Adds a new category
-     * @param c 
-     */
-    public void addNewCat(Category c)
-    {
-        catDAO.addNewCat(c);
-    }
-    
+
     public void save (Category c)
     {
        catDAO.save(c);

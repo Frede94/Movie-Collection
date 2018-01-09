@@ -5,6 +5,7 @@
  */
 package movie_project.gui;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import movie_project.be.Category;
 import movie_project.bll.CategoryManager;
@@ -15,20 +16,9 @@ import movie_project.bll.CategoryManager;
  */
 public class CategoryModel
 {
-    private ObservableList<Category> categories;
+    private ObservableList<Category> categories = FXCollections.observableArrayList();
     
-    CategoryManager catManager = new CategoryManager();
-    
-    /**
-     * Adds a new category
-     * @param c 
-     */
-    void addNewCat(Category c)
-    {
-        categories.add(c);
-        catManager.addNewCat(c);
-    }
-    
+    CategoryManager catManager = new CategoryManager();  
     
     
     void saveCategory(Category c)
@@ -36,4 +26,5 @@ public class CategoryModel
         categories.add(c);
         catManager.save(c);
     }
+            
 }
