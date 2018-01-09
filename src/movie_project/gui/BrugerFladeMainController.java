@@ -187,7 +187,7 @@ public class BrugerFladeMainController implements Initializable
     }
 
     /**
-     * adds a new categori to the list.
+     * adds a new category to the list.
      *
      * @param event
      */
