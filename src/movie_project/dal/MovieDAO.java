@@ -106,37 +106,6 @@ public class MovieDAO
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    
-//    
-//    public List<Movies> getAllMovies()
-//    {
-//        List<Movies> movies = new ArrayList();
-//        
-//        
-//        try (Connection con = dbc.getConnection())
-//        {
-//            Statement stmt = con.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM Movie");
-//            
-//            while (rs.next())
-//            {
-//                
-//                Movies currentMovie = new Movies();
-//                currentMovie.setName(rs.getString("name"));
-//                currentMovie.setRating(rs.getInt("ratingIMDB"));
-//                currentMovie.setLastView(rs.getString("lastview"));
-//                currentMovie.setPersonalRating(rs.getInt("ratingOwn"));
-//                
-//            }
-//        } catch (SQLException ex)
-//        {
-//            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return movies;
-//    }
-//    
-//    
-//    
+  
     
 }
