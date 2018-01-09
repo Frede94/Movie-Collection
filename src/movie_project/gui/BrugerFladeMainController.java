@@ -155,7 +155,13 @@ public class BrugerFladeMainController implements Initializable
      */
     @FXML
     private void searchAction(ActionEvent event)
-    {
+    { 
+        String searchText = filterField.getText().trim();
+        if (!searchText.isEmpty())
+        {
+
+            movieModel.search(searchText);
+        }
     }
 
     /**

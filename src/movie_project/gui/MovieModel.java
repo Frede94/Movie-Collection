@@ -5,10 +5,14 @@
  */
 package movie_project.gui;
 
+
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import movie_project.be.Movies;
 import movie_project.bll.MovieManager;
+import movie_project.bll.SearchFilter;
+import movie_project.dal.MovieDAO;
 
 /**
  *
@@ -16,6 +20,9 @@ import movie_project.bll.MovieManager;
  */
 public class MovieModel
 {
+    private SearchFilter searchFilter = new SearchFilter();
+    
+    private MovieDAO movieDao = new MovieDAO(); // FY FY skal flyttes
     
     MovieManager movieManager = new MovieManager();
     
@@ -33,4 +40,16 @@ public class MovieModel
         movieManager.saveMovie(m);
     }
     
+     /*
+    Søger på det der er skrevet i søgefeltet
+    skal flyttes til dal laget
+     */
+    void search(String searchText)
+    {
+        List<Movies> allMovies = movieDao.getAllMovies();
+        List<Movies> searchResults = searchFilter.searchByMovieName(allMovies, searchText);
+        movies.clear();
+        movies.addAll(searchResults);
+
+    }
 }

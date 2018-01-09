@@ -7,8 +7,11 @@ package movie_project.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import movie_project.be.Movies;
@@ -22,6 +25,36 @@ public class MovieDAO
 
     DataBaseConnector dbc = new DataBaseConnector();
 
+     public List<Movies> getAllMovies()
+    {
+
+        List<Movies> movies = new ArrayList();
+
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Movie");
+            while (rs.next())
+            {
+                Movies currentMovie = new Movies();
+                currentMovie.setId(rs.getInt("Id"));
+                currentMovie.setName(rs.getString("Name"));
+                currentMovie.setRating(rs.getFloat("Rating"));
+                currentMovie.setFileLink(rs.getString("FileLink"));
+                currentMovie.setLastView(rs.getString("LastView"));
+                currentMovie.setPersonalRating(rs.getFloat("PersonalRating"));
+
+                movies.add(currentMovie);
+
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return movies;
+    }
+    
+    
     /*
     Sletter elementer fra databasen og listen
      */
