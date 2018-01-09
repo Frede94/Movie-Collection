@@ -21,7 +21,10 @@ public class CategoryModel
     
     CategoryManager catManager = new CategoryManager();  
     
-    
+    /**
+     * Sender den ny kategori vidre til BLL laget.
+     * @param c 
+     */
     void saveCategory(Category c)
     {
         categories.add(c);

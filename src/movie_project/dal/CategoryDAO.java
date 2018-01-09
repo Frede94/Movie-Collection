@@ -26,11 +26,15 @@ public class CategoryDAO
 {
 
     DataBaseConnector dbc = new DataBaseConnector();
-    
+
+    /**
+     * Gemmer den ny kategori til databasen
+     * @param c 
+     */
     public void save(Category c)
     {
-        
-         try (Connection con = dbc.getConnection())
+
+        try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
             String sql = "INSERT INTO Category (catName) VALUES (?)";
@@ -42,13 +46,12 @@ public class CategoryDAO
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-        
-        
+
     }
 
     public List<Category> getAllCategories()
     {
-         List<Category> categories = new ArrayList();
+        List<Category> categories = new ArrayList();
 
         try (Connection con = dbc.getConnection())
         {
@@ -59,7 +62,6 @@ public class CategoryDAO
                 Category currentCategory = new Category();
                 currentCategory.setCatId(rs.getInt("catId"));
                 currentCategory.setCatName(rs.getString("catName"));
-
 
                 categories.add(currentCategory);
             }
