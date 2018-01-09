@@ -59,7 +59,7 @@ public class BrugerFladeMainController implements Initializable
 
     private Movies selectedMovie;
     @FXML
-    private ListView<?> catList;
+    private ListView<Category> catList;
     @FXML
     private Button newCatBtn;
     @FXML
@@ -180,7 +180,13 @@ movieModel.loadMovies();
      */
     @FXML
     private void searchAction(ActionEvent event)
-    {
+    { 
+        String searchText = filterField.getText().trim();
+        if (!searchText.isEmpty())
+        {
+
+            movieModel.search(searchText);
+        }
     }
 
     /**
@@ -196,19 +202,16 @@ movieModel.loadMovies();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddCategory.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             AddCategoryController categoryController = fxmlLoader.getController();
-            //categoryController.setPlaylistModel(CategoryModel);
+//            categoryController.setCategoryModel(catModel);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
-            stage.setTitle("New Playlist");
+            stage.setTitle("New Category");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e)
         {
             e.printStackTrace();
         }
-
-        Category c = new Category();
-        catModel.addNewCat(c);
 
     }
 

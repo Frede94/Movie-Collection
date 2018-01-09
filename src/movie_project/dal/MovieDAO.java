@@ -25,12 +25,42 @@ public class MovieDAO
 {
 
     private ObservableList<Movies> moviesInList;
-    private MovieDAO movieDao;
+    private MovieDAO movieDao = new MovieDAO();
     private DataBaseConnector dataBaseConnector;
     
     DataBaseConnector dbc = new DataBaseConnector();
     
 
+     public List<Movies> getAllMovies()
+    {
+
+        List<Movies> movies = new ArrayList();
+
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Movie");
+            while (rs.next())
+            {
+                Movies currentMovie = new Movies();
+                currentMovie.setId(rs.getInt("Id"));
+                currentMovie.setName(rs.getString("Name"));
+                currentMovie.setRating(rs.getFloat("Rating"));
+                currentMovie.setFileLink(rs.getString("FileLink"));
+                currentMovie.setLastView(rs.getString("LastView"));
+                currentMovie.setPersonalRating(rs.getFloat("PersonalRating"));
+
+                movies.add(currentMovie);
+
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return movies;
+    }
+    
+    
     /*
     Sletter elementer fra databasen og listen
      */
@@ -72,35 +102,35 @@ public class MovieDAO
     }
 
     
-    
-    public List<Movies> getAllMovies()
-    {
-        List<Movies> movies = new ArrayList();
-        
-        
-        try (Connection con = dbc.getConnection())
-        {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Movie");
-            
-            while (rs.next())
-            {
-                
-                Movies currentMovie = new Movies();
-                currentMovie.setName(rs.getString("name"));
-                currentMovie.setRating(rs.getInt("ratingIMDB"));
-                currentMovie.setLastView(rs.getString("lastview"));
-                currentMovie.setPersonalRating(rs.getInt("ratingOwn"));
-                
-            }
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return movies;
-    }
-    
-    
-    
+//    
+//    public List<Movies> getAllMovies()
+//    {
+//        List<Movies> movies = new ArrayList();
+//        
+//        
+//        try (Connection con = dbc.getConnection())
+//        {
+//            Statement stmt = con.createStatement();
+//            ResultSet rs = stmt.executeQuery("SELECT * FROM Movie");
+//            
+//            while (rs.next())
+//            {
+//                
+//                Movies currentMovie = new Movies();
+//                currentMovie.setName(rs.getString("name"));
+//                currentMovie.setRating(rs.getInt("ratingIMDB"));
+//                currentMovie.setLastView(rs.getString("lastview"));
+//                currentMovie.setPersonalRating(rs.getInt("ratingOwn"));
+//                
+//            }
+//        } catch (SQLException ex)
+//        {
+//            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return movies;
+//    }
+//    
+//    
+//    
     
 }
