@@ -95,8 +95,9 @@ public class AddWindowController implements Initializable
             editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
             editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
         }
-        Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
+        Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();   
         stage.close();
+        
     }
 
     @FXML
@@ -128,6 +129,12 @@ public class AddWindowController implements Initializable
             Logger.getLogger(AddWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    void setMovieModel(MovieModel movieModel)
+    {
+        this.movieModel = movieModel;
+        comboCategory.setItems(movieModel.getCategories());
     }
 
 }

@@ -65,17 +65,11 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private TableColumn<Movies, String> tableColumnName;
     @FXML
-    private TableColumn<Movies, Integer> tableColumnRating;
+    private TableColumn<Movies, String> tableColumnRating;
     @FXML
     private TableColumn<Movies, String> tableColumnLastView;
     @FXML
-    private TableColumn<Movies, Integer> tableColumnOwnRating;
-
-    private void handleButtonAction(ActionEvent event)
-    {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    private TableColumn<Movies, String> tableColumnOwnRating;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -119,7 +113,7 @@ public class BrugerFladeMainController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             AddWindowController ewc = fxmlLoader.getController();
-            // ewc.setSongModel(songModel);
+            ewc.setMovieModel(movieModel);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("New Movie");
@@ -145,8 +139,8 @@ public class BrugerFladeMainController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             AddWindowController ewc = fxmlLoader.getController();
-            // ewc.setSongModel(songModel);
-            //   ewc.setEditSong(songsList.getSelectionModel().getSelectedItem());
+            //ewc.setSongModel(songModel);
+            //ewc.setEditSong(songsList.getSelectionModel().getSelectedItem());
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit Movie");
@@ -181,8 +175,11 @@ public class BrugerFladeMainController implements Initializable
         String searchText = filterField.getText().trim();
         if (!searchText.isEmpty())
         {
-
             movieModel.search(searchText);
+        }
+        else
+        {
+            movieModel.loadMovies();
         }
     }
 
@@ -224,14 +221,14 @@ public class BrugerFladeMainController implements Initializable
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Look, a Confirmation Dialog");
-        alert.setContentText("Are you ok with this?");
+        alert.setHeaderText("Warning");
+        alert.setContentText("Are you sure you want to delete this?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK)
         {
 
-            Movies selectredMovie = movieView.getSelectionModel().getSelectedItem();
+            Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();
 
             movieModel.remove(selectedMovie);
 

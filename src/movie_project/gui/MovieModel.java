@@ -8,6 +8,7 @@ package movie_project.gui;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import movie_project.be.Category;
 import movie_project.be.Movies;
 import movie_project.bll.MovieManager;
 import movie_project.bll.SearchFilter;
@@ -21,12 +22,10 @@ public class MovieModel
 {
 
     private SearchFilter searchFilter = new SearchFilter();
-
     private MovieDAO movieDao = new MovieDAO(); // FY FY skal flyttes
-
     MovieManager movieManager = new MovieManager();
-
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
+    private ObservableList<Category> categories;
 
     /**
      * Constructor til MovieModel klassen
@@ -40,7 +39,8 @@ public class MovieModel
     }
 
     /**
-     *Fjerner den valgte sang fra listen
+     * Fjerner den valgte sang fra listen
+     *
      * @param selectedMovie
      */
     void remove(Movies selectedMovie)
@@ -48,17 +48,18 @@ public class MovieModel
         movies.remove(selectedMovie);
         MovieManager.remove(selectedMovie);
     }
-    
+
     /**
      * Gemmer film i databasen
-     * @param m 
+     *
+     * @param m
      */
     void saveMovie(Movies m)
     {
         movies.add(m);
         movieManager.saveMovie(m);
     }
-    
+
     /**
      * Rydder listen og loader film fra databasen. "getAllMovies"
      */
@@ -69,10 +70,11 @@ public class MovieModel
         movies.clear();
         movies.addAll(loadedMovies);
     }
-    
+
     /**
      * Retunerer film
-     * @return 
+     *
+     * @return
      */
     public ObservableList<Movies> getMovies()
     {
@@ -80,9 +82,9 @@ public class MovieModel
     }
 
     /**
-     *  Søger på det der er skrevet i søgefeltet
-     * skal FLYTTES til DAL laget
-     * @param searchText 
+     * Søger på det der er skrevet i søgefeltet skal FLYTTES til DAL laget
+     *
+     * @param searchText
      */
     void search(String searchText)
     {
@@ -90,5 +92,13 @@ public class MovieModel
         List<Movies> searchResults = searchFilter.searchByMovieName(allMovies, searchText);
         movies.clear();
         movies.addAll(searchResults);
+    }
+
+    /*
+    returnere categories
+    */
+    ObservableList<Category> getCategories()
+    {
+        return categories;
     }
 }

@@ -26,7 +26,7 @@ public class MovieDAO
 {
 
     private ObservableList<Movies> moviesInList;
-//    private MovieDAO movieDao = new MovieDAO();
+    private MovieDAO movieDAO;
     private DataBaseConnector dataBaseConnector;
     
     DataBaseConnector dbc = new DataBaseConnector();
