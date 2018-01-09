@@ -7,6 +7,7 @@ package movie_project.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -30,7 +31,12 @@ public class MovieDAO
     
     DataBaseConnector dbc = new DataBaseConnector();
     
-
+/**
+ * Gets a list from the "Movie" database with the Movies, Id, Name, RatingIMDB,
+ * FileLink, LastView and RatingOwn
+ * 
+ * @return 
+ */
      public List<Movies> getAllMovies()
     {
 

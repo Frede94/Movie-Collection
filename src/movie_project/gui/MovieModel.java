@@ -62,6 +62,7 @@ public class MovieModel
     {
         return movies;
     }
+    
      /*
     Søger på det der er skrevet i søgefeltet
     skal flyttes til dal laget
@@ -72,7 +73,5 @@ public class MovieModel
         List<Movies> searchResults = searchFilter.searchByMovieName(allMovies, searchText);
         movies.clear();
         movies.addAll(searchResults);
-
-
     }
 }
