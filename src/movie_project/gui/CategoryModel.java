@@ -5,6 +5,7 @@
  */
 package movie_project.gui;
 
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import movie_project.be.Category;
@@ -25,6 +26,18 @@ public class CategoryModel
     {
         categories.add(c);
         catManager.save(c);
+    }
+
+    ObservableList<Category> getCategories()
+    {
+        return categories;
+    }
+
+    void loadCategories()
+    {
+        List<Category> loadedCategories = catManager.getAllCategories();
+        categories.clear();
+        categories.addAll(loadedCategories);
     }
             
 }

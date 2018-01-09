@@ -51,7 +51,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private Button btnDeleteMovie;
 
-    private CategoryModel catModel;
+    private CategoryModel catModel = new CategoryModel();
 
     private MovieModel movieModel = new MovieModel();
 
@@ -70,7 +70,9 @@ public class BrugerFladeMainController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        
+        catList.setItems(catModel.getCategories());
+        catModel.loadCategories();
     }
 
     /**

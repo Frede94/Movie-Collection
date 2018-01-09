@@ -45,4 +45,28 @@ public class CategoryDAO
         
         
     }
+
+    public List<Category> getAllCategories()
+    {
+         List<Category> categories = new ArrayList();
+
+        try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Category");
+            while (rs.next())
+            {
+                Category currentCategory = new Category();
+                currentCategory.setCatId(rs.getInt("catId"));
+                currentCategory.setCatName(rs.getString("catName"));
+
+
+                categories.add(currentCategory);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return categories;
+    }
 }
