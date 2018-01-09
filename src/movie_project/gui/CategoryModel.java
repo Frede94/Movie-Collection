@@ -31,11 +31,18 @@ public class CategoryModel
         catManager.save(c);
     }
 
+    /**
+     * Metoden gør det muligt for vores contoller at hente listen med kategorier
+     * @return 
+     */
     ObservableList<Category> getCategories()
     {
         return categories;
     }
 
+    /**
+     * Metoden laver listen med kategorier som den henter fra DAL laget via BLL Laget
+     */
     void loadCategories()
     {
         List<Category> loadedCategories = catManager.getAllCategories();

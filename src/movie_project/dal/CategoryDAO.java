@@ -49,6 +49,10 @@ public class CategoryDAO
 
     }
 
+    /**
+     * Henter kategorier fra DataBasen og sender dem vidre til BLL laget.
+     * @return 
+     */
     public List<Category> getAllCategories()
     {
         List<Category> categories = new ArrayList();

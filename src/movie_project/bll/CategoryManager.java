@@ -27,6 +27,10 @@ public class CategoryManager
        catDAO.save(c);
     }
 
+    /**
+     * Henter kategorier fra DAL laget og sender dem vidre til vores model i GUI laget
+     * @return 
+     */
     public List<Category> getAllCategories()
     {
         return catDAO.getAllCategories();
