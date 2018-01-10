@@ -5,6 +5,7 @@
  */
 package movie_project.gui;
 
+import java.util.Calendar;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -113,4 +114,11 @@ public class MovieModel
         movies.add(editMovie);
         movieManager.saveEdit(editMovie);
     }
+
+    void lastViewed(Movies selectedMovie)
+    {
+        movieManager.lastViewed(selectedMovie);
+    }
+
+    
 }

@@ -5,6 +5,7 @@
  */
 package movie_project.bll;
 
+import java.util.Calendar;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -67,6 +68,11 @@ public class MovieManager
     public void saveEdit(Movies editMovie)
     {
         movieDAO.saveEdit(editMovie);
+    }
+
+    public void lastViewed(Movies selectedMovie)
+    {
+        movieDAO.lastViewed(selectedMovie);
     }
 
 }

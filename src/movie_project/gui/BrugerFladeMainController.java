@@ -8,6 +8,7 @@ package movie_project.gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -81,15 +82,13 @@ public class BrugerFladeMainController implements Initializable
         catList.setItems(catModel.getCategories());
         catModel.loadCategories();
 
-        
-      
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-       // tableColumnRating.setCellValueFactory(new PropertyValueFactory<>("RatingIMDB"));
+        // tableColumnRating.setCellValueFactory(new PropertyValueFactory<>("RatingIMDB"));
         tableColumnLastView.setCellValueFactory(new PropertyValueFactory<>("LastView"));
         tableColumnOwnRating.setCellValueFactory(new PropertyValueFactory<>("PersonalRating"));
 
         tableColumnRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
-        
+
         movieView.setItems(movieModel.getMovies());
         movieModel.loadMovies();
 
@@ -172,6 +171,9 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
+        Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();
+        
+        movieModel.lastViewed(selectedMovie);
         movieModel.loadMovies();
     }
 
@@ -253,27 +255,27 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void catSelectClick(MouseEvent event)
     {
-        
+
     }
 
     @FXML
     private void deleteCat(ActionEvent event)
     {
         {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Look, a Confirmation Dialog");
-        alert.setContentText("Are you ok with this?");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Look, a Confirmation Dialog");
+            alert.setContentText("Are you ok with this?");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK)
-        {
-            Category selectedCategory = catList.getSelectionModel().getSelectedItem();
-            catModel.removeCat(selectedCategory);
-        } else
-        {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK)
+            {
+                Category selectedCategory = catList.getSelectionModel().getSelectedItem();
+                catModel.removeCat(selectedCategory);
+            } else
+            {
 
+            }
         }
-    }
     }
 }

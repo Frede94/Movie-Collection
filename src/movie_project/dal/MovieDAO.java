@@ -5,6 +5,7 @@
  */
 package movie_project.dal;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -141,6 +143,26 @@ public class MovieDAO
         {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void lastViewed(Movies selectedMovie)
+    {
+        try (Connection con = dbc.getConnection())
+        {
+//            PreparedStatement stmt = con.prepareStatement("Update Movie SET lastView = GETDATE ( ) WHERE id = " + selectedMovie.getId());
+            
+            String queryLastView = "Update Movie SET lastView = GETDATE ( ) WHERE id = " + selectedMovie.getId();
+
+            PreparedStatement preparedStmtLastView = con.prepareStatement(queryLastView);
+            
+            preparedStmtLastView.executeUpdate();
+            
+            
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }
