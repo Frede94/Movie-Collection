@@ -129,7 +129,10 @@ public class AddWindowController implements Initializable
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open File");
         
-        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(".mp4", "*.mpeg4", "mp4"));
+        chooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("ALL", "*.*"),
+                new FileChooser.ExtensionFilter("MP4", "*.mp4"),
+                new FileChooser.ExtensionFilter("MKV", "*.mkv"));
         File file = chooser.showOpenDialog(new Stage());
         try { 
             
