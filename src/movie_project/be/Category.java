@@ -61,7 +61,7 @@ public class Category
     @Override
     public String toString()
     {
-        return "Category{" + "catName=" + catName + ", catId=" + catId + '}';
+        return catName;
     }
 
 }

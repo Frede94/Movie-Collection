@@ -134,7 +134,7 @@ public class AddWindowController implements Initializable
     void setMovieModel(MovieModel movieModel)
     {
         this.movieModel = movieModel;
-        comboCategory.setItems(movieModel.getCategories());
+        comboCategory.setItems(catModel.getCategories());
     }
 
 }

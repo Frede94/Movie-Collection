@@ -37,7 +37,8 @@ public class CategoryModel
      */
     ObservableList<Category> getCategories()
     {
-        return categories;
+        return categories.sorted();
+        
     }
 
     /**
