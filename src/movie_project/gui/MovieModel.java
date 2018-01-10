@@ -97,12 +97,17 @@ public class MovieModel
 
     /*
     returnere categories
-    */
+     */
     ObservableList<Category> getCategories()
     {
         return categories;
     }
 
+    /*
+    Henter informationerne som allerede er i en film og sætter dem ind i
+    txtfelterne som er i vores AddWindow, så man kan ændre i dem.
+    Når man ændre så sletter programmet den gamle film som man har valgt at edit.
+     */
     void saveEdit(Movies editMovie)
     {
         movies.add(editMovie);
