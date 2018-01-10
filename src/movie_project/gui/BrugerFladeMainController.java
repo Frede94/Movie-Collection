@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -70,6 +71,8 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Movies, String> tableColumnLastView;
     @FXML
     private TableColumn<Movies, String> tableColumnOwnRating;
+    @FXML
+    private Button btnDeleteCat;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -78,6 +81,8 @@ public class BrugerFladeMainController implements Initializable
         catList.setItems(catModel.getCategories());
         catModel.loadCategories();
 
+        
+      
         tableColumnName.setCellValueFactory(new PropertyValueFactory("Name"));
         tableColumnRating.setCellValueFactory(new PropertyValueFactory("RatingIMDB"));
         tableColumnLastView.setCellValueFactory(new PropertyValueFactory("LastView"));
@@ -176,8 +181,7 @@ public class BrugerFladeMainController implements Initializable
         if (!searchText.isEmpty())
         {
             movieModel.search(searchText);
-        }
-        else
+        } else
         {
             movieModel.loadMovies();
         }
@@ -238,5 +242,32 @@ public class BrugerFladeMainController implements Initializable
             // ... user chose CANCEL or closed the dialog
         }
 
+    }
+
+    @FXML
+    private void catSelectClick(MouseEvent event)
+    {
+        
+    }
+
+    @FXML
+    private void deleteCat(ActionEvent event)
+    {
+        {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Category selectedCategory = catList.getSelectionModel().getSelectedItem();
+            catModel.removeCat(selectedCategory);
+        } else
+        {
+
+        }
+    }
     }
 }

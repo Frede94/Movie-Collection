@@ -75,4 +75,17 @@ public class CategoryDAO
         }
         return categories;
     }
+
+    public void removeCat(Category selectedCategory)
+    {
+          try (Connection con = dbc.getConnection())
+        {
+            Statement stmt = con.createStatement();
+            stmt.execute("DELETE FROM Category WHERE catId=" + selectedCategory.getCatId());
+            
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
