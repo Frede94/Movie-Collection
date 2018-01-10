@@ -102,4 +102,10 @@ public class MovieModel
     {
         return categories;
     }
+
+    void saveEdit(Movies editMovie)
+    {
+        movies.add(editMovie);
+        movieManager.saveEdit(editMovie);
+    }
 }

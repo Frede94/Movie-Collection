@@ -55,5 +55,10 @@ public class MovieManager
     {
         return movieDAO.getAllMovies();
     }
+
+    public void saveEdit(Movies editMovie)
+    {
+        movieDAO.saveEdit(editMovie);
+    }
     
 }
