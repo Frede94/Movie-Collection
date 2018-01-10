@@ -28,16 +28,16 @@ public class MovieDAO
     private ObservableList<Movies> moviesInList;
     private MovieDAO movieDAO;
     private DataBaseConnector dataBaseConnector;
-    
+
     DataBaseConnector dbc = new DataBaseConnector();
-    
-/**
- * Gets a list from the "Movie" database with the Movies, Id, Name, RatingIMDB,
- * FileLink, LastView and RatingOwn
- * 
- * @return 
- */
-     public List<Movies> getAllMovies()
+
+    /**
+     * Gets a list from the "Movie" database with the Movies, Id, Name,
+     * RatingIMDB, FileLink, LastView and RatingOwn
+     *
+     * @return
+     */
+    public List<Movies> getAllMovies()
     {
 
         List<Movies> movies = new ArrayList();
@@ -65,8 +65,7 @@ public class MovieDAO
         }
         return movies;
     }
-    
-    
+
     /*
     Sletter elementer fra databasen og listen
      */
@@ -106,6 +105,35 @@ public class MovieDAO
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-  
-    
+
+    public void saveEdit(Movies editMovie)
+    {
+        try (Connection con = dbc.getConnection())
+        {
+            String queryTitle = "Update Movie set name = ? where id =" + editMovie.getId();
+            String queryRating = "Update Movie set ratingIMDB = ? where id =" + editMovie.getId();
+            String queryPRating = "Update Movie set filelink = ? where id =" + editMovie.getId();
+            String queryPath = "Update Movie set ratingOwn = ? where id =" + editMovie.getId();
+            
+            PreparedStatement preparedStmtTitle = con.prepareStatement(queryTitle);
+            PreparedStatement preparedStmtRating = con.prepareStatement(queryRating);
+            PreparedStatement preparedStmtPRating = con.prepareStatement(queryPRating);
+            PreparedStatement preparedStmtPath = con.prepareStatement(queryPath);
+            
+            preparedStmtTitle.setString(1, editMovie.getName());
+            preparedStmtRating.setFloat(1, editMovie.getRating());
+            preparedStmtPRating.setFloat(1, editMovie.getPersonalRating());
+            preparedStmtPath.setString(1, editMovie.getFileLink());
+            
+            preparedStmtTitle.executeUpdate();
+            preparedStmtRating.executeUpdate();
+            preparedStmtPRating.executeUpdate();
+            preparedStmtTitle.executeUpdate();
+            
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE,null,ex);
+        }
+    }
+
 }

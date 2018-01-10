@@ -144,8 +144,8 @@ public class BrugerFladeMainController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             AddWindowController ewc = fxmlLoader.getController();
-            //ewc.setSongModel(songModel);
-            //ewc.setEditSong(songsList.getSelectionModel().getSelectedItem());
+            ewc.setMovieModel(movieModel);
+            ewc.setEditMovie(movieView.getSelectionModel().getSelectedItem());
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Edit Movie");

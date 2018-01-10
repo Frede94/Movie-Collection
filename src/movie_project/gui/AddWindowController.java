@@ -94,6 +94,7 @@ public class AddWindowController implements Initializable
             editMovie.setFileLink(txtPath.getText());
             editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
             editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
+            movieModel.saveEdit(editMovie);
         }
         Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();   
         stage.close();
@@ -135,6 +136,18 @@ public class AddWindowController implements Initializable
     {
         this.movieModel = movieModel;
         comboCategory.setItems(catModel.getCategories());
+    }
+
+    void setEditMovie(Movies selectedItem)
+    {
+        editMovie = selectedItem;
+        //comboCategory.getSelectionModel().select(editMovie.getCatName);
+        txtTitle.setText(editMovie.getName());
+        txtImdbRating.setText(String.valueOf(editMovie.getRating()));
+        txtImdbRating1.setText(String.valueOf(editMovie.getPersonalRating()));
+        txtPath.setText(editMovie.getFileLink());
+        
+        
     }
 
 }
