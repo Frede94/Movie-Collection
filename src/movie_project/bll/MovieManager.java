@@ -20,11 +20,11 @@ public class MovieManager
 
     private static MovieDAO movieDAO = new MovieDAO();
     private static ObservableList<Movies> movies = FXCollections.observableArrayList();
-    
+
     /**
      * Sletter den valgte film
-     * 
-     * @param selectedMovie 
+     *
+     * @param selectedMovie
      */
     public static void remove(Movies selectedMovie)
     {
@@ -33,12 +33,14 @@ public class MovieManager
 
     /**
      * Gemmer den film, som man taster ind i databasen
-     * @param m 
+     *
+     * @param m
      */
     public void saveMovie(Movies m)
     {
         movieDAO.saveMovie(m);
     }
+
     /**
      * Kalder vores BLL MovieManager klasse
      */
@@ -46,19 +48,25 @@ public class MovieManager
     {
         movieDAO = new MovieDAO();
     }
-    
+
     /**
      * En liste af alle film i databasen
-     * @return 
+     *
+     * @return
      */
     public List<Movies> getAllMovies()
     {
         return movieDAO.getAllMovies();
     }
 
+    /*
+    Henter informationerne som allerede er i en film og sætter dem ind i
+    txtfelterne som er i vores AddWindow, så man kan ændre i dem.
+    Når man ændre så sletter programmet den gamle film som man har valgt at edit.
+     */
     public void saveEdit(Movies editMovie)
     {
         movieDAO.saveEdit(editMovie);
     }
-    
+
 }

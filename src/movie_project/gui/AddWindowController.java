@@ -56,12 +56,13 @@ public class AddWindowController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        
+
     }
-    
+
     /**
      * Sætter CategoryModel i denne klasse og henter Categories
-     * @param categoryModel 
+     *
+     * @param categoryModel
      */
     public void setCategoryModel(CategoryModel categoryModel)
     {
@@ -90,15 +91,19 @@ public class AddWindowController implements Initializable
             movieModel.saveMovie(m);
         } else
         {
+
+            //Henter informationerne som allerede er i en film og sætter dem ind i
+            //txtfelterne som er i vores AddWindow, så man kan ændre i dem.
+            //Når man ændre så sletter programmet den gamle film som man har valgt at edit.
             editMovie.setName(txtTitle.getText());
             editMovie.setFileLink(txtPath.getText());
             editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
             editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
             movieModel.saveEdit(editMovie);
         }
-        Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();   
+        Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
         stage.close();
-        
+
     }
 
     @FXML
@@ -146,8 +151,7 @@ public class AddWindowController implements Initializable
         txtImdbRating.setText(String.valueOf(editMovie.getRating()));
         txtImdbRating1.setText(String.valueOf(editMovie.getPersonalRating()));
         txtPath.setText(editMovie.getFileLink());
-        
-        
+
     }
 
 }
