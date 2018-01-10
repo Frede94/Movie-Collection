@@ -8,8 +8,10 @@ package movie_project.gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,14 +75,14 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Movies, String> tableColumnOwnRating;
     @FXML
     private Button btnDeleteCat;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
 
         catList.setItems(catModel.getCategories());
         catModel.loadCategories();
-
+        catList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         
       
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -256,6 +258,10 @@ public class BrugerFladeMainController implements Initializable
         
     }
 
+    /**
+     * This method deletes the selected categories by sending the selected items to the Categorymodel 
+     * @param event 
+     */
     @FXML
     private void deleteCat(ActionEvent event)
     {
@@ -268,7 +274,7 @@ public class BrugerFladeMainController implements Initializable
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK)
         {
-            Category selectedCategory = catList.getSelectionModel().getSelectedItem();
+            ObservableList<Category> selectedCategory = catList.getSelectionModel().getSelectedItems();
             catModel.removeCat(selectedCategory);
         } else
         {

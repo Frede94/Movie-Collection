@@ -49,12 +49,12 @@ public class MovieDAO
             while (rs.next())
             {
                 Movies currentMovie = new Movies();
-                currentMovie.setId(rs.getInt("Id"));
-                currentMovie.setName(rs.getString("Name"));
-                currentMovie.setRating(rs.getFloat("RatingIMDB"));
-                currentMovie.setFileLink(rs.getString("FileLink"));
-                currentMovie.setLastView(rs.getString("LastView"));
-                currentMovie.setPersonalRating(rs.getFloat("PersonalRating")); // PersonalRating
+                currentMovie.setId(rs.getInt("id"));
+                currentMovie.setName(rs.getString("name"));
+                currentMovie.setRating(rs.getFloat("ratingIMDB"));
+                currentMovie.setFileLink(rs.getString("filelink"));
+                currentMovie.setLastView(rs.getString("lastview"));
+                currentMovie.setPersonalRating(rs.getFloat("ratingOwn")); // PersonalRating
 
                 movies.add(currentMovie);
 
