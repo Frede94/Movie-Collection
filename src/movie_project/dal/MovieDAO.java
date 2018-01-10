@@ -51,10 +51,10 @@ public class MovieDAO
                 Movies currentMovie = new Movies();
                 currentMovie.setId(rs.getInt("Id"));
                 currentMovie.setName(rs.getString("Name"));
-                currentMovie.setRating(rs.getFloat("RatingIMDB"));
-                currentMovie.setFileLink(rs.getString("FileLink"));
-                currentMovie.setLastView(rs.getString("LastView"));
-                currentMovie.setPersonalRating(rs.getFloat("PersonalRating")); // PersonalRating
+                currentMovie.setRating(rs.getFloat("ratingIMDB"));
+                currentMovie.setFileLink(rs.getString("fileLink"));
+                currentMovie.setLastView(rs.getString("lastView"));
+                currentMovie.setPersonalRating(rs.getFloat("ratingOwn")); // PersonalRating
 
                 movies.add(currentMovie);
 
