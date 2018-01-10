@@ -106,33 +106,40 @@ public class MovieDAO
         }
     }
 
+    /*
+    Henter informationerne som allerede er i en film og sætter dem ind i
+    txtfelterne som er i vores AddWindow, så man kan ændre i dem.
+    Når man ændre så sletter programmet den gamle film som man har valgt at edit.
+     */
     public void saveEdit(Movies editMovie)
     {
         try (Connection con = dbc.getConnection())
         {
+            // create the java mysql update preparedstatement
             String queryTitle = "Update Movie set name = ? where id =" + editMovie.getId();
             String queryRating = "Update Movie set ratingIMDB = ? where id =" + editMovie.getId();
             String queryPRating = "Update Movie set filelink = ? where id =" + editMovie.getId();
             String queryPath = "Update Movie set ratingOwn = ? where id =" + editMovie.getId();
-            
+
             PreparedStatement preparedStmtTitle = con.prepareStatement(queryTitle);
             PreparedStatement preparedStmtRating = con.prepareStatement(queryRating);
             PreparedStatement preparedStmtPRating = con.prepareStatement(queryPRating);
             PreparedStatement preparedStmtPath = con.prepareStatement(queryPath);
-            
+
             preparedStmtTitle.setString(1, editMovie.getName());
             preparedStmtRating.setFloat(1, editMovie.getRating());
             preparedStmtPRating.setFloat(1, editMovie.getPersonalRating());
             preparedStmtPath.setString(1, editMovie.getFileLink());
-            
+
+            // execute the java preparedstatement
             preparedStmtTitle.executeUpdate();
             preparedStmtRating.executeUpdate();
             preparedStmtPRating.executeUpdate();
             preparedStmtTitle.executeUpdate();
-            
+
         } catch (SQLException ex)
         {
-            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE,null,ex);
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

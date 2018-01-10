@@ -129,6 +129,10 @@ public class BrugerFladeMainController implements Initializable
     /**
      * opens a new window when you press edit movie.
      *
+     * Henter informationerne som allerede er i en film og sætter dem ind i
+     * txtfelterne som er i vores AddWindow, så man kan ændre i dem. Når man
+     * ændre så sletter programmet den gamle film som man har valgt at edit.
+     *
      * @param event
      */
     @FXML
@@ -176,8 +180,7 @@ public class BrugerFladeMainController implements Initializable
         if (!searchText.isEmpty())
         {
             movieModel.search(searchText);
-        }
-        else
+        } else
         {
             movieModel.loadMovies();
         }
