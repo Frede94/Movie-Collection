@@ -107,8 +107,11 @@ public class BrugerFladeMainController implements Initializable
      * @param event
      */
     @FXML
-    private void onSelectedMovie(MouseEvent event)
+    public void onSelectedMovie(MouseEvent event)
     {
+        
+      
+
     }
 
     /**
@@ -201,6 +204,7 @@ public class BrugerFladeMainController implements Initializable
         {
             e.printStackTrace();
         }
+
         //        if (selectedMovie != null && selectedMovie.equals(moviePlaying))
         //        {
         //            if (mp.getStatus() == MediaPlayer.Status.PLAYING)
@@ -211,6 +215,29 @@ public class BrugerFladeMainController implements Initializable
         //        {
         //            mp.play();
         //        }
+
+
+        
+         if ( selectedMovie != null && selectedMovie.equals(moviePlaying))
+         {
+             mp.pause();
+         } else
+         {
+             mp.play();
+         }
+        
+        
+//        if (selectedMovie != null && selectedMovie.equals(moviePlaying))
+//        {
+//            if (mp.getStatus() == MediaPlayer.Status.PLAYING)
+//            {
+//                mp.pause();
+//            }
+//        } else
+//        {
+//            mp.play();
+//        }
+
 
     }
 
