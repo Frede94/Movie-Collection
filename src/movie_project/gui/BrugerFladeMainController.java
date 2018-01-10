@@ -28,6 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import movie_project.be.Category;
@@ -75,7 +76,11 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Movies, String> tableColumnOwnRating;
     @FXML
     private Button btnDeleteCat;
-    
+
+    private Movies moviePlaying;
+
+    private MediaPlayer mp;
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -83,15 +88,14 @@ public class BrugerFladeMainController implements Initializable
         catList.setItems(catModel.getCategories());
         catModel.loadCategories();
         catList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        
-      
+
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-       // tableColumnRating.setCellValueFactory(new PropertyValueFactory<>("RatingIMDB"));
+
         tableColumnLastView.setCellValueFactory(new PropertyValueFactory<>("LastView"));
         tableColumnOwnRating.setCellValueFactory(new PropertyValueFactory<>("PersonalRating"));
 
         tableColumnRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
-        
+
         movieView.setItems(movieModel.getMovies());
         movieModel.loadMovies();
 
@@ -174,7 +178,17 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
-        movieModel.loadMovies();
+        if (selectedMovie != null && selectedMovie.equals(moviePlaying))
+        {
+            if (mp.getStatus() == MediaPlayer.Status.PLAYING)
+            {
+                mp.pause();
+            }
+        } else
+        {
+            mp.play();
+        }
+
     }
 
     /**
@@ -255,31 +269,33 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void catSelectClick(MouseEvent event)
     {
-        
+
     }
 
     /**
-     * This method deletes the selected categories by sending the selected items to the Categorymodel 
-     * @param event 
+     * This method deletes the selected categories by sending the selected items
+     * to the Categorymodel
+     *
+     * @param event
      */
     @FXML
     private void deleteCat(ActionEvent event)
     {
         {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Look, a Confirmation Dialog");
-        alert.setContentText("Are you ok with this?");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Look, a Confirmation Dialog");
+            alert.setContentText("Are you ok with this?");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK)
-        {
-            ObservableList<Category> selectedCategory = catList.getSelectionModel().getSelectedItems();
-            catModel.removeCat(selectedCategory);
-        } else
-        {
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK)
+            {
+                ObservableList<Category> selectedCategory = catList.getSelectionModel().getSelectedItems();
+                catModel.removeCat(selectedCategory);
+            } else
+            {
 
+            }
         }
-    }
     }
 }

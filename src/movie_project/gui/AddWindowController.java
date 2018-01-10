@@ -17,6 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import movie_project.be.Category;
@@ -49,6 +51,8 @@ public class AddWindowController implements Initializable
 
     private MovieModel movieModel = new MovieModel();
     private CategoryModel catModel = new CategoryModel();
+   
+    
 
     /**
      * Initializes the controller class.
@@ -124,10 +128,11 @@ public class AddWindowController implements Initializable
     {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open File");
-        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("*.mp4", "*.mpeg4"));
+        
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(".mp4", "*.mpeg4", "mp4"));
         File file = chooser.showOpenDialog(new Stage());
-        try
-        {
+        try { 
+            
             String fullPath = file.getCanonicalPath();
             txtPath.setText(fullPath);
         } catch (IOException ex)
@@ -135,6 +140,7 @@ public class AddWindowController implements Initializable
             Logger.getLogger(AddWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    
     }
 
     void setMovieModel(MovieModel movieModel)
