@@ -26,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import movie_project.be.Category;
@@ -73,7 +74,11 @@ public class BrugerFladeMainController implements Initializable
     private TableColumn<Movies, String> tableColumnOwnRating;
     @FXML
     private Button btnDeleteCat;
-
+    
+    private Movies moviePlaying;
+    
+    private MediaPlayer mp;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -84,7 +89,7 @@ public class BrugerFladeMainController implements Initializable
         
       
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-       // tableColumnRating.setCellValueFactory(new PropertyValueFactory<>("RatingIMDB"));
+       
         tableColumnLastView.setCellValueFactory(new PropertyValueFactory<>("LastView"));
         tableColumnOwnRating.setCellValueFactory(new PropertyValueFactory<>("PersonalRating"));
 
@@ -172,7 +177,15 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
-        movieModel.loadMovies();
+       if (selectedMovie != null && selectedMovie.equals(moviePlaying))
+       {
+           if (mp.getStatus() == MediaPlayer.Status.PLAYING)
+               mp.pause();
+       }   else
+       {
+           mp.play();
+       }
+        
     }
 
     /**
