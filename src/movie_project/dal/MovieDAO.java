@@ -54,7 +54,7 @@ public class MovieDAO
                 currentMovie.setRating(rs.getFloat("RatingIMDB"));
                 currentMovie.setFileLink(rs.getString("FileLink"));
                 currentMovie.setLastView(rs.getString("LastView"));
-                currentMovie.setPersonalRating(rs.getFloat("RatingOwn")); // PersonalRating
+                currentMovie.setPersonalRating(rs.getFloat("PersonalRating")); // PersonalRating
 
                 movies.add(currentMovie);
 

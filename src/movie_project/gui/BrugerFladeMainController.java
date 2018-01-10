@@ -83,11 +83,13 @@ public class BrugerFladeMainController implements Initializable
 
         
       
-        tableColumnName.setCellValueFactory(new PropertyValueFactory("Name"));
-        tableColumnRating.setCellValueFactory(new PropertyValueFactory("RatingIMDB"));
-        tableColumnLastView.setCellValueFactory(new PropertyValueFactory("LastView"));
-        tableColumnOwnRating.setCellValueFactory(new PropertyValueFactory("RatingOwn"));
+        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+       // tableColumnRating.setCellValueFactory(new PropertyValueFactory<>("RatingIMDB"));
+        tableColumnLastView.setCellValueFactory(new PropertyValueFactory<>("LastView"));
+        tableColumnOwnRating.setCellValueFactory(new PropertyValueFactory<>("PersonalRating"));
 
+        tableColumnRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        
         movieView.setItems(movieModel.getMovies());
         movieModel.loadMovies();
 
