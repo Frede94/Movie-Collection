@@ -109,8 +109,6 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     public void onSelectedMovie(MouseEvent event)
     {
-        
-      
 
     }
 
@@ -192,8 +190,6 @@ public class BrugerFladeMainController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MediaPlayer.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             MediaPlayerController ewc = fxmlLoader.getController();
-//            ewc.setMovieModel(movieModel);
-//            ewc.setEditMovie(movieView.getSelectionModel().getSelectedItem());
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Play Movie");
@@ -205,39 +201,13 @@ public class BrugerFladeMainController implements Initializable
             e.printStackTrace();
         }
 
-        //        if (selectedMovie != null && selectedMovie.equals(moviePlaying))
-        //        {
-        //            if (mp.getStatus() == MediaPlayer.Status.PLAYING)
-        //            {
-        //                mp.pause();
-        //            }
-        //        } else
-        //        {
-        //            mp.play();
-        //        }
-
-
-        
-         if ( selectedMovie != null && selectedMovie.equals(moviePlaying))
-         {
-             mp.pause();
-         } else
-         {
-             mp.play();
-         }
-        
-        
-//        if (selectedMovie != null && selectedMovie.equals(moviePlaying))
-//        {
-//            if (mp.getStatus() == MediaPlayer.Status.PLAYING)
-//            {
-//                mp.pause();
-//            }
-//        } else
-//        {
-//            mp.play();
-//        }
-
+        if (selectedMovie != null && selectedMovie.equals(moviePlaying))
+        {
+            mp.pause();
+        } else
+        {
+            mp.play();
+        }
 
     }
 
