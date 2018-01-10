@@ -50,5 +50,11 @@ public class CategoryModel
         categories.clear();
         categories.addAll(loadedCategories);
     }
+
+    void removeCat(Category selectedCategory)
+    {
+        categories.remove(selectedCategory);
+        catManager.removeCat(selectedCategory);
+    }
             
 }

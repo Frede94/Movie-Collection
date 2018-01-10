@@ -35,5 +35,10 @@ public class CategoryManager
     {
         return catDAO.getAllCategories();
     }
+
+    public void removeCat(Category selectedCategory)
+    {
+        catDAO.removeCat(selectedCategory);
+    }
     
 }
