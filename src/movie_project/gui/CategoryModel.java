@@ -17,13 +17,22 @@ import movie_project.bll.CategoryManager;
  */
 public class CategoryModel
 {
+
     private ObservableList<Category> categories = FXCollections.observableArrayList();
-    
-    CategoryManager catManager = new CategoryManager();  
-    
+
+    CategoryManager catManager = new CategoryManager();
+
+    public CategoryModel()
+    {
+        this.categories = FXCollections.observableArrayList();
+        categories.addAll(catManager.getAllCategories());
+        loadCategories();
+    }
+
     /**
      * Sender den ny kategori vidre til BLL laget.
-     * @param c 
+     *
+     * @param c
      */
     void saveCategory(Category c)
     {
@@ -33,16 +42,18 @@ public class CategoryModel
 
     /**
      * Metoden gør det muligt for vores contoller at hente listen med kategorier
-     * @return 
+     *
+     * @return
      */
     ObservableList<Category> getCategories()
     {
         return categories.sorted();
-        
+
     }
 
     /**
-     * Metoden laver listen med kategorier som den henter fra DAL laget via BLL Laget
+     * Metoden laver listen med kategorier som den henter fra DAL laget via BLL
+     * Laget
      */
     void loadCategories()
     {
@@ -51,10 +62,21 @@ public class CategoryModel
         categories.addAll(loadedCategories);
     }
 
-    void removeCat(Category selectedCategory)
+    /**
+     * This method recives the selecteed categories from the MainController. The
+     * for loop runs through the list of selectedcategories and removes them
+     * from both the listview, and the database, one at a time.
+     *
+     * @param selectedCategories
+     */
+    void removeCat(ObservableList<Category> selectedCategories)
     {
-        categories.remove(selectedCategory);
-        catManager.removeCat(selectedCategory);
+        for (int i = 0; i < selectedCategories.size(); i++)
+        {
+            catManager.removeCat(selectedCategories.get(i));
+            categories.remove(selectedCategories.get(i));
+        }
+
     }
-            
+
 }

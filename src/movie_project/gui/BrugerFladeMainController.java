@@ -8,9 +8,9 @@ package movie_project.gui;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
-import java.util.Calendar;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import movie_project.be.Category;
@@ -75,14 +76,20 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private Button btnDeleteCat;
 
+    private Movies moviePlaying;
+
+    private MediaPlayer mp;
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
 
         catList.setItems(catModel.getCategories());
         catModel.loadCategories();
+        catList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+
         // tableColumnRating.setCellValueFactory(new PropertyValueFactory<>("RatingIMDB"));
         tableColumnLastView.setCellValueFactory(new PropertyValueFactory<>("LastView"));
         tableColumnOwnRating.setCellValueFactory(new PropertyValueFactory<>("PersonalRating"));
@@ -171,10 +178,40 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
+
         Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();
-        
+
         movieModel.lastViewed(selectedMovie);
         movieModel.loadMovies();
+
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MediaPlayer.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            MediaPlayerController ewc = fxmlLoader.getController();
+//            ewc.setMovieModel(movieModel);
+//            ewc.setEditMovie(movieView.getSelectionModel().getSelectedItem());
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Play Movie");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        //        if (selectedMovie != null && selectedMovie.equals(moviePlaying))
+        //        {
+        //            if (mp.getStatus() == MediaPlayer.Status.PLAYING)
+        //            {
+        //                mp.pause();
+        //            }
+        //        } else
+        //        {
+        //            mp.play();
+        //        }
+
     }
 
     /**
@@ -258,6 +295,12 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    /**
+     * This method deletes the selected categories by sending the selected items
+     * to the Categorymodel
+     *
+     * @param event
+     */
     @FXML
     private void deleteCat(ActionEvent event)
     {
@@ -270,7 +313,8 @@ public class BrugerFladeMainController implements Initializable
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK)
             {
-                Category selectedCategory = catList.getSelectionModel().getSelectedItem();
+                ObservableList<Category> selectedCategory = catList.getSelectionModel().getSelectedItems();
+
                 catModel.removeCat(selectedCategory);
             } else
             {
