@@ -128,9 +128,9 @@ public class MovieDAO
             // create the java mysql update preparedstatement
             String queryTitle = "Update Movie set name = ? where id =" + editMovie.getId();
             String queryRating = "Update Movie set ratingIMDB = ? where id =" + editMovie.getId();
-            String queryPRating = "Update Movie set filelink = ? where id =" + editMovie.getId();
-            String queryPath = "Update Movie set ratingOwn = ? where id =" + editMovie.getId();
-
+            String queryPRating = "Update Movie set RatingOwn = ? where id =" + editMovie.getId();
+            String queryPath = "Update Movie set filelink = ? where id =" + editMovie.getId();
+            
             PreparedStatement preparedStmtTitle = con.prepareStatement(queryTitle);
             PreparedStatement preparedStmtRating = con.prepareStatement(queryRating);
             PreparedStatement preparedStmtPRating = con.prepareStatement(queryPRating);
@@ -145,7 +145,7 @@ public class MovieDAO
             preparedStmtTitle.executeUpdate();
             preparedStmtRating.executeUpdate();
             preparedStmtPRating.executeUpdate();
-            preparedStmtTitle.executeUpdate();
+            preparedStmtPath.executeUpdate();
 
         } catch (SQLException ex)
         {
@@ -171,6 +171,11 @@ public class MovieDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void playMovie(Movies selectedMovie)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

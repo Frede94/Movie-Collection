@@ -120,5 +120,10 @@ public class MovieModel
         movieManager.lastViewed(selectedMovie);
     }
 
+    void playMovie(Movies selectedMovie)
+    {
+        movieManager.playMovie(selectedMovie);
+    }
+
     
 }

@@ -75,4 +75,9 @@ public class MovieManager
         movieDAO.lastViewed(selectedMovie);
     }
 
+    public void playMovie(Movies selectedMovie)
+    {
+        movieDAO.playMovie(selectedMovie);
+    }
+
 }

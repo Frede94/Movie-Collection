@@ -5,6 +5,7 @@
  */
 package movie_project.be;
 
+import java.io.File;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -22,6 +23,7 @@ public class Movies
     private String LastView;
     private float personalRating;
     private ObservableList<Category> catsList = FXCollections.observableArrayList();
+    
 
     public ObservableList<Category> getCatsList()
     {

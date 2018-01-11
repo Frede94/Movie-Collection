@@ -7,9 +7,14 @@ package movie_project.gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +67,7 @@ public class BrugerFladeMainController implements Initializable
 
     private Movies selectedMovie;
     private ObservableList<Category> selectedCats;
-    
+
     @FXML
     private ListView<Category> catList;
     @FXML
@@ -156,6 +161,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void editMovieOnAction(ActionEvent event)
     {
+
         try
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
@@ -183,38 +189,43 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
-        
-        
-
-        Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();
-
-        movieModel.lastViewed(selectedMovie);
-        movieModel.loadMovies();
-        
-        
 
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MediaPlayer.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            MediaPlayerController ewc = fxmlLoader.getController();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.setTitle("Play Movie");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
+            Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();
+            movieModel.lastViewed(selectedMovie);
+            movieModel.loadMovies();
 
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+            File movieFile = new File(selectedMovie.getFileLink());
+            Desktop.getDesktop().open(movieFile);
 
-        if (selectedMovie != null && selectedMovie.equals(moviePlaying))
+//        movieModel.playMovie(selectedMovie);
+//            try
+//            {
+//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MediaPlayer.fxml"));
+//                Parent root1 = (Parent) fxmlLoader.load();
+//                MediaPlayerController ewc = fxmlLoader.getController();
+//                Stage stage = new Stage();
+//                stage.setScene(new Scene(root1));
+//                stage.setTitle("Play Movie");
+//                stage.initModality(Modality.APPLICATION_MODAL);
+//                stage.show();
+//
+//            } catch (Exception e)
+//            {
+//                e.printStackTrace();
+//            }
+//
+//            if (selectedMovie != null && selectedMovie.equals(moviePlaying))
+//            {
+//                mp.pause();
+//            } else
+//            {
+//                mp.play();
+//            }
+        } catch (IOException ex)
         {
-            mp.pause();
-        } else
-        {
-            mp.play();
+            Logger.getLogger(BrugerFladeMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -331,7 +342,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void setMovieCats(ActionEvent event)
     {
-       selectedMovie = movieView.getSelectionModel().getSelectedItem();
-       
+        selectedMovie = movieView.getSelectionModel().getSelectedItem();
+
     }
 }
