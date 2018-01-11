@@ -174,6 +174,7 @@ public class BrugerFladeMainController implements Initializable
             stage.setTitle("Edit Movie");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -245,6 +246,7 @@ public class BrugerFladeMainController implements Initializable
         } else
         {
             movieModel.loadMovies();
+            catModel.loadCategories();
         }
     }
 
@@ -308,7 +310,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void catSelectClick(MouseEvent event)
     {
-
+        selectedCats = catList.getSelectionModel().getSelectedItems();
     }
 
     /**
@@ -339,10 +341,20 @@ public class BrugerFladeMainController implements Initializable
         }
     }
 
+    /**
+     * This method allows the user to set the categories in relation to a movie.
+     *
+     * @param event
+     */
     @FXML
     private void setMovieCats(ActionEvent event)
     {
+
         selectedMovie = movieView.getSelectionModel().getSelectedItem();
+
+        selectedMovie = movieView.getSelectionModel().getSelectedItem();
+        selectedMovie.getCatsList().addAll(selectedCats);
+        movieModel.addCats(selectedCats, selectedMovie);
 
     }
 }

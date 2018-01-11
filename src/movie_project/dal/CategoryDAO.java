@@ -75,13 +75,17 @@ public class CategoryDAO
         }
         return categories;
     }
-
+    
+/**
+ * Sletter den valgte kategori både fra listen og fra databasen
+ * @param selectedCategory 
+ */
     public void removeCat(Category selectedCategory)
     {
           try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            stmt.execute("DELETE FROM Category WHERE catId=" + selectedCategory.getCatId());
+            stmt.execute("DELETE FROM CatMovie WHERE CategoryId =" + selectedCategory.getCatId()+ ";DELETE FROM Category WHERE catId=" + selectedCategory.getCatId());
             
         } catch (SQLException ex)
         {

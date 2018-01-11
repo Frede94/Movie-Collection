@@ -23,6 +23,7 @@ import movie_project.be.Category;
 public class AddCategoryController implements Initializable
 {
 
+    
     @FXML
     private TextField categoryName;
     @FXML
@@ -30,7 +31,9 @@ public class AddCategoryController implements Initializable
     @FXML
     private Button cancelCategoryBtn;
 
-    private CategoryModel categoryModel = new CategoryModel();
+    private CategoryModel catModel = new CategoryModel();
+    
+    
 
 
     /**
@@ -39,6 +42,7 @@ public class AddCategoryController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        
     }
 
 
@@ -52,8 +56,11 @@ public class AddCategoryController implements Initializable
     {
         Category c = new Category();
         c.setCatName(categoryName.getText());
-        categoryModel.saveCategory(c);
+        catModel.saveCategory(c);
         categoryName.clear();
+               
+        catModel.loadCategories();
+        
     }    
 
     /**
@@ -68,6 +75,8 @@ public class AddCategoryController implements Initializable
 
         Stage stage = (Stage) cancelCategoryBtn.getScene().getWindow();
         stage.close();
+        
+        catModel.getCategories();
 
     }
 
