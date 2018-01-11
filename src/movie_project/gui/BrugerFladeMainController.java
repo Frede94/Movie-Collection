@@ -323,4 +323,9 @@ public class BrugerFladeMainController implements Initializable
             }
         }
     }
+
+    @FXML
+    private void setMovieCats(ActionEvent event)
+    {
+    }
 }
