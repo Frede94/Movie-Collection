@@ -87,7 +87,15 @@ public class BrugerFladeMainController implements Initializable
 
     private MediaPlayer mp;
     @FXML
-    private ListView<?> movieCatList;
+    private TableView<?> movieCatList;
+    @FXML
+    private TableColumn<?, ?> tableColumnNameCat;
+    @FXML
+    private TableColumn<?, ?> tableColumnImdbCat;
+    @FXML
+    private TableColumn<?, ?> tableColumnLastViewCat;
+    @FXML
+    private TableColumn<?, ?> tableColumnMyRatingCat;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
