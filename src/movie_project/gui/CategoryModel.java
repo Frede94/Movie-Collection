@@ -59,6 +59,7 @@ public class CategoryModel
     {
         List<Category> loadedCategories = catManager.getAllCategories();
         categories.clear();
+        
         categories.addAll(loadedCategories);
     }
 

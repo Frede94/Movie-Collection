@@ -240,6 +240,7 @@ public class BrugerFladeMainController implements Initializable
         } else
         {
             movieModel.loadMovies();
+            catModel.loadCategories();
         }
     }
 

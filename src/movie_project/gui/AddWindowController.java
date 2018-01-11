@@ -94,7 +94,7 @@ public class AddWindowController implements Initializable
             m.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
             movieModel.saveMovie(m);
             
-        } else
+       } else
         {
 
             //Henter informationerne som allerede er i en film og sætter dem ind i
