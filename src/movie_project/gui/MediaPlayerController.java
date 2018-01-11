@@ -33,12 +33,12 @@ public class MediaPlayerController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-    String path = new File ("C:\\Users\\morte\\Desktop\\small.mp4").getAbsolutePath();
+   // String path = new File ("C:\\Users\\morte\\Desktop\\small.mp4").getAbsolutePath();
    
-        
-     
-   //  String path = new File (file).getAbsolutePath();
-     me = new Media(new File (path).toURI().toString());
+      
+    
+   
+   //  me = new Media(new File (path).toURI().toString());
      mp = new MediaPlayer(me);
      mv.setMediaPlayer(mp);
      mp.setAutoPlay(true);

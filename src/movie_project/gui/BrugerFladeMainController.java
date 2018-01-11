@@ -156,6 +156,8 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void editMovieOnAction(ActionEvent event)
     {
+        
+        
         try
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
@@ -168,6 +170,10 @@ public class BrugerFladeMainController implements Initializable
             stage.setTitle("Edit Movie");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+            
+                     
+        
+           
         } catch (Exception e)
         {
             e.printStackTrace();
