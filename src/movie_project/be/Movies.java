@@ -5,6 +5,9 @@
  */
 package movie_project.be;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Frederik Bærbar
@@ -18,6 +21,12 @@ public class Movies
     private String FileLink;
     private String LastView;
     private float personalRating;
+    private ObservableList<Category> catsList = FXCollections.observableArrayList();
+
+    public ObservableList<Category> getCatsList()
+    {
+        return catsList;
+    }
 
     /**
      * Get the value of personalRating

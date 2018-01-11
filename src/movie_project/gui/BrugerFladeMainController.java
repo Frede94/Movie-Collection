@@ -61,6 +61,8 @@ public class BrugerFladeMainController implements Initializable
     private MovieModel movieModel = new MovieModel();
 
     private Movies selectedMovie;
+    private ObservableList<Category> selectedCats;
+    
     @FXML
     private ListView<Category> catList;
     @FXML
@@ -327,5 +329,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void setMovieCats(ActionEvent event)
     {
+       selectedMovie = movieView.getSelectionModel().getSelectedItem();
+       
     }
 }
