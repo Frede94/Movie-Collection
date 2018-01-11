@@ -304,7 +304,7 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void catSelectClick(MouseEvent event)
     {
-
+        selectedCats = catList.getSelectionModel().getSelectedItems();
     }
 
     /**
@@ -339,6 +339,7 @@ public class BrugerFladeMainController implements Initializable
     private void setMovieCats(ActionEvent event)
     {
        selectedMovie = movieView.getSelectionModel().getSelectedItem();
-       
+       selectedMovie.getCatsList().addAll(selectedCats);
+       movieModel.addCats(selectedCats, selectedMovie);
     }
 }

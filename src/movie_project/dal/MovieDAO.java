@@ -17,7 +17,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import movie_project.be.Category;
 import movie_project.be.Movies;
 
 /**
@@ -84,7 +86,7 @@ public class MovieDAO
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            stmt.execute("DELETE FROM Movie WHERE id=" + selectedMovie.getId());
+            stmt.execute("DELETE FROM CatMovie WHERE MovieId =" + selectedMovie.getId()+ ";DELETE FROM Movie WHERE id=" + selectedMovie.getId());
         } catch (SQLException ex)
         {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -158,19 +160,45 @@ public class MovieDAO
         try (Connection con = dbc.getConnection())
         {
 //            PreparedStatement stmt = con.prepareStatement("Update Movie SET lastView = GETDATE ( ) WHERE id = " + selectedMovie.getId());
-            
+
             String queryLastView = "Update Movie SET lastView = GETDATE ( ) WHERE id = " + selectedMovie.getId();
 
             PreparedStatement preparedStmtLastView = con.prepareStatement(queryLastView);
-            
+
             preparedStmtLastView.executeUpdate();
-            
-            
+
         } catch (SQLException ex)
         {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
+    {
+        try (Connection con = dbc.getConnection())
+        {
+            for (Category selectedCat : selectedCats)
+            {
+                String sql = "INSERT INTO CatMovie (CategoryId, MovieId) VALUES (?, ?);";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setInt(1, selectedCat.getCatId());
+                stmt.setInt(2, selectedMovie.getId());
+                System.out.println(stmt.toString());
+                stmt.execute();
+            }
+
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addCat(Category selectedCat, Movies selectedMovie)
+    {
+        ObservableList<Category> cats = FXCollections.observableArrayList();
+        cats.add(selectedCat);
+        addCats(cats, selectedMovie);
     }
 
 }

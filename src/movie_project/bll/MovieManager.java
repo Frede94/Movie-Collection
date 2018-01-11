@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import movie_project.be.Category;
 import movie_project.be.Movies;
 import movie_project.dal.MovieDAO;
 
@@ -73,6 +74,11 @@ public class MovieManager
     public void lastViewed(Movies selectedMovie)
     {
         movieDAO.lastViewed(selectedMovie);
+    }
+
+    public void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
+    {
+        movieDAO.addCats(selectedCats, selectedMovie);
     }
 
 }

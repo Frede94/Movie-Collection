@@ -120,5 +120,11 @@ public class MovieModel
         movieManager.lastViewed(selectedMovie);
     }
 
+    void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
+    {
+        selectedMovie.getCatsList().addAll(selectedCats);
+        movieManager.addCats(selectedCats, selectedMovie);
+    }
+
     
 }
