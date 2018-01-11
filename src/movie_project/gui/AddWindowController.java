@@ -93,6 +93,7 @@ public class AddWindowController implements Initializable
             m.setRating(Float.parseFloat(txtImdbRating.getText()));
             m.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
             movieModel.saveMovie(m);
+            
         } else
         {
 
@@ -104,6 +105,7 @@ public class AddWindowController implements Initializable
             editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
             editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
             movieModel.saveEdit(editMovie);
+            movieModel.loadMovies();
         }
         Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
         stage.close();

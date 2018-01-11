@@ -75,7 +75,11 @@ public class CategoryDAO
         }
         return categories;
     }
-
+    
+/**
+ * Sletter den valgte kategori både fra listen og fra databasen
+ * @param selectedCategory 
+ */
     public void removeCat(Category selectedCategory)
     {
           try (Connection con = dbc.getConnection())
