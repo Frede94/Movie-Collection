@@ -81,7 +81,7 @@ public class CategoryDAO
           try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            stmt.execute("DELETE FROM Category WHERE catId=" + selectedCategory.getCatId());
+            stmt.execute("DELETE FROM CatMovie WHERE CategoryId =" + selectedCategory.getCatId()+ ";DELETE FROM Category WHERE catId=" + selectedCategory.getCatId());
             
         } catch (SQLException ex)
         {
