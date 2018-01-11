@@ -200,7 +200,11 @@ public class MovieDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+/**
+ * Bruges ikke endnu
+ * @param selectedCat
+ * @param selectedMovie 
+ */
     public void addCat(Category selectedCat, Movies selectedMovie)
     {
         ObservableList<Category> cats = FXCollections.observableArrayList();
