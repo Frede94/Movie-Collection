@@ -75,7 +75,12 @@ public class MovieManager
     {
         movieDAO.lastViewed(selectedMovie);
     }
-
+    
+    /**
+     * This method sends the category movie relation to the DAL layer
+     * @param selectedCats
+     * @param selectedMovie 
+     */
     public void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
     {
         movieDAO.addCats(selectedCats, selectedMovie);

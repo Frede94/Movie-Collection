@@ -173,7 +173,14 @@ public class MovieDAO
         }
 
     }
-
+    
+    /**
+     * This method adds the relation between the selceted movie and the selected categories 
+     * to the database. The loop saves the categories one at a time, this keeps the connection open until all categories are saved, instead of
+     * opening a new connection for each category.
+     * @param selectedCats
+     * @param selectedMovie 
+     */
     public void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
     {
         try (Connection con = dbc.getConnection())

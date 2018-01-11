@@ -119,7 +119,12 @@ public class MovieModel
     {
         movieManager.lastViewed(selectedMovie);
     }
-
+    
+    /**
+     * This method sends the category movie relation to the BLL layer
+     * @param selectedCats
+     * @param selectedMovie 
+     */
     void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
     {
         selectedMovie.getCatsList().addAll(selectedCats);
