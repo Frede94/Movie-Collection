@@ -5,10 +5,10 @@
  */
 package movie_project.gui;
 
-import java.util.Calendar;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import movie_project.be.Category;
 import movie_project.be.Movies;
 import movie_project.bll.MovieManager;
@@ -28,6 +28,7 @@ public class MovieModel
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
     private ObservableList<Category> categories;
     private ObservableList<Movies> movieView = FXCollections.observableArrayList();
+    private TableView<Movies> table = new TableView<>();
 
     /**
      * Constructor til MovieModel klassen
@@ -58,8 +59,10 @@ public class MovieModel
      */
     void saveMovie(Movies m)
     {
+        
         movies.add(m);
         movieManager.saveMovie(m);
+        
     }
 
     /**

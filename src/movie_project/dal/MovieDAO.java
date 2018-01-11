@@ -86,7 +86,7 @@ public class MovieDAO
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            stmt.execute("DELETE FROM CatMovie WHERE MovieId =" + selectedMovie.getId()+ ";DELETE FROM Movie WHERE id=" + selectedMovie.getId());
+            stmt.execute("DELETE FROM CatMovie WHERE MovieId =" + selectedMovie.getId() + ";DELETE FROM Movie WHERE id=" + selectedMovie.getId());
         } catch (SQLException ex)
         {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,7 +132,7 @@ public class MovieDAO
             String queryRating = "Update Movie set ratingIMDB = ? where id =" + editMovie.getId();
             String queryPRating = "Update Movie set RatingOwn = ? where id =" + editMovie.getId();
             String queryPath = "Update Movie set filelink = ? where id =" + editMovie.getId();
-            
+
             PreparedStatement preparedStmtTitle = con.prepareStatement(queryTitle);
             PreparedStatement preparedStmtRating = con.prepareStatement(queryRating);
             PreparedStatement preparedStmtPRating = con.prepareStatement(queryPRating);
@@ -173,13 +173,15 @@ public class MovieDAO
         }
 
     }
-    
+
     /**
-     * This method adds the relation between the selceted movie and the selected categories 
-     * to the database. The loop saves the categories one at a time, this keeps the connection open until all categories are saved, instead of
+     * This method adds the relation between the selceted movie and the selected
+     * categories to the database. The loop saves the categories one at a time,
+     * this keeps the connection open until all categories are saved, instead of
      * opening a new connection for each category.
+     *
      * @param selectedCats
-     * @param selectedMovie 
+     * @param selectedMovie
      */
     public void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
     {
@@ -200,11 +202,13 @@ public class MovieDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-/**
- * Bruges ikke endnu
- * @param selectedCat
- * @param selectedMovie 
- */
+
+    /**
+     * Bruges ikke endnu
+     *
+     * @param selectedCat
+     * @param selectedMovie
+     */
     public void addCat(Category selectedCat, Movies selectedMovie)
     {
         ObservableList<Category> cats = FXCollections.observableArrayList();
