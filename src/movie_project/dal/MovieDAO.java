@@ -86,7 +86,7 @@ public class MovieDAO
         try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            stmt.execute("DELETE FROM CatMovie WHERE MovieId =" + selectedMovie.getId()+ ";DELETE FROM Movie WHERE id=" + selectedMovie.getId());
+            stmt.execute("DELETE FROM CatMovie WHERE MovieId =" + selectedMovie.getId() + ";DELETE FROM Movie WHERE id=" + selectedMovie.getId());
         } catch (SQLException ex)
         {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,7 +132,7 @@ public class MovieDAO
             String queryRating = "Update Movie set ratingIMDB = ? where id =" + editMovie.getId();
             String queryPRating = "Update Movie set RatingOwn = ? where id =" + editMovie.getId();
             String queryPath = "Update Movie set filelink = ? where id =" + editMovie.getId();
-            
+
             PreparedStatement preparedStmtTitle = con.prepareStatement(queryTitle);
             PreparedStatement preparedStmtRating = con.prepareStatement(queryRating);
             PreparedStatement preparedStmtPRating = con.prepareStatement(queryPRating);
@@ -173,13 +173,15 @@ public class MovieDAO
         }
 
     }
-    
+
     /**
-     * This method adds the relation between the selceted movie and the selected categories 
-     * to the database. The loop saves the categories one at a time, this keeps the connection open until all categories are saved, instead of
+     * This method adds the relation between the selceted movie and the selected
+     * categories to the database. The loop saves the categories one at a time,
+     * this keeps the connection open until all categories are saved, instead of
      * opening a new connection for each category.
+     *
      * @param selectedCats
-     * @param selectedMovie 
+     * @param selectedMovie
      */
     public void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
     {
@@ -200,11 +202,13 @@ public class MovieDAO
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-/**
- * Bruges ikke endnu
- * @param selectedCat
- * @param selectedMovie 
- */
+
+    /**
+     * Bruges ikke endnu
+     *
+     * @param selectedCat
+     * @param selectedMovie
+     */
     public void addCat(Category selectedCat, Movies selectedMovie)
     {
         ObservableList<Category> cats = FXCollections.observableArrayList();
@@ -215,6 +219,58 @@ public class MovieDAO
     public void playMovie(Movies selectedMovie)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Movies> getMovieByRelation(int MovieId)
+    {
+        List<Movies> movies = new ArrayList();
+        List<Integer> id = new ArrayList();
+
+        try (Connection con = dbc.getConnection())
+        {
+            String sql = "SELECT * FROM CatMovie WHERE MovieId =" + MovieId;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+
+                id.add(rs.getInt("MovieId"));
+            }
+
+            if (!id.isEmpty())
+            {
+                sql = "SELECT * FROM Movie WHERE id =" + id.get(0);
+
+                for (int i = 1; i < id.size(); i++)
+                {
+                    sql = sql + "OR MovieId =" + id.get(i);
+
+                }
+            } else
+            {
+                return null;
+            }
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+
+                Movies currentMovie = new Movies();
+
+                currentMovie.setId(rs.getInt("id"));
+                currentMovie.setName(rs.getString("name"));
+                currentMovie.setRating(rs.getFloat("ratingIMDB"));
+                currentMovie.setFileLink(rs.getString("filelink"));
+                currentMovie.setLastView(rs.getString("lastview"));
+                movies.add(currentMovie);
+
+            }
+            return movies;
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }
