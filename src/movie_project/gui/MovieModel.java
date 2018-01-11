@@ -28,7 +28,11 @@ public class MovieModel
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
     private ObservableList<Category> categories;
     private ObservableList<Movies> movieView = FXCollections.observableArrayList();
+
     private TableView<Movies> table = new TableView<>();
+
+    private ObservableList<Movies> movieList = FXCollections.observableArrayList();
+
 
     /**
      * Constructor til MovieModel klassen
@@ -137,6 +141,14 @@ public class MovieModel
     void playMovie(Movies selectedMovie)
     {
         movieManager.playMovie(selectedMovie);
+    }
+
+    void setMovieByRelation(int MovieId)
+    {
+        List<Movies> movies = movieManager.getMovieByRelation(MovieId);
+        if(movies !=null){
+            movieList.setAll(movies);
+        }
     }
 
     

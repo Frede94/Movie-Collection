@@ -87,7 +87,7 @@ public class BrugerFladeMainController implements Initializable
 
     private MediaPlayer mp;
     @FXML
-    private TableView<?> movieCatList;
+    private TableView<Movies> movieCatList;
     @FXML
     private TableColumn<?, ?> tableColumnNameCat;
     @FXML
@@ -315,10 +315,17 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
+    public void getMovieCatRelation()
+    {
+        movieModel.setMovieByRelation(movieCatList.getSelectionModel().getSelectedItem().getId());
+    }
+
     @FXML
     private void catSelectClick(MouseEvent event)
     {
         selectedCats = catList.getSelectionModel().getSelectedItems();
+        getMovieCatRelation();
+
     }
 
     /**

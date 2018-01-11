@@ -221,4 +221,56 @@ public class MovieDAO
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public List<Movies> getMovieByRelation(int MovieId)
+    {
+        List<Movies> movies = new ArrayList();
+        List<Integer> id = new ArrayList();
+
+        try (Connection con = dbc.getConnection())
+        {
+            String sql = "SELECT * FROM CatMovie WHERE MovieId =" + MovieId;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+
+                id.add(rs.getInt("MovieId"));
+            }
+
+            if (!id.isEmpty())
+            {
+                sql = "SELECT * FROM Movie WHERE id =" + id.get(0);
+
+                for (int i = 1; i < id.size(); i++)
+                {
+                    sql = sql + "OR MovieId =" + id.get(i);
+
+                }
+            } else
+            {
+                return null;
+            }
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+
+                Movies currentMovie = new Movies();
+
+                currentMovie.setId(rs.getInt("id"));
+                currentMovie.setName(rs.getString("name"));
+                currentMovie.setRating(rs.getFloat("ratingIMDB"));
+                currentMovie.setFileLink(rs.getString("filelink"));
+                currentMovie.setLastView(rs.getString("lastview"));
+                movies.add(currentMovie);
+
+            }
+            return movies;
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }
