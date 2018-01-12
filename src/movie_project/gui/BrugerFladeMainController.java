@@ -66,6 +66,7 @@ public class BrugerFladeMainController implements Initializable
     private MovieModel movieModel = new MovieModel();
 
     private Movies selectedMovie;
+
     private ObservableList<Category> selectedCats;
 
     @FXML
@@ -208,30 +209,6 @@ public class BrugerFladeMainController implements Initializable
             File movieFile = new File(selectedMovie.getFileLink());
             Desktop.getDesktop().open(movieFile);
 
-//        movieModel.playMovie(selectedMovie);
-//            try
-//            {
-//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MediaPlayer.fxml"));
-//                Parent root1 = (Parent) fxmlLoader.load();
-//                MediaPlayerController ewc = fxmlLoader.getController();
-//                Stage stage = new Stage();
-//                stage.setScene(new Scene(root1));
-//                stage.setTitle("Play Movie");
-//                stage.initModality(Modality.APPLICATION_MODAL);
-//                stage.show();
-//
-//            } catch (Exception e)
-//            {
-//                e.printStackTrace();
-//            }
-//
-//            if (selectedMovie != null && selectedMovie.equals(moviePlaying))
-//            {
-//                mp.pause();
-//            } else
-//            {
-//                mp.play();
-//            }
         } catch (IOException ex)
         {
             Logger.getLogger(BrugerFladeMainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -371,6 +348,11 @@ public class BrugerFladeMainController implements Initializable
         selectedMovie.getCatsList().addAll(selectedCats);
         movieModel.addCats(selectedCats, selectedMovie);
 
+    }
+    
+    public TableView<Movies> getMovieView()
+    {
+        return movieView;
     }
 
     private void clickSave(ActionEvent Event)

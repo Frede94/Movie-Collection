@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -49,7 +51,8 @@ public class AddWindowController implements Initializable
 
     private MovieModel movieModel = new MovieModel();
     private CategoryModel catModel = new CategoryModel();
-//    private BrugerFladeMainController BFMCtrl = new BrugerFladeMainController();
+
+    private BrugerFladeMainController controller;
 
     /**
      * Initializes the controller class.
@@ -59,8 +62,11 @@ public class AddWindowController implements Initializable
     {
 
     }
-    
-    
+
+    public void setController(BrugerFladeMainController controller)
+    {
+        this.controller = controller;
+    }
 
     /**
      * Sætter CategoryModel i denne klasse og henter Categories
@@ -84,30 +90,42 @@ public class AddWindowController implements Initializable
     @FXML
     private void clickSaveAction(ActionEvent event)
     {
-        if (editMovie == null)
-        {
-            Movies m = new Movies();
-            m.setName(txtTitle.getText());
-            m.setFileLink(txtPath.getText());
-            m.setRating(Float.parseFloat(txtImdbRating.getText()));
-            m.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
-            movieModel.saveMovie(m);
+//        controller.getMovieView();
+//        if (!controller.getMovieView().getItems().contains(txtTitle.getText()))
+//        {
+            if (editMovie == null)
+            {
+                Movies m = new Movies();
+                m.setName(txtTitle.getText());
+                m.setFileLink(txtPath.getText());
+                m.setRating(Float.parseFloat(txtImdbRating.getText()));
+                m.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
+                movieModel.saveMovie(m);
 
-        } else
-        {
+            } else
+            {
 
-            //Henter informationerne som allerede er i en film og sætter dem ind i
-            //txtfelterne som er i vores AddWindow, så man kan ændre i dem.
-            //Når man ændre så sletter programmet den gamle film som man har valgt at edit.
-            editMovie.setName(txtTitle.getText());
-            editMovie.setFileLink(txtPath.getText());
-            editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
-            editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
-            movieModel.saveEdit(editMovie);
-            movieModel.loadMovies();
-        }
-        Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
-        stage.close();
+                //Henter informationerne som allerede er i en film og sætter dem ind i
+                //txtfelterne som er i vores AddWindow, så man kan ændre i dem.
+                //Når man ændre så sletter programmet den gamle film som man har valgt at edit.
+                editMovie.setName(txtTitle.getText());
+                editMovie.setFileLink(txtPath.getText());
+                editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
+                editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
+                movieModel.saveEdit(editMovie);
+                movieModel.loadMovies();
+            }
+            Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
+            stage.close();
+//        } else
+//        {
+//            Alert alert = new Alert(AlertType.INFORMATION);
+//            alert.setTitle("Duplicate Warning");
+//            alert.setHeaderText(null);
+//            alert.setContentText("You allready have a movie with this name!");
+//
+//            alert.showAndWait();
+//        }
 
     }
 

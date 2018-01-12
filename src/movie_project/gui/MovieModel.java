@@ -27,9 +27,7 @@ public class MovieModel
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
     private ObservableList<Category> categories;
     private ObservableList<Movies> movieView = FXCollections.observableArrayList();
-
     private TableView<Movies> table = new TableView<>();
-
     private ObservableList<Movies> movieList = FXCollections.observableArrayList();
 
 
