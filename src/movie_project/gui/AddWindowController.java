@@ -17,8 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import movie_project.be.Category;
@@ -39,20 +37,19 @@ public class AddWindowController implements Initializable
     @FXML
     private Button cancelMovieBtn;
     @FXML
-    private TextField txtImdbRating;
+    public TextField txtImdbRating;
     @FXML
-    private TextField txtTitle;
+    public TextField txtTitle;
     @FXML
-    private TextField txtImdbRating1;
+    public TextField txtImdbRating1;
     @FXML
-    private TextField txtPath;
+    public TextField txtPath;
 
-    private Movies editMovie;
+    public Movies editMovie;
 
     private MovieModel movieModel = new MovieModel();
     private CategoryModel catModel = new CategoryModel();
-   
-    
+//    private BrugerFladeMainController BFMCtrl = new BrugerFladeMainController();
 
     /**
      * Initializes the controller class.
@@ -62,6 +59,8 @@ public class AddWindowController implements Initializable
     {
 
     }
+    
+    
 
     /**
      * Sætter CategoryModel i denne klasse og henter Categories
@@ -93,8 +92,8 @@ public class AddWindowController implements Initializable
             m.setRating(Float.parseFloat(txtImdbRating.getText()));
             m.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
             movieModel.saveMovie(m);
-            
-       } else
+
+        } else
         {
 
             //Henter informationerne som allerede er i en film og sætter dem ind i
@@ -130,14 +129,15 @@ public class AddWindowController implements Initializable
     {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open File");
-        
+
         chooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("ALL", "*.*"),
                 new FileChooser.ExtensionFilter("MP4", "*.mp4"),
                 new FileChooser.ExtensionFilter("MKV", "*.mkv"));
         File file = chooser.showOpenDialog(new Stage());
-        try { 
-            
+        try
+        {
+
             String fullPath = file.getCanonicalPath();
             txtPath.setText(fullPath);
         } catch (IOException ex)
@@ -145,7 +145,6 @@ public class AddWindowController implements Initializable
             Logger.getLogger(AddWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    
     }
 
     void setMovieModel(MovieModel movieModel)

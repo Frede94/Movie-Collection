@@ -47,7 +47,7 @@ public class BrugerFladeMainController implements Initializable
 
     private Label label;
     @FXML
-    private TableView<Movies> movieView;
+    public TableView<Movies> movieView;
     @FXML
     private Button newMovieBtn;
     @FXML
@@ -370,6 +370,11 @@ public class BrugerFladeMainController implements Initializable
         selectedMovie = movieView.getSelectionModel().getSelectedItem();
         selectedMovie.getCatsList().addAll(selectedCats);
         movieModel.addCats(selectedCats, selectedMovie);
+
+    }
+
+    private void clickSave(ActionEvent Event)
+    {
 
     }
 }
