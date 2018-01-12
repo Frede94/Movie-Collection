@@ -90,6 +90,8 @@ public class AddWindowController implements Initializable
     @FXML
     private void clickSaveAction(ActionEvent event)
     {
+        
+        //bruge equals.ignorecase i et loop
 //        controller.getMovieView();
 //        if (!controller.getMovieView().getItems().contains(txtTitle.getText()))
 //        {
