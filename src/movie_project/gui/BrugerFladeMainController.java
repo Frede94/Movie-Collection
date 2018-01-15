@@ -122,6 +122,8 @@ public class BrugerFladeMainController implements Initializable
 
         tableColumnImdbCat.setCellValueFactory(new PropertyValueFactory<>("rating"));
         movieModel.loadMovies();
+        
+        
 
     }
 

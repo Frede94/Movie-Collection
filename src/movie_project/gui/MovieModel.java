@@ -8,6 +8,8 @@ package movie_project.gui;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import movie_project.be.Category;
 import movie_project.be.Movies;
 import movie_project.bll.CategoryManager;
@@ -53,15 +55,41 @@ public class MovieModel
     }
 
     /**
-     * Gemmer film i databasen
+     * Og tjekker listen igennem med et loop, og hvis den finder en film med
+     * samme navn som, en film som allerede er i listen, så åbner programmet et
+     * fejl vindue hvor den siger filmen allerede er i listen, den går ikke ind
+     * i databasen før den er sikker på at der ikke er en dublicate. Hvis den
+     * ikke finder en film med samme navn, i listen så inserter den filmen i
+     * databasen.
      *
      * @param m
      */
     void saveMovie(Movies m)
     {
 
-        movies.add(m);
-        movieManager.saveMovie(m);
+        int totalElements = movies.size();
+        boolean isInList = false;
+        for (int index = 0; index < totalElements && !isInList; index++)
+        {
+            if (movies.get(index).getName().equalsIgnoreCase(m.getName()))
+            {
+                isInList = true;
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Duplicate Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("You allready have a movie with this name!");
+
+                alert.showAndWait();
+
+            }
+
+            System.out.println(movies.get(index));
+        }
+        if (!isInList)
+        {
+            movies.add(m);
+            movieManager.saveMovie(m);
+        }
 
     }
 

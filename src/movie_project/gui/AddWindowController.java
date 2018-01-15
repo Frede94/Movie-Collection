@@ -59,7 +59,7 @@ public class AddWindowController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
+        //txtTitle.getText(movieModel.getTitle());
     }
 
     public void setController(BrugerFladeMainController controller)
@@ -85,44 +85,31 @@ public class AddWindowController implements Initializable
     @FXML
     private void clickSaveAction(ActionEvent event)
     {
-        
-        //bruge equals.ignorecase i et loop
-//        controller.getMovieView();
-//        if (!controller.getMovieView().getItems().contains(txtTitle.getText()))
-//        {
-            if (editMovie == null)
-            {
-                Movies m = new Movies();
-                m.setName(txtTitle.getText());
-                m.setFileLink(txtPath.getText());
-                m.setRating(Float.parseFloat(txtImdbRating.getText()));
-                m.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
-                movieModel.saveMovie(m);
 
-            } else
-            {
+        if (editMovie == null)
+        {
+            Movies m = new Movies();
+            m.setName(txtTitle.getText());
+            m.setFileLink(txtPath.getText());
+            m.setRating(Float.parseFloat(txtImdbRating.getText()));
+            m.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
+            movieModel.saveMovie(m);
 
-                //Henter informationerne som allerede er i en film og sætter dem ind i
-                //txtfelterne som er i vores AddWindow, så man kan ændre i dem.
-                //Når man ændre så sletter programmet den gamle film som man har valgt at edit.
-                editMovie.setName(txtTitle.getText());
-                editMovie.setFileLink(txtPath.getText());
-                editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
-                editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
-                movieModel.saveEdit(editMovie);
-                movieModel.loadMovies();
-            }
-            Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
-            stage.close();
-//        } else
-//        {
-//            Alert alert = new Alert(AlertType.INFORMATION);
-//            alert.setTitle("Duplicate Warning");
-//            alert.setHeaderText(null);
-//            alert.setContentText("You allready have a movie with this name!");
-//
-//            alert.showAndWait();
-//        }
+        } else
+        {
+
+            //Henter informationerne som allerede er i en film og sætter dem ind i
+            //txtfelterne som er i vores AddWindow, så man kan ændre i dem.
+            //Når man ændre så sletter programmet den gamle film som man har valgt at edit.
+            editMovie.setName(txtTitle.getText());
+            editMovie.setFileLink(txtPath.getText());
+            editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
+            editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
+            movieModel.saveEdit(editMovie);
+            movieModel.loadMovies();
+        }
+        Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
+        stage.close();
 
     }
 
