@@ -300,11 +300,10 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-//    public void getMovieCatRelation()
-//    {
-//        movieModel.setMovieByRelation(movieCatList.getSelectionModel().getSelectedItem().getId());
-//    }
-
+    /**
+     * Sets the movies with a relation to the selected categories, to the middel list in the program. 
+     * @param event 
+     */
     @FXML
     private void catSelectClick(MouseEvent event)
     {

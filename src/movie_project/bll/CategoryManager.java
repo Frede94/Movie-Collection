@@ -48,6 +48,11 @@ public class CategoryManager
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * 
+     * @param get
+     * @return 
+     */
     public List<Movies> setRelation(Category get)
     {
         return catDAO.getRelation(get.getCatId());

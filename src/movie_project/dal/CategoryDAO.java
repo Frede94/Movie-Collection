@@ -97,6 +97,11 @@ public class CategoryDAO
         }
     }
 
+    /**
+     * Gets the relations between the selected categories and the movies with a relation.
+     * @param catId
+     * @return 
+     */
     public List<Movies> getRelation(int catId)
     {
         List<Movies> movies = new ArrayList();

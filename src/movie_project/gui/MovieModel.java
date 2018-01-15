@@ -137,7 +137,7 @@ public class MovieModel
      */
     ObservableList<Category> getCategories()
     {
-        return categories;
+        return categories.sorted();
     }
 
     /*
@@ -173,14 +173,7 @@ public class MovieModel
         movieManager.playMovie(selectedMovie);
     }
 
-//    void setMovieByRelation(int MovieId)
-//    {
-//        List<Movies> movies = movieManager.getMovieByRelation(MovieId);
-//        if (movies != null)
-//        {
-//            movieList.setAll(movies);
-//        }
-//    }
+
 
     /**
      * Sender den ny kategori vidre til BLL laget.
@@ -222,6 +215,11 @@ public class MovieModel
 
     }
 
+    /**
+     * Goes through the selected categories getting the movies with the category
+     * relation 
+     * @param selectedCategories 
+     */
     public void setMoviesByRelation(ObservableList<Category> selectedCategories)
     {
         for (int i = 0; i < selectedCategories.size(); i++)
