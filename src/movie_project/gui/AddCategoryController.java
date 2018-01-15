@@ -31,7 +31,7 @@ public class AddCategoryController implements Initializable
     @FXML
     private Button cancelCategoryBtn;
 
-    private CategoryModel catModel = new CategoryModel();
+    private MovieModel movieModel = new MovieModel();
     
     
 
@@ -56,10 +56,10 @@ public class AddCategoryController implements Initializable
     {
         Category c = new Category();
         c.setCatName(categoryName.getText());
-        catModel.saveCategory(c);
+        movieModel.saveCategory(c);
         categoryName.clear();
                
-        catModel.loadCategories();
+        movieModel.loadCategories();
         
     }    
 
@@ -76,7 +76,7 @@ public class AddCategoryController implements Initializable
         Stage stage = (Stage) cancelCategoryBtn.getScene().getWindow();
         stage.close();
         
-        catModel.getCategories();
+        movieModel.getCategories();
 
     }
 
