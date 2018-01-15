@@ -116,6 +116,8 @@ public class BrugerFladeMainController implements Initializable
 
         movieView.setItems(movieModel.getMovies());
         movieModel.loadMovies();
+        
+        
 
     }
 

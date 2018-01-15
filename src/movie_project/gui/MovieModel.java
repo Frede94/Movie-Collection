@@ -8,12 +8,13 @@ package movie_project.gui;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableView;
 import movie_project.be.Category;
 import movie_project.be.Movies;
 import movie_project.bll.MovieManager;
 import movie_project.bll.SearchFilter;
-import movie_project.dal.MovieDAO;
 
 /**
  *
@@ -29,7 +30,6 @@ public class MovieModel
     private ObservableList<Movies> movieView = FXCollections.observableArrayList();
     private TableView<Movies> table = new TableView<>();
     private ObservableList<Movies> movieList = FXCollections.observableArrayList();
-
 
     /**
      * Constructor til MovieModel klassen
@@ -54,16 +54,41 @@ public class MovieModel
     }
 
     /**
-     * Gemmer film i databasen
-     *
+     * Og tjekker listen igennem med et loop, og hvis den finder en film med samme navn som,
+     * en film som allerede er i listen, så åbner programmet et fejl vindue
+     * hvor den siger filmen allerede er i listen, den går ikke ind i databasen
+     * før den er sikker på at der ikke er en dublicate.
+     * Hvis den ikke finder en film med samme navn, i listen så inserter den
+     * filmen i databasen.
      * @param m
      */
     void saveMovie(Movies m)
     {
-        
-        movies.add(m);
-        movieManager.saveMovie(m);
-        
+
+        int totalElements = movies.size();
+        boolean isInList = false;
+        for (int index = 0; index < totalElements && !isInList; index++)
+        {
+            if (movies.get(index).getName().equalsIgnoreCase(m.getName()))
+            {
+                isInList = true;
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Duplicate Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("You allready have a movie with this name!");
+
+                alert.showAndWait();
+
+            }
+
+            System.out.println(movies.get(index));
+        }
+        if (!isInList)
+        {
+            movies.add(m);
+            movieManager.saveMovie(m);
+        }
+
     }
 
     /**
@@ -123,11 +148,12 @@ public class MovieModel
     {
         movieManager.lastViewed(selectedMovie);
     }
-    
+
     /**
      * This method sends the category movie relation to the BLL layer
+     *
      * @param selectedCats
-     * @param selectedMovie 
+     * @param selectedMovie
      */
     void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
     {
@@ -143,10 +169,10 @@ public class MovieModel
     void setMovieByRelation(int MovieId)
     {
         List<Movies> movies = movieManager.getMovieByRelation(MovieId);
-        if(movies !=null){
+        if (movies != null)
+        {
             movieList.setAll(movies);
         }
     }
 
-    
 }
