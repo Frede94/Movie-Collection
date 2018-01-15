@@ -97,6 +97,11 @@ public class CategoryDAO
         }
     }
 
+    /**
+     * Gets the relations between the selected categories and the movies with a relation.
+     * @param catId
+     * @return 
+     */
     public List<Movies> getRelation(int catId)
     {
         List<Movies> movies = new ArrayList();
@@ -137,6 +142,7 @@ public class CategoryDAO
                 currentMovie.setRating(rs.getFloat("ratingIMDB"));
                 currentMovie.setFileLink(rs.getString("filelink"));
                 currentMovie.setLastView(rs.getString("lastview"));
+                currentMovie.setPersonalRating(rs.getFloat("ratingOwn"));
                 movies.add(currentMovie);
 
             }

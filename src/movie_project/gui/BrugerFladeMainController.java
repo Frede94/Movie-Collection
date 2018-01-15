@@ -122,8 +122,6 @@ public class BrugerFladeMainController implements Initializable
 
         tableColumnImdbCat.setCellValueFactory(new PropertyValueFactory<>("rating"));
         movieModel.loadMovies();
-        
-        
 
     }
 
@@ -300,18 +298,23 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-//    public void getMovieCatRelation()
-//    {
-//        movieModel.setMovieByRelation(movieCatList.getSelectionModel().getSelectedItem().getId());
-//    }
-
+    /**
+     * Sets the movies with a relation to the selected categories, to the middel
+     * list in the program.
+     *
+     * @param event
+     */
     @FXML
     private void catSelectClick(MouseEvent event)
     {
-        
-        selectedCats = catList.getSelectionModel().getSelectedItems();
-        movieModel.setMoviesByRelation(catList.getSelectionModel().getSelectedItems());
-        
+        try
+        {
+            selectedCats = catList.getSelectionModel().getSelectedItems();
+            movieModel.setMoviesByRelation(catList.getSelectionModel().getSelectedItems());
+        } catch (Exception ex)
+        {
+            System.out.println("No relations yet");
+        }
     }
 
     /**
@@ -358,7 +361,7 @@ public class BrugerFladeMainController implements Initializable
         movieModel.addCats(selectedCats, selectedMovie);
 
     }
-    
+
     public TableView<Movies> getMovieView()
     {
         return movieView;

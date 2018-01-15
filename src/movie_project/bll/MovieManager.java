@@ -91,9 +91,5 @@ public class MovieManager
         movieDAO.playMovie(selectedMovie);
     }
 
-    public List<Movies> getMovieByRelation(int MovieId)
-    {
-        return movieDAO.getMovieByRelation(MovieId);
-    }
 
 }
