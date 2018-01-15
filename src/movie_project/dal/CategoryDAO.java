@@ -142,6 +142,7 @@ public class CategoryDAO
                 currentMovie.setRating(rs.getFloat("ratingIMDB"));
                 currentMovie.setFileLink(rs.getString("filelink"));
                 currentMovie.setLastView(rs.getString("lastview"));
+                currentMovie.setPersonalRating(rs.getFloat("ratingOwn"));
                 movies.add(currentMovie);
 
             }
