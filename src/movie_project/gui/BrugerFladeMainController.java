@@ -114,6 +114,13 @@ public class BrugerFladeMainController implements Initializable
         tableColumnRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
         movieView.setItems(movieModel.getMovies());
+        movieCatList.setItems(movieModel.getSelectedMovies());
+        tableColumnNameCat.setCellValueFactory(new PropertyValueFactory<>("Name"));
+
+        tableColumnLastViewCat.setCellValueFactory(new PropertyValueFactory<>("LastView"));
+        tableColumnMyRatingCat.setCellValueFactory(new PropertyValueFactory<>("PersonalRating"));
+
+        tableColumnImdbCat.setCellValueFactory(new PropertyValueFactory<>("rating"));
         movieModel.loadMovies();
 
     }
@@ -303,15 +310,6 @@ public class BrugerFladeMainController implements Initializable
         selectedCats = catList.getSelectionModel().getSelectedItems();
         movieModel.setMoviesByRelation(catList.getSelectionModel().getSelectedItems());
         
-
-       ObservableList<Movies> movieList = FXCollections.observableArrayList();
-       for (Category selectedCat : selectedCats)
-        {
-            
-            movieList.addAll(selectedCat.getMovieList());
-            
-        }
-              movieCatList.setItems(movieList);
     }
 
     /**

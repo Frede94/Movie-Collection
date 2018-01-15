@@ -13,7 +13,6 @@ import movie_project.be.Movies;
 import movie_project.bll.CategoryManager;
 import movie_project.bll.MovieManager;
 import movie_project.bll.SearchFilter;
-import movie_project.dal.MovieDAO;
 
 /**
  *
@@ -24,12 +23,11 @@ public class MovieModel
 
     private SearchFilter searchFilter = new SearchFilter();
 
-    private MovieDAO movieDao = new MovieDAO(); // FY FY skal flyttes
+
     MovieManager movieManager = new MovieManager();
     CategoryManager catManager = new CategoryManager();
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
-    private ObservableList<Category> categories;
-    private ObservableList<Movies> movieView = FXCollections.observableArrayList();
+    private ObservableList<Category> categories = FXCollections.observableArrayList();
     private ObservableList<Movies> movieList = FXCollections.observableArrayList();
 
     /**
@@ -87,6 +85,11 @@ public class MovieModel
     {
         return movies;
     }
+    
+    public ObservableList<Movies> getSelectedMovies()
+    {
+        return movieList;
+    }
 
     /**
      * Søger på det der er skrevet i søgefeltet skal FLYTTES til DAL laget
@@ -142,14 +145,14 @@ public class MovieModel
         movieManager.playMovie(selectedMovie);
     }
 
-    void setMovieByRelation(int MovieId)
-    {
-        List<Movies> movies = movieManager.getMovieByRelation(MovieId);
-        if (movies != null)
-        {
-            movieList.setAll(movies);
-        }
-    }
+//    void setMovieByRelation(int MovieId)
+//    {
+//        List<Movies> movies = movieManager.getMovieByRelation(MovieId);
+//        if (movies != null)
+//        {
+//            movieList.setAll(movies);
+//        }
+//    }
 
     /**
      * Sender den ny kategori vidre til BLL laget.
@@ -196,7 +199,7 @@ public class MovieModel
         for (int i = 0; i < selectedCategories.size(); i++)
         {
             List<Movies> movies = catManager.setRelation(selectedCategories.get(i));
-            movieList.setAll(movies);
+            movieList.addAll(movies);
 
         }
     }
