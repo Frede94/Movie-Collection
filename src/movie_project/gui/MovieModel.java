@@ -10,11 +10,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableView;
 import movie_project.be.Category;
 import movie_project.be.Movies;
+import movie_project.bll.CategoryManager;
 import movie_project.bll.MovieManager;
 import movie_project.bll.SearchFilter;
+import movie_project.dal.MovieDAO;
 
 /**
  *
@@ -24,11 +25,13 @@ public class MovieModel
 {
 
     private SearchFilter searchFilter = new SearchFilter();
-    private MovieManager movieManager = new MovieManager();
+
+    private MovieDAO movieDao = new MovieDAO(); // FY FY skal flyttes
+    MovieManager movieManager = new MovieManager();
+    CategoryManager catManager = new CategoryManager();
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
     private ObservableList<Category> categories;
     private ObservableList<Movies> movieView = FXCollections.observableArrayList();
-    private TableView<Movies> table = new TableView<>();
     private ObservableList<Movies> movieList = FXCollections.observableArrayList();
 
     /**
@@ -54,12 +57,13 @@ public class MovieModel
     }
 
     /**
-     * Og tjekker listen igennem med et loop, og hvis den finder en film med samme navn som,
-     * en film som allerede er i listen, så åbner programmet et fejl vindue
-     * hvor den siger filmen allerede er i listen, den går ikke ind i databasen
-     * før den er sikker på at der ikke er en dublicate.
-     * Hvis den ikke finder en film med samme navn, i listen så inserter den
-     * filmen i databasen.
+     * Og tjekker listen igennem med et loop, og hvis den finder en film med
+     * samme navn som, en film som allerede er i listen, så åbner programmet et
+     * fejl vindue hvor den siger filmen allerede er i listen, den går ikke ind
+     * i databasen før den er sikker på at der ikke er en dublicate. Hvis den
+     * ikke finder en film med samme navn, i listen så inserter den filmen i
+     * databasen.
+     *
      * @param m
      */
     void saveMovie(Movies m)
@@ -172,6 +176,56 @@ public class MovieModel
         if (movies != null)
         {
             movieList.setAll(movies);
+        }
+    }
+
+    /**
+     * Sender den ny kategori vidre til BLL laget.
+     *
+     * @param c
+     */
+    void saveCategory(Category c)
+    {
+        categories.add(c);
+        catManager.save(c);
+    }
+
+    /**
+     * Metoden laver listen med kategorier som den henter fra DAL laget via BLL
+     * Laget
+     */
+    void loadCategories()
+    {
+        List<Category> loadedCategories = catManager.getAllCategories();
+        categories.clear();
+
+        categories.addAll(loadedCategories);
+    }
+
+    /**
+     * This method recives the selecteed categories from the MainController. The
+     * for loop runs through the list of selectedcategories and removes them
+     * from both the listview, and the database, one at a time.
+     *
+     * @param selectedCategories
+     */
+    void removeCat(ObservableList<Category> selectedCategories)
+    {
+        for (int i = 0; i < selectedCategories.size(); i++)
+        {
+            catManager.removeCat(selectedCategories.get(i));
+            categories.remove(selectedCategories.get(i));
+        }
+
+    }
+
+    public void setMoviesByRelation(ObservableList<Category> selectedCategories)
+    {
+        for (int i = 0; i < selectedCategories.size(); i++)
+        {
+            List<Movies> movies = catManager.setRelation(selectedCategories.get(i));
+            movieList.setAll(movies);
+
         }
     }
 

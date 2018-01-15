@@ -8,6 +8,7 @@ package movie_project.bll;
 import java.util.List;
 import javafx.collections.ObservableList;
 import movie_project.be.Category;
+import movie_project.be.Movies;
 import movie_project.dal.CategoryDAO;
 
 /**
@@ -45,6 +46,11 @@ public class CategoryManager
     public void removeCat(ObservableList<Category> selectedCategory)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Movies> setRelation(Category get)
+    {
+        return catDAO.getRelation(get.getCatId());
     }
     
 }

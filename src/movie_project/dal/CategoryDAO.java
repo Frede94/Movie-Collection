@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.TextInputDialog;
 import movie_project.be.Category;
+import movie_project.be.Movies;
 
 /**
  *
@@ -29,7 +30,8 @@ public class CategoryDAO
 
     /**
      * Gemmer den ny kategori til databasen
-     * @param c 
+     *
+     * @param c
      */
     public void save(Category c)
     {
@@ -51,7 +53,8 @@ public class CategoryDAO
 
     /**
      * Henter kategorier fra DataBasen og sender dem vidre til BLL laget.
-     * @return 
+     *
+     * @return
      */
     public List<Category> getAllCategories()
     {
@@ -75,21 +78,73 @@ public class CategoryDAO
         }
         return categories;
     }
-    
-/**
- * Sletter den valgte kategori både fra listen og fra databasen
- * @param selectedCategory 
- */
+
+    /**
+     * Sletter den valgte kategori både fra listen og fra databasen
+     *
+     * @param selectedCategory
+     */
     public void removeCat(Category selectedCategory)
     {
-          try (Connection con = dbc.getConnection())
+        try (Connection con = dbc.getConnection())
         {
             Statement stmt = con.createStatement();
-            stmt.execute("DELETE FROM CatMovie WHERE CategoryId =" + selectedCategory.getCatId()+ ";DELETE FROM Category WHERE catId=" + selectedCategory.getCatId());
-            
+            stmt.execute("DELETE FROM CatMovie WHERE CategoryId =" + selectedCategory.getCatId() + ";DELETE FROM Category WHERE catId=" + selectedCategory.getCatId());
+
         } catch (SQLException ex)
         {
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<Movies> getRelation(int catId)
+    {
+        List<Movies> movies = new ArrayList();
+        List<Integer> Id = new ArrayList();
+
+        try (Connection con = dbc.getConnection())
+        {
+            String sql = "SELECT * FROM CatMovie WHERE CategoryId =" + catId;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+
+                Id.add(rs.getInt("MovieId"));
+            }
+
+            if (!Id.isEmpty())
+            {
+                sql = "SELECT * FROM Movie WHERE id =" + Id.get(0);
+
+                for (int i = 1; i < Id.size(); i++)
+                {
+                    sql = sql + "OR id =" + Id.get(i);
+                }
+            } else
+            {
+                return null;
+            }
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next())
+            {
+
+                Movies currentMovie = new Movies();
+
+                currentMovie.setId(rs.getInt("id"));
+                currentMovie.setName(rs.getString("name"));
+                currentMovie.setRating(rs.getFloat("ratingIMDB"));
+                currentMovie.setFileLink(rs.getString("filelink"));
+                currentMovie.setLastView(rs.getString("lastview"));
+                movies.add(currentMovie);
+
+            }
+            return movies;
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

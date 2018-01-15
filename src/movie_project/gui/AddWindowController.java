@@ -49,9 +49,8 @@ public class AddWindowController implements Initializable
 
     public Movies editMovie;
 
-    private MovieModel movieModel = new MovieModel();
-    private CategoryModel catModel = new CategoryModel();
 
+    private MovieModel movieModel = new MovieModel();   
     private BrugerFladeMainController controller;
 
     /**
@@ -73,11 +72,7 @@ public class AddWindowController implements Initializable
      *
      * @param categoryModel
      */
-    public void setCategoryModel(CategoryModel categoryModel)
-    {
-        this.catModel = categoryModel;
-        comboCategory.setItems(categoryModel.getCategories());;
-    }
+
 
     @FXML
     private void clickAddAction(ActionEvent event)
@@ -157,7 +152,7 @@ public class AddWindowController implements Initializable
     void setMovieModel(MovieModel movieModel)
     {
         this.movieModel = movieModel;
-        comboCategory.setItems(catModel.getCategories());
+        comboCategory.setItems(this.movieModel.getCategories());
     }
 
     void setEditMovie(Movies selectedItem)

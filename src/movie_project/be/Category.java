@@ -6,6 +6,8 @@
 package movie_project.be;
 
 import java.io.Serializable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -16,7 +18,14 @@ public class Category
 
     private String catName;
     private int catId;
+    private ObservableList<Movies> movieList = FXCollections.observableArrayList();
 
+    
+    
+    public ObservableList<Movies> getMovieList()
+    {
+        return movieList;
+    }
 
     /**
      * Get the value of catId

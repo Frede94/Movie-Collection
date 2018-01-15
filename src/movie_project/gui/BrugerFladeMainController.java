@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,8 +62,6 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private Button btnDeleteMovie;
 
-    private CategoryModel catModel = new CategoryModel();
-
     private MovieModel movieModel = new MovieModel();
 
     private Movies selectedMovie;
@@ -90,20 +89,20 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private TableView<Movies> movieCatList;
     @FXML
-    private TableColumn<?, ?> tableColumnNameCat;
+    private TableColumn<Movies, String> tableColumnNameCat;
     @FXML
-    private TableColumn<?, ?> tableColumnImdbCat;
+    private TableColumn<Movies, String> tableColumnImdbCat;
     @FXML
-    private TableColumn<?, ?> tableColumnLastViewCat;
+    private TableColumn<Movies, String> tableColumnLastViewCat;
     @FXML
-    private TableColumn<?, ?> tableColumnMyRatingCat;
+    private TableColumn<Movies, String> tableColumnMyRatingCat;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
 
-        catList.setItems(catModel.getCategories());
-        catModel.loadCategories();
+        catList.setItems(movieModel.getCategories());
+        movieModel.loadCategories();
         catList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -233,7 +232,7 @@ public class BrugerFladeMainController implements Initializable
         } else
         {
             movieModel.loadMovies();
-            catModel.loadCategories();
+            movieModel.loadCategories();
         }
     }
 
@@ -294,17 +293,27 @@ public class BrugerFladeMainController implements Initializable
 
     }
 
-    public void getMovieCatRelation()
-    {
-        movieModel.setMovieByRelation(movieCatList.getSelectionModel().getSelectedItem().getId());
-    }
+//    public void getMovieCatRelation()
+//    {
+//        movieModel.setMovieByRelation(movieCatList.getSelectionModel().getSelectedItem().getId());
+//    }
 
     @FXML
     private void catSelectClick(MouseEvent event)
     {
+        
         selectedCats = catList.getSelectionModel().getSelectedItems();
-        getMovieCatRelation();
+        movieModel.setMoviesByRelation(catList.getSelectionModel().getSelectedItems());
+        
 
+       ObservableList<Movies> movieList = FXCollections.observableArrayList();
+       for (Category selectedCat : selectedCats)
+        {
+            
+            movieList.addAll(selectedCat.getMovieList());
+            
+        }
+              movieCatList.setItems(movieList);
     }
 
     /**
@@ -327,7 +336,7 @@ public class BrugerFladeMainController implements Initializable
             {
                 ObservableList<Category> selectedCategory = catList.getSelectionModel().getSelectedItems();
 
-                catModel.removeCat(selectedCategory);
+                movieModel.removeCat(selectedCategory);
             } else
             {
 
