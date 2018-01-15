@@ -23,13 +23,13 @@ public class MovieModel
 {
 
     private SearchFilter searchFilter = new SearchFilter();
+
     private MovieDAO movieDao = new MovieDAO(); // FY FY skal flyttes
     MovieManager movieManager = new MovieManager();
     CategoryManager catManager = new CategoryManager();
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
     private ObservableList<Category> categories;
     private ObservableList<Movies> movieView = FXCollections.observableArrayList();
-
     private ObservableList<Movies> movieList = FXCollections.observableArrayList();
 
     /**
@@ -95,7 +95,7 @@ public class MovieModel
      */
     void search(String searchText)
     {
-        List<Movies> allMovies = movieDao.getAllMovies();
+        List<Movies> allMovies = movieManager.getAllMovies();
         List<Movies> searchResults = searchFilter.searchByMovieName(allMovies, searchText);
         movies.clear();
         movies.addAll(searchResults);

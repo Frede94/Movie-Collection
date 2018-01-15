@@ -14,11 +14,11 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import movie_project.be.Category;
@@ -39,18 +39,19 @@ public class AddWindowController implements Initializable
     @FXML
     private Button cancelMovieBtn;
     @FXML
-    private TextField txtImdbRating;
+    public TextField txtImdbRating;
     @FXML
-    private TextField txtTitle;
+    public TextField txtTitle;
     @FXML
-    private TextField txtImdbRating1;
+    public TextField txtImdbRating1;
     @FXML
-    private TextField txtPath;
+    public TextField txtPath;
 
-    private Movies editMovie;
+    public Movies editMovie;
+
 
     private MovieModel movieModel = new MovieModel();   
-    
+    private BrugerFladeMainController controller;
 
     /**
      * Initializes the controller class.
@@ -59,6 +60,11 @@ public class AddWindowController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
 
+    }
+
+    public void setController(BrugerFladeMainController controller)
+    {
+        this.controller = controller;
     }
 
     /**
@@ -79,30 +85,44 @@ public class AddWindowController implements Initializable
     @FXML
     private void clickSaveAction(ActionEvent event)
     {
-        if (editMovie == null)
-        {
-            Movies m = new Movies();
-            m.setName(txtTitle.getText());
-            m.setFileLink(txtPath.getText());
-            m.setRating(Float.parseFloat(txtImdbRating.getText()));
-            m.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
-            movieModel.saveMovie(m);
-            
-       } else
-        {
+        
+        //bruge equals.ignorecase i et loop
+//        controller.getMovieView();
+//        if (!controller.getMovieView().getItems().contains(txtTitle.getText()))
+//        {
+            if (editMovie == null)
+            {
+                Movies m = new Movies();
+                m.setName(txtTitle.getText());
+                m.setFileLink(txtPath.getText());
+                m.setRating(Float.parseFloat(txtImdbRating.getText()));
+                m.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
+                movieModel.saveMovie(m);
 
-            //Henter informationerne som allerede er i en film og sætter dem ind i
-            //txtfelterne som er i vores AddWindow, så man kan ændre i dem.
-            //Når man ændre så sletter programmet den gamle film som man har valgt at edit.
-            editMovie.setName(txtTitle.getText());
-            editMovie.setFileLink(txtPath.getText());
-            editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
-            editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
-            movieModel.saveEdit(editMovie);
-            movieModel.loadMovies();
-        }
-        Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
-        stage.close();
+            } else
+            {
+
+                //Henter informationerne som allerede er i en film og sætter dem ind i
+                //txtfelterne som er i vores AddWindow, så man kan ændre i dem.
+                //Når man ændre så sletter programmet den gamle film som man har valgt at edit.
+                editMovie.setName(txtTitle.getText());
+                editMovie.setFileLink(txtPath.getText());
+                editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
+                editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
+                movieModel.saveEdit(editMovie);
+                movieModel.loadMovies();
+            }
+            Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
+            stage.close();
+//        } else
+//        {
+//            Alert alert = new Alert(AlertType.INFORMATION);
+//            alert.setTitle("Duplicate Warning");
+//            alert.setHeaderText(null);
+//            alert.setContentText("You allready have a movie with this name!");
+//
+//            alert.showAndWait();
+//        }
 
     }
 
@@ -124,14 +144,15 @@ public class AddWindowController implements Initializable
     {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open File");
-        
+
         chooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("ALL", "*.*"),
                 new FileChooser.ExtensionFilter("MP4", "*.mp4"),
                 new FileChooser.ExtensionFilter("MKV", "*.mkv"));
         File file = chooser.showOpenDialog(new Stage());
-        try { 
-            
+        try
+        {
+
             String fullPath = file.getCanonicalPath();
             txtPath.setText(fullPath);
         } catch (IOException ex)
@@ -139,7 +160,6 @@ public class AddWindowController implements Initializable
             Logger.getLogger(AddWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    
     }
 
     void setMovieModel(MovieModel movieModel)
