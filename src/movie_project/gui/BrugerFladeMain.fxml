@@ -20,12 +20,12 @@
             <TableColumn fx:id="tableColumnOwnRating" prefWidth="113.0" text="My Rating" />
         </columns>
       </TableView>
-      <Button fx:id="newMovieBtn" layoutX="793.0" layoutY="474.0" mnemonicParsing="false" onAction="#newMovieOnAction" text="New Movie" />
-      <Button fx:id="editMovieBtn" layoutX="894.0" layoutY="474.0" mnemonicParsing="false" onAction="#editMovieOnAction" prefHeight="25.0" prefWidth="76.0" text="Edit Movie" />
+      <Button fx:id="newMovieBtn" layoutX="820.0" layoutY="474.0" mnemonicParsing="false" onAction="#newMovieOnAction" text="New Movie" />
+      <Button fx:id="editMovieBtn" layoutX="908.0" layoutY="474.0" mnemonicParsing="false" onAction="#editMovieOnAction" prefHeight="25.0" prefWidth="76.0" text="Edit Movie" />
       <Button fx:id="playMovieBtn" layoutX="1093.0" layoutY="474.0" mnemonicParsing="false" onAction="#playMovieOnAction" prefHeight="25.0" prefWidth="76.0" text="Play" />
-      <JFXTextField fx:id="filterField" layoutX="533.0" layoutY="5.0" />
-      <JFXButton fx:id="searchBtn" layoutX="668.0" layoutY="5.0" onAction="#searchAction" text="🔍" />
-      <Label layoutX="493.0" layoutY="9.0" prefHeight="25.0" prefWidth="43.0" text="Filter:" />
+      <JFXTextField fx:id="filterField" layoutX="1020.0" layoutY="5.0" />
+      <JFXButton fx:id="searchBtn" layoutX="1155.0" layoutY="5.0" onAction="#searchAction" text="🔍" />
+      <Label layoutX="980.0" layoutY="9.0" prefHeight="25.0" prefWidth="43.0" text="Filter:" />
       <ListView fx:id="catList" layoutX="14.0" layoutY="67.0" onMouseClicked="#catSelectClick" prefHeight="398.0" prefWidth="200.0" />
       <Label layoutX="81.0" layoutY="34.0" prefHeight="25.0" prefWidth="66.0" text="Categories">
          <font>
@@ -33,7 +33,7 @@
          </font>
       </Label>
       <Button fx:id="newCatBtn" layoutX="12.0" layoutY="474.0" mnemonicParsing="false" onAction="#NewCatAction" prefHeight="25.0" prefWidth="95.0" text="Add Category" />
-      <Button fx:id="btnDeleteMovie" layoutX="981.0" layoutY="474.0" mnemonicParsing="false" onAction="#clickDeleteAction" text="Delete Movie" />
+      <Button fx:id="btnDeleteMovie" layoutX="995.0" layoutY="474.0" mnemonicParsing="false" onAction="#clickDeleteAction" text="Delete Movie" />
       <Button fx:id="btnDeleteCat" layoutX="112.0" layoutY="474.0" mnemonicParsing="false" onAction="#deleteCat" prefHeight="25.0" prefWidth="104.0" text="Delete Category" />
       <Button layoutX="258.0" layoutY="474.0" mnemonicParsing="false" onAction="#setMovieCats" text="Set Category" />
       <Label layoutX="426.0" layoutY="38.0" text="Movie categories">
@@ -54,5 +54,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Button layoutX="350.0" layoutY="474.0" mnemonicParsing="false" onAction="#removeMovieCats" text="Remove from Cat..." />
    </children>
 </AnchorPane>

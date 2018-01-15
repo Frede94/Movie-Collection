@@ -65,6 +65,8 @@ public class BrugerFladeMainController implements Initializable
     private MovieModel movieModel = new MovieModel();
 
     private Movies selectedMovie;
+    
+    private Movies selectedCatMovie;
 
     private ObservableList<Category> selectedCats;
 
@@ -123,6 +125,25 @@ public class BrugerFladeMainController implements Initializable
         tableColumnImdbCat.setCellValueFactory(new PropertyValueFactory<>("rating"));
         movieModel.loadMovies();
 
+    }
+
+    @FXML
+    private void removeMovieCats(ActionEvent event)
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you ok with this?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+        {
+            Movies selectedCatMovie = movieCatList.getSelectionModel().getSelectedItem();
+            movieModel.removeCatMovie(selectedCatMovie);
+        } else
+        {
+            //on cancel...
+            //DO NOTHING...
+        }
     }
 
     /**
@@ -215,9 +236,15 @@ public class BrugerFladeMainController implements Initializable
             File movieFile = new File(selectedMovie.getFileLink());
             Desktop.getDesktop().open(movieFile);
 
-        } catch (IOException ex)
+        } catch (Exception ex)
         {
-            Logger.getLogger(BrugerFladeMainController.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Crash");
+            alert.setHeaderText("Crash Report");
+            alert.setContentText("No movie selected!"
+                    + "\nPlease selected a movie");
+
+            alert.showAndWait();
         }
 
     }
@@ -367,8 +394,4 @@ public class BrugerFladeMainController implements Initializable
         return movieView;
     }
 
-    private void clickSave(ActionEvent Event)
-    {
-
-    }
 }

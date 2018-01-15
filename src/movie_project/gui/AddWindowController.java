@@ -48,8 +48,7 @@ public class AddWindowController implements Initializable
 
     public Movies editMovie;
 
-
-    private MovieModel movieModel = new MovieModel();   
+    private MovieModel movieModel = new MovieModel();
     private BrugerFladeMainController controller;
 
     /**
@@ -66,6 +65,7 @@ public class AddWindowController implements Initializable
         this.controller = controller;
     }
 
+    
 
     /*
     Lægger det tastede fra txtField ind i databasen
@@ -96,23 +96,17 @@ public class AddWindowController implements Initializable
             movieModel.saveEdit(editMovie);
             movieModel.loadMovies();
         }
-        Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
-        stage.close();
+        closeMovieAddBox();
 
     }
 
     @FXML
-    private void closeMovieAddBox(ActionEvent event)
+    private void closeMovieAddBox()
     {
         Stage stage = (Stage) cancelMovieBtn.getScene().getWindow();
         stage.close();
     }
 
-    @FXML
-    private void clickLoadCategoriesBtn(ActionEvent event)
-    {
-
-    }
 
     @FXML
     private void clickChooseFile(ActionEvent event)
@@ -140,7 +134,7 @@ public class AddWindowController implements Initializable
     void setMovieModel(MovieModel movieModel)
     {
         this.movieModel = movieModel;
-//        comboCategory.setItems(this.movieModel.getCategories());
+
     }
 
     void setEditMovie(Movies selectedItem)

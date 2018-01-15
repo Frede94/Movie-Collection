@@ -23,10 +23,10 @@ public class SearchFilter
 
         for (Movies movie : movies)
         {
-            if (movie.getName().toLowerCase().contains(query.toLowerCase()))
+            if (movie.getName().toLowerCase().equalsIgnoreCase(query.toLowerCase())|| movie.getName().toLowerCase().contains(query.toLowerCase()))
             {
                 searResult.add(movie);
-            } else if (movie.getFileLink().toLowerCase().contains(query.toLowerCase()))
+            } else if (movie.getFileLink().toLowerCase().equalsIgnoreCase(query.toLowerCase()))
             {
                 searResult.add(movie);
             }

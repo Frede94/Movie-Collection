@@ -91,5 +91,10 @@ public class MovieManager
         movieDAO.playMovie(selectedMovie);
     }
 
+    public void removeCatMovie(Movies selectedCatMovie)
+    {
+        movieDAO.removeCatMovie(selectedCatMovie);
+    }
+
 
 }

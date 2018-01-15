@@ -88,6 +88,7 @@ public class MovieModel
         {
             movies.add(m);
             movieManager.saveMovie(m);
+
         }
 
     }
@@ -214,8 +215,9 @@ public class MovieModel
 
     /**
      * Goes through the selected categories getting the movies with the category
-     * relation 
-     * @param selectedCategories 
+     * relation
+     *
+     * @param selectedCategories
      */
     public void setMoviesByRelation(ObservableList<Category> selectedCategories)
     {
@@ -225,6 +227,12 @@ public class MovieModel
             movieList.addAll(movies);
 
         }
+    }
+
+    void removeCatMovie(Movies selectedCatMovie)
+    {
+        movieList.remove(selectedCatMovie);
+        movieManager.removeCatMovie(selectedCatMovie);
     }
 
 }
