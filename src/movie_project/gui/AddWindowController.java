@@ -32,7 +32,6 @@ import movie_project.be.Movies;
 public class AddWindowController implements Initializable
 {
 
-    @FXML
     private ComboBox<Category> comboCategory;
     @FXML
     private Button saveMovieBtn;
@@ -67,17 +66,6 @@ public class AddWindowController implements Initializable
         this.controller = controller;
     }
 
-    /**
-     * Sætter CategoryModel i denne klasse og henter Categories
-     *
-     * @param categoryModel
-     */
-
-
-    @FXML
-    private void clickAddAction(ActionEvent event)
-    {
-    }
 
     /*
     Lægger det tastede fra txtField ind i databasen
@@ -152,7 +140,7 @@ public class AddWindowController implements Initializable
     void setMovieModel(MovieModel movieModel)
     {
         this.movieModel = movieModel;
-        comboCategory.setItems(this.movieModel.getCategories());
+//        comboCategory.setItems(this.movieModel.getCategories());
     }
 
     void setEditMovie(Movies selectedItem)

@@ -25,7 +25,6 @@ public class MovieModel
 
     private SearchFilter searchFilter = new SearchFilter();
 
-
     MovieManager movieManager = new MovieManager();
     CategoryManager catManager = new CategoryManager();
     private ObservableList<Movies> movies = FXCollections.observableArrayList();
@@ -113,7 +112,7 @@ public class MovieModel
     {
         return movies;
     }
-    
+
     public ObservableList<Movies> getSelectedMovies()
     {
         return movieList;
@@ -181,7 +180,6 @@ public class MovieModel
 //            movieList.setAll(movies);
 //        }
 //    }
-
     /**
      * Sender den ny kategori vidre til BLL laget.
      *
