@@ -65,7 +65,7 @@ public class BrugerFladeMainController implements Initializable
     private MovieModel movieModel = new MovieModel();
 
     private Movies selectedMovie;
-    
+
     private Movies selectedCatMovie;
 
     private ObservableList<Category> selectedCats;
@@ -102,6 +102,15 @@ public class BrugerFladeMainController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        //Når programmet starter, så kommer der først en informations boks frem, 
+        //som siger, at man skal huske at slette de film med en personlig rating
+        //under 6, og som man ikke har set i 2 år
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Remember to delete movies, with a personal rating under 6"
+                + "\nand you not has seen in 2 years. ");
+
+        alert.showAndWait();
 
         catList.setItems(movieModel.getCategories());
         movieModel.loadCategories();
@@ -145,8 +154,6 @@ public class BrugerFladeMainController implements Initializable
             //DO NOTHING...
         }
     }
-
-  
 
     /**
      * Opens a new window when you press new movie
