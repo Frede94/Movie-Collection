@@ -106,8 +106,8 @@ public class BrugerFladeMainController implements Initializable
         //under 6, og som man ikke har set i 2 år
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
-        alert.setHeaderText("Remember to delete movies, with a personal rating under 6"
-                + "\nand you not has seen in 2 years. ");
+        alert.setHeaderText("Remember to delete movies with a personal rating under 6,"
+                + "\nand movies that haven't been viewed in 2 years. ");
 
         alert.showAndWait();
 
