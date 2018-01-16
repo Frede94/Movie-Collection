@@ -9,9 +9,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -225,26 +228,47 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
-
-        try
+        Movies selectedCatMovie = movieCatList.getSelectionModel().getSelectedItem();
+        Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();
+        if (selectedCatMovie != null)
         {
-            
-            Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();
-            movieModel.lastViewed(selectedMovie);
-            movieModel.loadMovies();
+            try
+            {
+                movieModel.lastViewed(selectedCatMovie);
+                movieModel.loadMovies();
 
-            File movieFile = new File(selectedMovie.getFileLink());
-            Desktop.getDesktop().open(movieFile);
+                File movieFile = new File(selectedCatMovie.getFileLink());
+                Desktop.getDesktop().open(movieFile);
+            } catch (Exception ex)
+            {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Crash");
+                alert.setHeaderText("Crash Report");
+                alert.setContentText("No movie selected!"
+                        + "\nPlease selected a movie");
 
-        } catch (Exception ex)
+                alert.showAndWait();
+            }
+        } else if (selectedCatMovie == null)
         {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Crash");
-            alert.setHeaderText("Crash Report");
-            alert.setContentText("No movie selected!"
-                    + "\nPlease selected a movie");
+            try
+            {
+                //Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();//|| movieView.getSelectionModel().getSelectedItem()
+                movieModel.lastViewed(selectedMovie);
+                movieModel.loadMovies();
 
-            alert.showAndWait();
+                File movieFile = new File(selectedMovie.getFileLink());
+                Desktop.getDesktop().open(movieFile);
+            } catch (Exception ex)
+            {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Crash");
+                alert.setHeaderText("Crash Report");
+                alert.setContentText("No movie selected!"
+                        + "\nPlease selected a movie");
+
+                alert.showAndWait();
+            }
         }
 
     }
