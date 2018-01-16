@@ -65,7 +65,7 @@ public class BrugerFladeMainController implements Initializable
     private MovieModel movieModel = new MovieModel();
 
     private Movies selectedMovie;
-    
+
     private Movies selectedCatMovie;
 
     private ObservableList<Category> selectedCats;
@@ -126,10 +126,11 @@ public class BrugerFladeMainController implements Initializable
         movieModel.loadMovies();
 
     }
+
     /*
     fjerner en film fra CatMovie listen i databasen, når den gør dette sletter den
     ikke filmen, den fjerne relationer mellem kategori og film.
-    */
+     */
     @FXML
     private void removeMovieCats(ActionEvent event)
     {
@@ -149,11 +150,10 @@ public class BrugerFladeMainController implements Initializable
         }
     }
 
-  
-
     /**
-     * Opens a new window when you press new movie
-     * Det vindue den åbner har samme model som MainVinduet
+     * Opens a new window when you press new movie Det vindue den åbner har
+     * samme model som MainVinduet
+     *
      * @param event
      */
     @FXML
@@ -213,7 +213,7 @@ public class BrugerFladeMainController implements Initializable
     }
 
     /**
-     * Plays the selected movie
+     * Plays the selected movie in system default program.
      *
      * @param event
      */
@@ -381,11 +381,6 @@ public class BrugerFladeMainController implements Initializable
         selectedMovie.getCatsList().addAll(selectedCats);
         movieModel.addCats(selectedCats, selectedMovie);
 
-    }
-
-    public TableView<Movies> getMovieView()
-    {
-        return movieView;
     }
 
 }

@@ -164,8 +164,20 @@ public class MovieModel
      */
     void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
     {
-        selectedMovie.getCatsList().addAll(selectedCats);
-        movieManager.addCats(selectedCats, selectedMovie);
+        if (movieList.contains(selectedMovie))
+        {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Duplicate Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("You allready have a movie with this name!");
+
+            alert.showAndWait();
+        } else
+        {
+            selectedMovie.getCatsList().addAll(selectedCats);
+            movieManager.addCats(selectedCats, selectedMovie);
+        }
+
     }
 
     void playMovie(Movies selectedMovie)

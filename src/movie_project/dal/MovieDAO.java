@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package movie_project.dal;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -192,7 +193,6 @@ public class MovieDAO
                 System.out.println(stmt.toString());
                 stmt.execute();
             }
-
         } catch (SQLException ex)
         {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -212,11 +212,6 @@ public class MovieDAO
         addCats(cats, selectedMovie);
     }
 
-    public void playMovie(Movies selectedMovie)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void removeCatMovie(Movies selectedCatMovie)
     {
         try (Connection con = dbc.getConnection())
@@ -229,5 +224,9 @@ public class MovieDAO
         }
     }
 
-   
+    public void playMovie(Movies selectedMovie)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
