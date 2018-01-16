@@ -164,7 +164,11 @@ public class MovieModel
      */
     void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
     {
-        if (movieList.contains(selectedMovie))
+        if (!movieList.contains(selectedMovie))
+        {
+            selectedMovie.getCatsList().addAll(selectedCats);
+            movieManager.addCats(selectedCats, selectedMovie);
+        } else
         {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Duplicate Warning");
@@ -172,10 +176,6 @@ public class MovieModel
             alert.setContentText("You allready have a movie with this name!");
 
             alert.showAndWait();
-        } else
-        {
-            selectedMovie.getCatsList().addAll(selectedCats);
-            movieManager.addCats(selectedCats, selectedMovie);
         }
 
     }
