@@ -80,4 +80,9 @@ public class AddCategoryController implements Initializable
 
     }
 
+    void setMovieModel(MovieModel movieModel)
+    {
+        this.movieModel = movieModel;
+    }
+
 }

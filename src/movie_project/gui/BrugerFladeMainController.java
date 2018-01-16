@@ -9,12 +9,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.awt.Desktop;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -239,6 +236,9 @@ public class BrugerFladeMainController implements Initializable
 
                 File movieFile = new File(selectedCatMovie.getFileLink());
                 Desktop.getDesktop().open(movieFile);
+
+                selectedCats = catList.getSelectionModel().getSelectedItems();
+                movieModel.setMoviesByRelation(catList.getSelectionModel().getSelectedItems());
             } catch (Exception ex)
             {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -259,6 +259,9 @@ public class BrugerFladeMainController implements Initializable
 
                 File movieFile = new File(selectedMovie.getFileLink());
                 Desktop.getDesktop().open(movieFile);
+
+                selectedCats = catList.getSelectionModel().getSelectedItems();
+                movieModel.setMoviesByRelation(catList.getSelectionModel().getSelectedItems());
             } catch (Exception ex)
             {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -305,12 +308,14 @@ public class BrugerFladeMainController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddCategory.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             AddCategoryController categoryController = fxmlLoader.getController();
-//            categoryController.setCategoryModel(catModel);
+            categoryController.setMovieModel(movieModel);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("New Category");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+
+            
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -410,6 +415,9 @@ public class BrugerFladeMainController implements Initializable
         selectedMovie = movieView.getSelectionModel().getSelectedItem();
         selectedMovie.getCatsList().addAll(selectedCats);
         movieModel.addCats(selectedCats, selectedMovie);
+
+        selectedCats = catList.getSelectionModel().getSelectedItems();
+        movieModel.setMoviesByRelation(catList.getSelectionModel().getSelectedItems());
 
     }
 
