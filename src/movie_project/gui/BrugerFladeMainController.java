@@ -146,16 +146,7 @@ public class BrugerFladeMainController implements Initializable
         }
     }
 
-    /**
-     * on action once a movie is selected.
-     *
-     * @param event
-     */
-    @FXML
-    public void onSelectedMovie(MouseEvent event)
-    {
-
-    }
+  
 
     /**
      * Opens a new window when you press new movie
