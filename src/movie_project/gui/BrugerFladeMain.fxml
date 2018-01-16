@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="514.0" prefWidth="1189.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movie_project.gui.BrugerFladeMainController">
+<AnchorPane id="AnchorPane" prefHeight="514.0" prefWidth="1189.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movie_project.gui.BrugerFladeMainController">
    <children>
-      <TableView fx:id="movieView" layoutX="737.0" layoutY="67.0" onMouseClicked="#onSelectedMovie" prefHeight="398.0" prefWidth="432.0">
+      <TableView fx:id="movieView" layoutX="737.0" layoutY="67.0" prefHeight="398.0" prefWidth="432.0">
         <columns>
           <TableColumn fx:id="tableColumnName" prefWidth="105.0" text="Name" />
           <TableColumn fx:id="tableColumnRating" prefWidth="101.0" text="Imdb Rating" />

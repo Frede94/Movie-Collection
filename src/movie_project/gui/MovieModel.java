@@ -210,7 +210,6 @@ public class MovieModel
             catManager.removeCat(selectedCategories.get(i));
             categories.remove(selectedCategories.get(i));
         }
-
     }
 
     /**
@@ -221,11 +220,11 @@ public class MovieModel
      */
     public void setMoviesByRelation(ObservableList<Category> selectedCategories)
     {
+        movieList.clear();
         for (int i = 0; i < selectedCategories.size(); i++)
         {
             List<Movies> movies = catManager.setRelation(selectedCategories.get(i));
             movieList.addAll(movies);
-
         }
     }
 
