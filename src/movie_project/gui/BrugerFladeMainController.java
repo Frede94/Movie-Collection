@@ -135,7 +135,10 @@ public class BrugerFladeMainController implements Initializable
         movieModel.loadMovies();
 
     }
-
+    /*
+    fjerner en film fra CatMovie listen i databasen, når den gør dette sletter den
+    ikke filmen, den fjerne relationer mellem kategori og film.
+    */
     @FXML
     private void removeMovieCats(ActionEvent event)
     {
@@ -157,7 +160,7 @@ public class BrugerFladeMainController implements Initializable
 
     /**
      * Opens a new window when you press new movie
-     *
+     * Det vindue den åbner har samme model som MainVinduet
      * @param event
      */
     @FXML
