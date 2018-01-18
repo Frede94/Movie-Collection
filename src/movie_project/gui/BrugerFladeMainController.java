@@ -408,7 +408,8 @@ public class BrugerFladeMainController implements Initializable
 
     /**
      * This method allows the user to set the categories in relation to a movie.
-     *
+     * Because of the multi seletion model for the listview contaning the Categories 
+     * selecting one or more Categories creates a list of selected Categories.
      * @param event
      */
     @FXML

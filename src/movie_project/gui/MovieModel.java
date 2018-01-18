@@ -225,8 +225,8 @@ public class MovieModel
     }
 
     /**
-     * Goes through the selected categories getting the movies with the category
-     * relation
+     * This method recives a list of selected Categories and a selected  movie. To set the relation between the selected Movie 
+     * and the selected Categories, the list of Categories is run through a for loop, to pick out the Categories, one at a time. 
      *
      * @param selectedCategories
      */
