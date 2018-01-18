@@ -124,7 +124,6 @@ public class MovieModel
      */
     void search(String searchText)
     {
-//        movieManager.search(searchText);
         List<Movie> allMovies = movieManager.getAllMovies();
         List<Movie> searchResults = searchFilter.searchByMovieName(allMovies, searchText);
         movies.clear();
