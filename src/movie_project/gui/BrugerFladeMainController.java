@@ -12,6 +12,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -120,6 +122,17 @@ public class BrugerFladeMainController implements Initializable
         movieModel.loadMovies();
 
         rememberToDelete();
+        
+        // En listner, der automatisk opdaterer søgefeltet, hver gang der bliver
+        //trykket, på et bogstav på tastaturet
+        filterField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
+            {
+                searchAction(null);
+            }
+        }
+        );
 
     }
 
@@ -284,7 +297,6 @@ public class BrugerFladeMainController implements Initializable
      *
      * @param event
      */
-    @FXML
     private void searchAction(ActionEvent event)
     {
         String searchText = filterField.getText().trim();

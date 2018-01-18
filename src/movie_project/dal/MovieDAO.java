@@ -18,6 +18,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import movie_project.be.Category;
 import movie_project.be.Movie;
+import movie_project.bll.MovieManager;
+import movie_project.bll.SearchFilter;
 
 /**
  *
@@ -29,8 +31,11 @@ public class MovieDAO
     private ObservableList<Movie> moviesInList;
     private MovieDAO movieDAO;
     private DataBaseConnector dataBaseConnector;
-
+    
+    private ObservableList<Movie> movies = FXCollections.observableArrayList();
+//    MovieManager movieManager = new MovieManager();
     DataBaseConnector dbc = new DataBaseConnector();
+    
 
     /**
      * Gets a list from the "Movie" database with the Movie, Id, Name,
@@ -75,6 +80,7 @@ public class MovieDAO
         return movies;
     }
 
+     
     /*
     Sletter elementer fra databasen og listen
      */
@@ -223,5 +229,8 @@ public class MovieDAO
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    
 
 }

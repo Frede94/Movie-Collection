@@ -18,7 +18,8 @@ import movie_project.dal.MovieDAO;
  */
 public class MovieManager
 {
-
+    
+    private SearchFilter searchFilter = new SearchFilter();
     private static MovieDAO movieDAO = new MovieDAO();
     private static ObservableList<Movie> movies = FXCollections.observableArrayList();
 
@@ -59,7 +60,19 @@ public class MovieManager
     {
         return movieDAO.getAllMovies();
     }
-
+    
+    /**
+     * Søger på det der er skrevet i søgefeltet
+     *
+     * @param searchText
+     */
+    public List<Movie> search(String searchText)
+    {
+        List<Movie> allMovies = movieDAO.getAllMovies();
+        List<Movie> searchResults = searchFilter.searchByMovieName(allMovies, searchText);
+        return searchResults;
+    }
+    
     /*
     Henter informationerne som allerede er i en film og sætter dem ind i
     txtfelterne som er i vores AddWindow, så man kan ændre i dem.

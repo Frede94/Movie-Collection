@@ -26,9 +26,6 @@ public class SearchFilter
             if (movie.getName().toLowerCase().equalsIgnoreCase(query.toLowerCase()) || movie.getName().toLowerCase().contains(query.toLowerCase()))
             {
                 searResult.add(movie);
-            } else if (movie.getFileLink().toLowerCase().equalsIgnoreCase(query.toLowerCase()))
-            {
-                searResult.add(movie);
             }
         }
 

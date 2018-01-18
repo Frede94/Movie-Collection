@@ -119,16 +119,15 @@ public class MovieModel
     }
 
     /**
-     * Søger på det der er skrevet i søgefeltet skal FLYTTES til DAL laget
+     * Søger på det der er skrevet i søgefeltet 
      *
      * @param searchText
      */
     void search(String searchText)
     {
-        List<Movie> allMovies = movieManager.getAllMovies();
-        List<Movie> searchResults = searchFilter.searchByMovieName(allMovies, searchText);
         movies.clear();
-        movies.addAll(searchResults);
+        movies.addAll(movieManager.search(searchText));
+        
     }
 
     /*
