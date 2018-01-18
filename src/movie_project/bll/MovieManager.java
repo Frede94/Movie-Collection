@@ -5,7 +5,6 @@
  */
 package movie_project.bll;
 
-import java.util.Calendar;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,26 +74,21 @@ public class MovieManager
     {
         movieDAO.lastViewed(selectedMovie);
     }
-    
+
     /**
      * This method sends the category movie relation to the DAL layer
+     *
      * @param selectedCats
-     * @param selectedMovie 
+     * @param selectedMovie
      */
     public void addCats(ObservableList<Category> selectedCats, Movie selectedMovie)
     {
         movieDAO.addCats(selectedCats, selectedMovie);
     }
 
-    public void playMovie(Movie selectedMovie)
-    {
-        movieDAO.playMovie(selectedMovie);
-    }
-
     public void removeCatMovie(Movie selectedCatMovie)
     {
         movieDAO.removeCatMovie(selectedCatMovie);
     }
-
 
 }

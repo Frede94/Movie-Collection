@@ -14,8 +14,6 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -60,13 +58,6 @@ public class AddWindowController implements Initializable
         //txtTitle.getText(movieModel.getTitle());
     }
 
-    public void setController(BrugerFladeMainController controller)
-    {
-        this.controller = controller;
-    }
-
-    
-
     /*
     Lægger det tastede fra txtField ind i databasen
      */
@@ -100,6 +91,9 @@ public class AddWindowController implements Initializable
 
     }
 
+    /**
+     * setter stage, og tager så den satte stage og lukker det.
+     */
     @FXML
     private void closeMovieAddBox()
     {
@@ -107,7 +101,13 @@ public class AddWindowController implements Initializable
         stage.close();
     }
 
-
+    /**
+     * En filechooser som kan genkende .mp4, .mpeg4, og .mkv, der er også en
+     * valgmulighed i filechooseren som hedder alle, det betyder at
+     * filechooseren kan se og vælge alle filtyper.
+     *
+     * @param event
+     */
     @FXML
     private void clickChooseFile(ActionEvent event)
     {
@@ -117,7 +117,8 @@ public class AddWindowController implements Initializable
         chooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("ALL", "*.*"),
                 new FileChooser.ExtensionFilter("MP4", "*.mp4"),
-                new FileChooser.ExtensionFilter("MKV", "*.mkv"));
+                new FileChooser.ExtensionFilter("MKV", "*.mkv"),
+                new FileChooser.ExtensionFilter("MPEG4", "*.mpeg4"));
         File file = chooser.showOpenDialog(new Stage());
         try
         {
@@ -126,21 +127,29 @@ public class AddWindowController implements Initializable
             txtPath.setText(fullPath);
         } catch (IOException ex)
         {
+            System.out.println("heaedada");
             Logger.getLogger(AddWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
+    /**
+     * Sætter movieModel i denne klasse.
+     *
+     * @param movieModel
+     */
     void setMovieModel(MovieModel movieModel)
     {
         this.movieModel = movieModel;
-
     }
 
+    /**
+     * Henter data som er i den valgte film.
+     * @param selectedItem
+     */
     void setEditMovie(Movie selectedItem)
     {
         editMovie = selectedItem;
-        //comboCategory.getSelectionModel().select(editMovie.getCatName);
         txtTitle.setText(editMovie.getName());
         txtImdbRating.setText(String.valueOf(editMovie.getRating()));
         txtImdbRating1.setText(String.valueOf(editMovie.getPersonalRating()));

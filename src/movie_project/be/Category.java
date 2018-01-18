@@ -5,7 +5,6 @@
  */
 package movie_project.be;
 
-import java.io.Serializable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

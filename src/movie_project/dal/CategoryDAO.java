@@ -12,10 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.TextInputDialog;
 import movie_project.be.Category;
 import movie_project.be.Movie;
 
@@ -98,9 +96,11 @@ public class CategoryDAO
     }
 
     /**
-     * Gets the relations between the selected categories and the movies with a relation.
+     * Gets the relations between the selected categories and the movies with a
+     * relation.
+     *
      * @param catId
-     * @return 
+     * @return
      */
     public List<Movie> getRelation(int catId)
     {

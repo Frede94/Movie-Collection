@@ -17,21 +17,24 @@ import movie_project.dal.CategoryDAO;
  */
 public class CategoryManager
 {
-    
+
     private CategoryDAO catDAO = new CategoryDAO();
-    
+
     /**
      * Sender den ny kategori til DAL laget
-     * @param c 
+     *
+     * @param c
      */
-    public void save (Category c)
+    public void save(Category c)
     {
-       catDAO.save(c);
+        catDAO.save(c);
     }
 
     /**
-     * Henter kategorier fra DAL laget og sender dem vidre til vores model i GUI laget
-     * @return 
+     * Henter kategorier fra DAL laget og sender dem vidre til vores model i GUI
+     * laget
+     *
+     * @return
      */
     public List<Category> getAllCategories()
     {
@@ -49,13 +52,13 @@ public class CategoryManager
     }
 
     /**
-     * 
+     *
      * @param get
-     * @return 
+     * @return
      */
     public List<Movie> setRelation(Category get)
     {
         return catDAO.getRelation(get.getCatId());
     }
-    
+
 }

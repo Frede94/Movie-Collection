@@ -80,6 +80,10 @@ public class AddCategoryController implements Initializable
 
     }
 
+    /**
+     * sætter movieModel i denne klasse.
+     * @param movieModel 
+     */
     void setMovieModel(MovieModel movieModel)
     {
         this.movieModel = movieModel;

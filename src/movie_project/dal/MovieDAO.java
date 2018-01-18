@@ -34,7 +34,7 @@ public class MovieDAO
 
     /**
      * Gets a list from the "Movie" database with the Movie, Id, Name,
- RatingIMDB, FileLink, LastView and RatingOwn
+     * RatingIMDB, FileLink, LastView and RatingOwn
      *
      * @return
      */
@@ -222,11 +222,6 @@ public class MovieDAO
         {
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void playMovie(Movie selectedMovie)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

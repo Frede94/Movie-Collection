@@ -179,11 +179,6 @@ public class MovieModel
 
     }
 
-    void playMovie(Movie selectedMovie)
-    {
-        movieManager.playMovie(selectedMovie);
-    }
-
     /**
      * Sender den ny kategori vidre til BLL laget.
      *
@@ -224,8 +219,10 @@ public class MovieModel
     }
 
     /**
-     * This method recives a list of selected Categories and a selected  movie. To set the relation between the selected Movie 
-     * and the selected Categories, the list of Categories is run through a for loop, to pick out the Categories, one at a time. 
+     * This method recives a list of selected Categories and a selected movie.
+     * To set the relation between the selected Movie and the selected
+     * Categories, the list of Categories is run through a for loop, to pick out
+     * the Categories, one at a time.
      *
      * @param selectedCategories
      */

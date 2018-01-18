@@ -118,7 +118,7 @@ public class BrugerFladeMainController implements Initializable
 
         tableColumnImdbCat.setCellValueFactory(new PropertyValueFactory<>("rating"));
         movieModel.loadMovies();
-        
+
         rememberToDelete();
 
     }
@@ -257,7 +257,6 @@ public class BrugerFladeMainController implements Initializable
         {
             try
             {
-                //Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();//|| movieView.getSelectionModel().getSelectedItem()
                 movieModel.lastViewed(selectedMovie);
                 movieModel.loadMovies();
 
@@ -378,7 +377,7 @@ public class BrugerFladeMainController implements Initializable
 
     /**
      * This method deletes the selected categories by sending the selected items
-     * to the Categorymodel
+     * to the Categorymodel.
      *
      * @param event
      */
@@ -406,8 +405,10 @@ public class BrugerFladeMainController implements Initializable
 
     /**
      * This method allows the user to set the categories in relation to a movie.
-     * Because of the multi seletion model for the listview contaning the Categories 
-     * selecting one or more Categories creates a list of selected Categories.
+     * Because of the multi seletion model for the listview contaning the
+     * Categories selecting one or more Categories creates a list of selected
+     * Categories.
+     *
      * @param event
      */
     @FXML
