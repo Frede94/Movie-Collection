@@ -24,7 +24,6 @@ public class MovieModel
 {
 
     private SearchFilter searchFilter = new SearchFilter();
-
     MovieManager movieManager = new MovieManager();
     CategoryManager catManager = new CategoryManager();
     private ObservableList<Movie> movies = FXCollections.observableArrayList();
@@ -149,6 +148,12 @@ public class MovieModel
         movieManager.saveEdit(editMovie);
     }
 
+    /**
+     * Denne metode kalder en metode inde i SQL, (GETDATE) hvor den sætter date,
+     * på den valgte film.
+     *
+     * @param selectedMovie
+     */
     void lastViewed(Movie selectedMovie)
     {
         movieManager.lastViewed(selectedMovie);
@@ -235,6 +240,12 @@ public class MovieModel
         }
     }
 
+    /**
+     * fjerner film fra en kategori uden at slette de fra Movie tabel i
+     * databasen. den sletter relationer fra CatMovie tabelen i databasen.
+     *
+     * @param selectedCatMovie
+     */
     void removeCatMovie(Movie selectedCatMovie)
     {
         movieList.remove(selectedCatMovie);

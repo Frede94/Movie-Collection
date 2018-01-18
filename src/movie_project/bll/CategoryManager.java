@@ -41,14 +41,14 @@ public class CategoryManager
         return catDAO.getAllCategories();
     }
 
+    /**
+     * Fjerner en kategori fra listen og databasen
+     *
+     * @param selectedCategory
+     */
     public void removeCat(Category selectedCategory)
     {
         catDAO.removeCat(selectedCategory);
-    }
-
-    public void removeCat(ObservableList<Category> selectedCategory)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
