@@ -29,11 +29,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import movie_project.be.Category;
-import movie_project.be.Movies;
+import movie_project.be.Movie;
 
 /**
  *
@@ -44,7 +43,7 @@ public class BrugerFladeMainController implements Initializable
 
     private Label label;
     @FXML
-    public TableView<Movies> movieView;
+    public TableView<Movie> movieView;
     @FXML
     private Button newMovieBtn;
     @FXML
@@ -60,9 +59,9 @@ public class BrugerFladeMainController implements Initializable
 
     private MovieModel movieModel = new MovieModel();
 
-    private Movies selectedMovie;
+    private Movie selectedMovie;
 
-    private Movies selectedCatMovie;
+    private Movie selectedCatMovie;
 
     private ObservableList<Category> selectedCats;
 
@@ -71,29 +70,28 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private Button newCatBtn;
     @FXML
-    private TableColumn<Movies, String> tableColumnName;
+    private TableColumn<Movie, String> tableColumnName;
     @FXML
-    private TableColumn<Movies, String> tableColumnRating;
+    private TableColumn<Movie, String> tableColumnRating;
     @FXML
-    private TableColumn<Movies, String> tableColumnLastView;
+    private TableColumn<Movie, String> tableColumnLastView;
     @FXML
-    private TableColumn<Movies, String> tableColumnOwnRating;
+    private TableColumn<Movie, String> tableColumnOwnRating;
     @FXML
     private Button btnDeleteCat;
 
-    private Movies moviePlaying;
+    private Movie moviePlaying;
 
-    private MediaPlayer mp;
     @FXML
-    private TableView<Movies> movieCatList;
+    private TableView<Movie> movieCatList;
     @FXML
-    private TableColumn<Movies, String> tableColumnNameCat;
+    private TableColumn<Movie, String> tableColumnNameCat;
     @FXML
-    private TableColumn<Movies, String> tableColumnImdbCat;
+    private TableColumn<Movie, String> tableColumnImdbCat;
     @FXML
-    private TableColumn<Movies, String> tableColumnLastViewCat;
+    private TableColumn<Movie, String> tableColumnLastViewCat;
     @FXML
-    private TableColumn<Movies, String> tableColumnMyRatingCat;
+    private TableColumn<Movie, String> tableColumnMyRatingCat;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -152,7 +150,7 @@ public class BrugerFladeMainController implements Initializable
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK)
         {
-            Movies selectedCatMovie = movieCatList.getSelectionModel().getSelectedItem();
+            Movie selectedCatMovie = movieCatList.getSelectionModel().getSelectedItem();
             movieModel.removeCatMovie(selectedCatMovie);
         } else
         {
@@ -231,8 +229,8 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void playMovieOnAction(ActionEvent event)
     {
-        Movies selectedCatMovie = movieCatList.getSelectionModel().getSelectedItem();
-        Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();
+        Movie selectedCatMovie = movieCatList.getSelectionModel().getSelectedItem();
+        Movie selectedMovie = movieView.getSelectionModel().getSelectedItem();
         if (selectedCatMovie != null)
         {
             try
@@ -347,7 +345,7 @@ public class BrugerFladeMainController implements Initializable
         if (result.get() == ButtonType.OK)
         {
 
-            Movies selectedMovie = movieView.getSelectionModel().getSelectedItem();
+            Movie selectedMovie = movieView.getSelectionModel().getSelectedItem();
 
             movieModel.remove(selectedMovie);
 
@@ -408,7 +406,8 @@ public class BrugerFladeMainController implements Initializable
 
     /**
      * This method allows the user to set the categories in relation to a movie.
-     *
+     * Because of the multi seletion model for the listview contaning the Categories 
+     * selecting one or more Categories creates a list of selected Categories.
      * @param event
      */
     @FXML

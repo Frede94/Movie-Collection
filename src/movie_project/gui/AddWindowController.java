@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import movie_project.be.Category;
-import movie_project.be.Movies;
+import movie_project.be.Movie;
 
 /**
  * FXML Controller class
@@ -46,7 +46,7 @@ public class AddWindowController implements Initializable
     @FXML
     public TextField txtPath;
 
-    public Movies editMovie;
+    public Movie editMovie;
 
     private MovieModel movieModel = new MovieModel();
     private BrugerFladeMainController controller;
@@ -76,7 +76,7 @@ public class AddWindowController implements Initializable
 
         if (editMovie == null)
         {
-            Movies m = new Movies();
+            Movie m = new Movie();
             m.setName(txtTitle.getText());
             m.setFileLink(txtPath.getText());
             m.setRating(Float.parseFloat(txtImdbRating.getText()));
@@ -137,7 +137,7 @@ public class AddWindowController implements Initializable
 
     }
 
-    void setEditMovie(Movies selectedItem)
+    void setEditMovie(Movie selectedItem)
     {
         editMovie = selectedItem;
         //comboCategory.getSelectionModel().select(editMovie.getCatName);

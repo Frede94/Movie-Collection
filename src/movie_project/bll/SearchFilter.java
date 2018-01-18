@@ -7,7 +7,7 @@ package movie_project.bll;
 
 import java.util.ArrayList;
 import java.util.List;
-import movie_project.be.Movies;
+import movie_project.be.Movie;
 
 /**
  * Den søger efter specifikke elementer i vores Lister og Databasen
@@ -17,11 +17,11 @@ import movie_project.be.Movies;
 public class SearchFilter
 {
 
-    public List<Movies> searchByMovieName(List<Movies> movies, String query)
+    public List<Movie> searchByMovieName(List<Movie> movies, String query)
     {
-        List<Movies> searResult = new ArrayList<Movies>();
+        List<Movie> searResult = new ArrayList<Movie>();
 
-        for (Movies movie : movies)
+        for (Movie movie : movies)
         {
             if (movie.getName().toLowerCase().equalsIgnoreCase(query.toLowerCase())|| movie.getName().toLowerCase().contains(query.toLowerCase()))
             {

@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
  *
  * @author Frederik Bærbar
  */
-public class Movies
+public class Movie
 {
 
     private int Id;

@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import movie_project.be.Category;
-import movie_project.be.Movies;
+import movie_project.be.Movie;
 import movie_project.bll.CategoryManager;
 import movie_project.bll.MovieManager;
 import movie_project.bll.SearchFilter;
@@ -27,9 +27,9 @@ public class MovieModel
 
     MovieManager movieManager = new MovieManager();
     CategoryManager catManager = new CategoryManager();
-    private ObservableList<Movies> movies = FXCollections.observableArrayList();
+    private ObservableList<Movie> movies = FXCollections.observableArrayList();
     private ObservableList<Category> categories = FXCollections.observableArrayList();
-    private ObservableList<Movies> movieList = FXCollections.observableArrayList();
+    private ObservableList<Movie> movieList = FXCollections.observableArrayList();
 
     /**
      * Constructor til MovieModel klassen
@@ -43,11 +43,11 @@ public class MovieModel
     }
 
     /**
-     * Fjerner den valgte sang fra listen
+     * Fjerner den valgte film fra listen
      *
      * @param selectedMovie
      */
-    void remove(Movies selectedMovie)
+    void remove(Movie selectedMovie)
     {
         movies.remove(selectedMovie);
         MovieManager.remove(selectedMovie);
@@ -63,7 +63,7 @@ public class MovieModel
      *
      * @param m
      */
-    void saveMovie(Movies m)
+    void saveMovie(Movie m)
     {
 
         int totalElements = movies.size();
@@ -97,7 +97,7 @@ public class MovieModel
      */
     void loadMovies()
     {
-        List<Movies> loadedMovies = movieManager.getAllMovies();
+        List<Movie> loadedMovies = movieManager.getAllMovies();
 
         movies.clear();
         movies.addAll(loadedMovies);
@@ -108,12 +108,12 @@ public class MovieModel
      *
      * @return
      */
-    public ObservableList<Movies> getMovies()
+    public ObservableList<Movie> getMovies()
     {
         return movies;
     }
 
-    public ObservableList<Movies> getSelectedMovies()
+    public ObservableList<Movie> getSelectedMovies()
     {
         return movieList;
     }
@@ -125,8 +125,8 @@ public class MovieModel
      */
     void search(String searchText)
     {
-        List<Movies> allMovies = movieManager.getAllMovies();
-        List<Movies> searchResults = searchFilter.searchByMovieName(allMovies, searchText);
+        List<Movie> allMovies = movieManager.getAllMovies();
+        List<Movie> searchResults = searchFilter.searchByMovieName(allMovies, searchText);
         movies.clear();
         movies.addAll(searchResults);
     }
@@ -144,13 +144,13 @@ public class MovieModel
     txtfelterne som er i vores AddWindow, så man kan ændre i dem.
     Når man ændre så sletter programmet den gamle film som man har valgt at edit.
      */
-    void saveEdit(Movies editMovie)
+    void saveEdit(Movie editMovie)
     {
         movies.add(editMovie);
         movieManager.saveEdit(editMovie);
     }
 
-    void lastViewed(Movies selectedMovie)
+    void lastViewed(Movie selectedMovie)
     {
         movieManager.lastViewed(selectedMovie);
     }
@@ -161,7 +161,7 @@ public class MovieModel
      * @param selectedCats
      * @param selectedMovie
      */
-    void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
+    void addCats(ObservableList<Category> selectedCats, Movie selectedMovie)
     {
         if (!movieList.contains(selectedMovie))
         {
@@ -179,7 +179,7 @@ public class MovieModel
 
     }
 
-    void playMovie(Movies selectedMovie)
+    void playMovie(Movie selectedMovie)
     {
         movieManager.playMovie(selectedMovie);
     }
@@ -224,8 +224,8 @@ public class MovieModel
     }
 
     /**
-     * Goes through the selected categories getting the movies with the category
-     * relation
+     * This method recives a list of selected Categories and a selected  movie. To set the relation between the selected Movie 
+     * and the selected Categories, the list of Categories is run through a for loop, to pick out the Categories, one at a time. 
      *
      * @param selectedCategories
      */
@@ -234,12 +234,12 @@ public class MovieModel
         movieList.clear();
         for (int i = 0; i < selectedCategories.size(); i++)
         {
-            List<Movies> movies = catManager.setRelation(selectedCategories.get(i));
+            List<Movie> movies = catManager.setRelation(selectedCategories.get(i));
             movieList.addAll(movies);
         }
     }
 
-    void removeCatMovie(Movies selectedCatMovie)
+    void removeCatMovie(Movie selectedCatMovie)
     {
         movieList.remove(selectedCatMovie);
         movieManager.removeCatMovie(selectedCatMovie);

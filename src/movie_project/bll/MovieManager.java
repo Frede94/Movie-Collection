@@ -10,7 +10,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import movie_project.be.Category;
-import movie_project.be.Movies;
+import movie_project.be.Movie;
 import movie_project.dal.MovieDAO;
 
 /**
@@ -21,14 +21,14 @@ public class MovieManager
 {
 
     private static MovieDAO movieDAO = new MovieDAO();
-    private static ObservableList<Movies> movies = FXCollections.observableArrayList();
+    private static ObservableList<Movie> movies = FXCollections.observableArrayList();
 
     /**
      * Sletter den valgte film
      *
      * @param selectedMovie
      */
-    public static void remove(Movies selectedMovie)
+    public static void remove(Movie selectedMovie)
     {
         movieDAO.remove(selectedMovie);
     }
@@ -38,7 +38,7 @@ public class MovieManager
      *
      * @param m
      */
-    public void saveMovie(Movies m)
+    public void saveMovie(Movie m)
     {
         movieDAO.saveMovie(m);
     }
@@ -56,7 +56,7 @@ public class MovieManager
      *
      * @return
      */
-    public List<Movies> getAllMovies()
+    public List<Movie> getAllMovies()
     {
         return movieDAO.getAllMovies();
     }
@@ -66,12 +66,12 @@ public class MovieManager
     txtfelterne som er i vores AddWindow, så man kan ændre i dem.
     Når man ændre så sletter programmet den gamle film som man har valgt at edit.
      */
-    public void saveEdit(Movies editMovie)
+    public void saveEdit(Movie editMovie)
     {
         movieDAO.saveEdit(editMovie);
     }
 
-    public void lastViewed(Movies selectedMovie)
+    public void lastViewed(Movie selectedMovie)
     {
         movieDAO.lastViewed(selectedMovie);
     }
@@ -81,17 +81,17 @@ public class MovieManager
      * @param selectedCats
      * @param selectedMovie 
      */
-    public void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
+    public void addCats(ObservableList<Category> selectedCats, Movie selectedMovie)
     {
         movieDAO.addCats(selectedCats, selectedMovie);
     }
 
-    public void playMovie(Movies selectedMovie)
+    public void playMovie(Movie selectedMovie)
     {
         movieDAO.playMovie(selectedMovie);
     }
 
-    public void removeCatMovie(Movies selectedCatMovie)
+    public void removeCatMovie(Movie selectedCatMovie)
     {
         movieDAO.removeCatMovie(selectedCatMovie);
     }
