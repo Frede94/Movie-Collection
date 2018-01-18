@@ -99,7 +99,8 @@ public class BrugerFladeMainController implements Initializable
 
         catList.setItems(movieModel.getCategories());
         movieModel.loadCategories();
-        catList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        catList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); //Ændre selectionMode for det listview som indholder kategorier, Standarten for selectionmode er at man kun kan vælge
+        // et program ad gangen. denne ændring tillader at man kan vælge flere elementer på en gang.
 
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
 
