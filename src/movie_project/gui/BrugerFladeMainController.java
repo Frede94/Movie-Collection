@@ -216,7 +216,13 @@ public class BrugerFladeMainController implements Initializable
 
         } catch (Exception e)
         {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Crash");
+            alert.setHeaderText("Crash Report");
+            alert.setContentText("No movie selected!"
+                    + "\nPlease selected a movie");
+
+            alert.showAndWait();
         }
 
     }
@@ -333,27 +339,37 @@ public class BrugerFladeMainController implements Initializable
     @FXML
     private void clickDeleteAction(ActionEvent event)
     {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Warning");
-        alert.setContentText("Are you sure you want to delete this?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK)
+        Movie selectedMovie = movieView.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null)
         {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
-            Movie selectedMovie = movieView.getSelectionModel().getSelectedItem();
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Warning");
+            alert.setContentText("Are you sure you want to delete this?");
 
-            movieModel.remove(selectedMovie);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK)
+            {
 
-            // ... user chose OK
+                movieModel.remove(selectedMovie);
+
+                // ... user chose OK
+            } else
+            {
+                // ... user chose CANCEL or closed the dialog
+            }
+
         } else
         {
-            // ... user chose CANCEL or closed the dialog
-        }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Crash");
+            alert.setHeaderText("Crash Report");
+            alert.setContentText("No movie selected!"
+                    + "\nPlease selected a movie");
 
+            alert.showAndWait();
+        }
     }
 
     /**
@@ -363,7 +379,8 @@ public class BrugerFladeMainController implements Initializable
      * @param event
      */
     @FXML
-    private void catSelectClick(MouseEvent event)
+    private void catSelectClick(MouseEvent event
+    )
     {
         try
         {
@@ -382,7 +399,8 @@ public class BrugerFladeMainController implements Initializable
      * @param event
      */
     @FXML
-    private void deleteCat(ActionEvent event)
+    private void deleteCat(ActionEvent event
+    )
     {
         {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -412,7 +430,8 @@ public class BrugerFladeMainController implements Initializable
      * @param event
      */
     @FXML
-    private void setMovieCats(ActionEvent event)
+    private void setMovieCats(ActionEvent event
+    )
     {
 
         selectedMovie = movieView.getSelectionModel().getSelectedItem();
