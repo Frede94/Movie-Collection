@@ -100,7 +100,6 @@ public class MovieDAO
 
             alert.showAndWait();
             
-
         }
     }
 
