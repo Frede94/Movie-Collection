@@ -152,11 +152,16 @@ public class MovieDAO
         }
     }
 
+    /**
+     * Denne metode kalder en metode inde i SQL, (GETDATE) hvor den sætter date,
+     * på den valgte film.
+     *
+     * @param selectedMovie
+     */
     public void lastViewed(Movie selectedMovie)
     {
         try (Connection con = dbc.getConnection())
         {
-//            PreparedStatement stmt = con.prepareStatement("Update Movie SET lastView = GETDATE ( ) WHERE id = " + selectedMovie.getId());
 
             String queryLastView = "Update Movie SET lastView = GETDATE ( ) WHERE id = " + selectedMovie.getId();
 
@@ -212,6 +217,12 @@ public class MovieDAO
         addCats(cats, selectedMovie);
     }
 
+    /**
+     * fjerner film fra en kategori uden at slette de fra Movie tabel i
+     * databasen. den sletter relationer fra CatMovie tabelen i databasen.
+     *
+     * @param selectedCatMovie
+     */
     public void removeCatMovie(Movie selectedCatMovie)
     {
         try (Connection con = dbc.getConnection())
