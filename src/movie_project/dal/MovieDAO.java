@@ -89,7 +89,7 @@ public class MovieDAO
         {
             Statement stmt = con.createStatement();
             stmt.execute("DELETE FROM CatMovie WHERE MovieId =" + selectedMovie.getId() + ";DELETE FROM Movie WHERE id=" + selectedMovie.getId());
-        } catch (SQLException ex) //Hvis der er problemer mellem netbeans og databasen, så smider den denne catch, og så kommer der en stacktrace
+        } catch (SQLException ex) //Hvis der er problemer mellem netbeans og databasen, så smider den denne catch
         {
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
