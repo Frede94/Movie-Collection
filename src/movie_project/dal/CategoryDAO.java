@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.TextInputDialog;
 import movie_project.be.Category;
-import movie_project.be.Movies;
+import movie_project.be.Movie;
 
 /**
  *
@@ -102,9 +102,9 @@ public class CategoryDAO
      * @param catId
      * @return 
      */
-    public List<Movies> getRelation(int catId)
+    public List<Movie> getRelation(int catId)
     {
-        List<Movies> movies = new ArrayList();
+        List<Movie> movies = new ArrayList();
         List<Integer> Id = new ArrayList();
 
         try (Connection con = dbc.getConnection())
@@ -135,7 +135,7 @@ public class CategoryDAO
             while (rs.next())
             {
 
-                Movies currentMovie = new Movies();
+                Movie currentMovie = new Movie();
 
                 currentMovie.setId(rs.getInt("id"));
                 currentMovie.setName(rs.getString("name"));

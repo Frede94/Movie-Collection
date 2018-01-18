@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import movie_project.be.Category;
-import movie_project.be.Movies;
+import movie_project.be.Movie;
 
 /**
  *
@@ -26,22 +26,22 @@ import movie_project.be.Movies;
 public class MovieDAO
 {
 
-    private ObservableList<Movies> moviesInList;
+    private ObservableList<Movie> moviesInList;
     private MovieDAO movieDAO;
     private DataBaseConnector dataBaseConnector;
 
     DataBaseConnector dbc = new DataBaseConnector();
 
     /**
-     * Gets a list from the "Movie" database with the Movies, Id, Name,
-     * RatingIMDB, FileLink, LastView and RatingOwn
+     * Gets a list from the "Movie" database with the Movie, Id, Name,
+ RatingIMDB, FileLink, LastView and RatingOwn
      *
      * @return
      */
-    public List<Movies> getAllMovies()
+    public List<Movie> getAllMovies()
     {
 
-        List<Movies> movies = new ArrayList();
+        List<Movie> movies = new ArrayList();
 
         try (Connection con = dbc.getConnection())
         {
@@ -49,7 +49,7 @@ public class MovieDAO
             ResultSet rs = stmt.executeQuery("SELECT * FROM Movie");
             while (rs.next())
             {
-                Movies currentMovie = new Movies();
+                Movie currentMovie = new Movie();
 
                 currentMovie.setId(rs.getInt("id"));
                 currentMovie.setName(rs.getString("name"));
@@ -78,7 +78,7 @@ public class MovieDAO
     /*
     Sletter elementer fra databasen og listen
      */
-    public void remove(Movies selectedMovie)
+    public void remove(Movie selectedMovie)
     {
         try (Connection con = dbc.getConnection())
         {
@@ -93,7 +93,7 @@ public class MovieDAO
     /*
     gemmer de tastede data fra txtfelterne
      */
-    public void saveMovie(Movies m)
+    public void saveMovie(Movie m)
     {
         try (Connection con = dbc.getConnection())
         {
@@ -120,7 +120,7 @@ public class MovieDAO
     txtfelterne som er i vores AddWindow, så man kan ændre i dem.
     Når man ændre så sletter programmet den gamle film som man har valgt at edit.
      */
-    public void saveEdit(Movies editMovie)
+    public void saveEdit(Movie editMovie)
     {
         try (Connection con = dbc.getConnection())
         {
@@ -152,7 +152,7 @@ public class MovieDAO
         }
     }
 
-    public void lastViewed(Movies selectedMovie)
+    public void lastViewed(Movie selectedMovie)
     {
         try (Connection con = dbc.getConnection())
         {
@@ -180,7 +180,7 @@ public class MovieDAO
      * @param selectedCats
      * @param selectedMovie
      */
-    public void addCats(ObservableList<Category> selectedCats, Movies selectedMovie)
+    public void addCats(ObservableList<Category> selectedCats, Movie selectedMovie)
     {
         try (Connection con = dbc.getConnection())
         {
@@ -205,14 +205,14 @@ public class MovieDAO
      * @param selectedCat
      * @param selectedMovie
      */
-    public void addCat(Category selectedCat, Movies selectedMovie)
+    public void addCat(Category selectedCat, Movie selectedMovie)
     {
         ObservableList<Category> cats = FXCollections.observableArrayList();
         cats.add(selectedCat);
         addCats(cats, selectedMovie);
     }
 
-    public void removeCatMovie(Movies selectedCatMovie)
+    public void removeCatMovie(Movie selectedCatMovie)
     {
         try (Connection con = dbc.getConnection())
         {
@@ -224,7 +224,7 @@ public class MovieDAO
         }
     }
 
-    public void playMovie(Movies selectedMovie)
+    public void playMovie(Movie selectedMovie)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

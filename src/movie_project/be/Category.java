@@ -18,11 +18,11 @@ public class Category
 
     private String catName;
     private int catId;
-    private ObservableList<Movies> movieList = FXCollections.observableArrayList();
+    private ObservableList<Movie> movieList = FXCollections.observableArrayList();
 
     
     
-    public ObservableList<Movies> getMovieList()
+    public ObservableList<Movie> getMovieList()
     {
         return movieList;
     }
