@@ -123,10 +123,11 @@ public class BrugerFladeMainController implements Initializable
         movieModel.loadMovies();
 
         rememberToDelete();
-        
+
         // En listner, der automatisk opdaterer søgefeltet, hver gang der bliver
         //trykket, på et bogstav på tastaturet
-        filterField.textProperty().addListener(new ChangeListener<String>() {
+        filterField.textProperty().addListener(new ChangeListener<String>()
+        {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
             {
