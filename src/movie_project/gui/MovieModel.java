@@ -82,7 +82,6 @@ public class MovieModel
 
             }
 
-            System.out.println(movies.get(index));
         }
         if (!isInList)
         {
