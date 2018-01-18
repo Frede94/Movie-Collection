@@ -48,7 +48,7 @@ public class MovieModel
      */
     void remove(Movie selectedMovie)
     {
-        movies.remove(selectedMovie);
+        movies.remove(selectedMovie); //Fjerner kun filmen fra listen IKKE i databasen
         MovieManager.remove(selectedMovie);
     }
 
