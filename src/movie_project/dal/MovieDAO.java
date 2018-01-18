@@ -16,10 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import movie_project.be.Category;
 import movie_project.be.Movie;
-import movie_project.bll.MovieManager;
-import movie_project.bll.SearchFilter;
 
 /**
  *
@@ -92,7 +91,16 @@ public class MovieDAO
             stmt.execute("DELETE FROM CatMovie WHERE MovieId =" + selectedMovie.getId() + ";DELETE FROM Movie WHERE id=" + selectedMovie.getId());
         } catch (SQLException ex) //Hvis der er problemer mellem netbeans og databasen, så smider den denne catch, og så kommer der en stacktrace
         {
-            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Crash");
+            alert.setHeaderText("Crash Report");
+            alert.setContentText("Problem with communication"
+                    + "\nbetween program and database");
+
+            alert.showAndWait();
+            
+
         }
     }
 
