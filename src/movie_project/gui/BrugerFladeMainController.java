@@ -346,14 +346,22 @@ public class BrugerFladeMainController implements Initializable
     }
 
     /**
-     * deletes the selected movie from the list
+     * Sletter den valgte film.
+     * Hvis man har valgt en film i tableviewed 'movieView', og trykker på delete knappen
+     * så kommer der en dialog boks frem, OK eller Cancel.
+     * OK - så sender den svaret videre til movieModel
+     * Cancel - så sker der intet
+     * Hvis man ikke har valgt en film til at starte med, så crasher programmet,
+     * men programmet sender det op til brugerfladen via. en dialog boks, 
+     * for at fortælle brugeren, hvad problemet er.
+     * 'remove' slette metoden ligger længere nede i lagene.
      *
      * @param event
      */
     @FXML
     private void clickDeleteAction(ActionEvent event)
     {
-        Movie selectedMovie = movieView.getSelectionModel().getSelectedItem();
+        Movie selectedMovie = movieView.getSelectionModel().getSelectedItem(); //selectedMovie er= Tableviewed og den item, man har trykket på (Id, navn osv)
         if (selectedMovie != null)
         {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -384,6 +392,8 @@ public class BrugerFladeMainController implements Initializable
 
             alert.showAndWait();
         }
+        
+        
     }
 
     /**

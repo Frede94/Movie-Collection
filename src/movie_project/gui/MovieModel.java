@@ -42,14 +42,16 @@ public class MovieModel
     }
 
     /**
-     * Fjerner den valgte film fra listen
+     * Fjerner den valgte film fra listen (GUI'en)
+     * Den tager movie listen, og fjerner den valgte film fra brugerfladen(GUI'en).
+     * Det med at slette filmen helt nede i databasen sender vi ned til MovieManageren.
      *
      * @param selectedMovie
      */
     void remove(Movie selectedMovie)
     {
         movies.remove(selectedMovie); //Fjerner kun filmen fra listen IKKE i databasen
-        MovieManager.remove(selectedMovie);
+        MovieManager.remove(selectedMovie); //Sendes videre ned i MovieManager
     }
 
     /**

@@ -81,7 +81,16 @@ public class MovieDAO
 
      
     /*
-    Sletter elementer fra databasen og listen
+    Sletter elementer fra databasen
+    Dette er ende stationen for 'remove/delete'. Det er her, den foretager sletningen af
+    filmen helt nede i databasen. 
+    Først opretter den forbindelse til databasen.
+    Statement - ordre til programmet "Gør dette"
+    Vi skriver en statement til databasen, at den både skal slette den valgte film 
+    i movieCatList (midten) og i movieView (højre). Den tager den valgte film og ID'et
+    Hvis der ikke er forbindelse mellen Netbeans og databasen - i form af f.eks.
+    forskellige navne, så smider den en SQLException, som bliver sendt op til 
+    GUI i form af en dialog boks.
      */
     public void remove(Movie selectedMovie)
     {

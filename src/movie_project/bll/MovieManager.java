@@ -25,6 +25,8 @@ public class MovieManager
 
     /**
      * Sletter den valgte film
+     * MovieManageren ligger i BLL laget, og er et led mellem GUI og DAL laget, 
+     * som vi skal igennem, for at kunne slette filmen nede i databasen.
      *
      * @param selectedMovie
      */
