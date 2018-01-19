@@ -65,7 +65,7 @@ public class AddWindowController implements Initializable
     private void clickSaveAction(ActionEvent event)
     {
 
-        if (editMovie == null)
+        if (editMovie == null) // hvis editmovie ikke har nogle værdier tilknyttet så laver den en ny.
         {
             Movie m = new Movie();
             m.setName(txtTitle.getText());
@@ -80,14 +80,14 @@ public class AddWindowController implements Initializable
             //Henter informationerne som allerede er i en film og sætter dem ind i
             //txtfelterne som er i vores AddWindow, så man kan ændre i dem.
             //Når man ændre så sletter programmet den gamle film som man har valgt at edit.
-            editMovie.setName(txtTitle.getText());
-            editMovie.setFileLink(txtPath.getText());
-            editMovie.setRating(Float.parseFloat(txtImdbRating.getText()));
-            editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));
-            movieModel.saveEdit(editMovie);
-            movieModel.loadMovies();
+            editMovie.setName(txtTitle.getText()); // sætter navn på edit movie variabel
+            editMovie.setFileLink(txtPath.getText()); // sætter filsti på editmovie variabel
+            editMovie.setRating(Float.parseFloat(txtImdbRating.getText())); // sætter rating på editmovie, ved at lave værdien om til en string.
+            editMovie.setPersonalRating(Float.parseFloat(txtImdbRating1.getText()));// sætter personlig rating på editmovie, ved at lave værdien om til en string.
+            movieModel.saveEdit(editMovie); //sender editmovie videre ned i lagene, her sender den til movieModel
+            movieModel.loadMovies(); // som det sidste inden den lukker vinduet indlæser den film.
         }
-        closeMovieAddBox();
+        closeMovieAddBox(); //lukker vinduet.
 
     }
 
@@ -134,7 +134,7 @@ public class AddWindowController implements Initializable
     }
 
     /**
-     * Sætter movieModel i denne klasse.
+     * Sætter relation til movieModel i denne klasse.
      *
      * @param movieModel
      */
@@ -149,11 +149,11 @@ public class AddWindowController implements Initializable
      */
     void setEditMovie(Movie selectedItem)
     {
-        editMovie = selectedItem;
-        txtTitle.setText(editMovie.getName());
-        txtImdbRating.setText(String.valueOf(editMovie.getRating()));
-        txtImdbRating1.setText(String.valueOf(editMovie.getPersonalRating()));
-        txtPath.setText(editMovie.getFileLink());
+        editMovie = selectedItem; // sætter editmovie til at være det object du har valgt.
+        txtTitle.setText(editMovie.getName()); //henter titlen fra det valgte objekt.
+        txtImdbRating.setText(String.valueOf(editMovie.getRating())); // henter de intastede værdier og laver dem om til string.
+        txtImdbRating1.setText(String.valueOf(editMovie.getPersonalRating())); // henter de intastede værdier og laver dem om til string.
+        txtPath.setText(editMovie.getFileLink()); // henter filstien fra det valgte objekt, hvis den har en og sætter det ind.
 
     }
 

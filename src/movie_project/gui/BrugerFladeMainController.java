@@ -221,7 +221,7 @@ public class BrugerFladeMainController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             AddWindowController ewc = fxmlLoader.getController();
-            ewc.setMovieModel(movieModel);
+            ewc.setMovieModel(movieModel); //sætter modelen i det nye vindue så den deler model med main vindue
             ewc.setEditMovie(movieView.getSelectionModel().getSelectedItem());
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));

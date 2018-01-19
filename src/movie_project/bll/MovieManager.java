@@ -80,7 +80,7 @@ public class MovieManager
      */
     public void saveEdit(Movie editMovie)
     {
-        movieDAO.saveEdit(editMovie);
+        movieDAO.saveEdit(editMovie); //sender Editmovie variabel længere ned i lagene, her sender den til MovieDAO klassen i dal laget.
     }
 
     /**
