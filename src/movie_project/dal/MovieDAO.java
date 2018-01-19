@@ -30,9 +30,7 @@ public class MovieDAO
     private ObservableList<Movie> moviesInList;
     private MovieDAO movieDAO;
     private DataBaseConnector dataBaseConnector;
-
     private ObservableList<Movie> movies = FXCollections.observableArrayList();
-//    MovieManager movieManager = new MovieManager();
     DataBaseConnector dbc = new DataBaseConnector();
 
     /**
