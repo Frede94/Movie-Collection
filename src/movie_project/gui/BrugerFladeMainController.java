@@ -452,7 +452,7 @@ public class BrugerFladeMainController implements Initializable
 
         selectedMovie = movieView.getSelectionModel().getSelectedItem();
         selectedMovie.getCatsList().addAll(selectedCats);
-        movieModel.addCats(selectedCats, selectedMovie);
+        movieModel.addCats(selectedCats, selectedMovie); //This Method
 
         selectedCats = catList.getSelectionModel().getSelectedItems();
         movieModel.setMoviesByRelation(catList.getSelectionModel().getSelectedItems());
