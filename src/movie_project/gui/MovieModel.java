@@ -26,9 +26,9 @@ public class MovieModel
     private SearchFilter searchFilter = new SearchFilter();
     MovieManager movieManager = new MovieManager();
     CategoryManager catManager = new CategoryManager();
-    private ObservableList<Movie> movies = FXCollections.observableArrayList();
-    private ObservableList<Category> categories = FXCollections.observableArrayList();
-    private ObservableList<Movie> movieList = FXCollections.observableArrayList();
+    private ObservableList<Movie> movies = FXCollections.observableArrayList(); // TableView til højre    
+    private ObservableList<Category> categories = FXCollections.observableArrayList(); // kategori liste
+    private ObservableList<Movie> movieList = FXCollections.observableArrayList(); // TableView I midten
 
     /**
      * Constructor til MovieModel klassen
@@ -120,7 +120,7 @@ public class MovieModel
     }
 
     /**
-     * Søger på det der er skrevet i søgefeltet 
+     * Søger på det der er skrevet i søgefeltet
      *
      * @param searchText
      */
@@ -128,7 +128,7 @@ public class MovieModel
     {
         movies.clear();
         movies.addAll(movieManager.search(searchText));
-        
+
     }
 
     /*
@@ -146,8 +146,8 @@ public class MovieModel
      */
     void saveEdit(Movie editMovie)
     {
-        movies.add(editMovie);
-        movieManager.saveEdit(editMovie);
+        movies.add(editMovie); // tilføjer film til tableviewet til højre ikke i databasen kun listen i brugerfladen.
+        movieManager.saveEdit(editMovie); //sender Editmovie variabel længere ned i lagene, her sender den til MovieManager klassen i BLL laget.
     }
 
     /**

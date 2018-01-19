@@ -30,11 +30,8 @@ public class MovieDAO
     private ObservableList<Movie> moviesInList;
     private MovieDAO movieDAO;
     private DataBaseConnector dataBaseConnector;
-    
     private ObservableList<Movie> movies = FXCollections.observableArrayList();
-//    MovieManager movieManager = new MovieManager();
     DataBaseConnector dbc = new DataBaseConnector();
-    
 
     /**
      * Gets a list from the "Movie" database with the Movie, Id, Name,
@@ -79,7 +76,6 @@ public class MovieDAO
         return movies;
     }
 
-     
     /*
     Sletter elementer fra databasen
     Dette er ende stationen for 'remove/delete'. Det er her, den foretager sletningen af
@@ -100,7 +96,7 @@ public class MovieDAO
             stmt.execute("DELETE FROM CatMovie WHERE MovieId =" + selectedMovie.getId() + ";DELETE FROM Movie WHERE id=" + selectedMovie.getId());
         } catch (SQLException ex) //Hvis der er problemer mellem netbeans og databasen, så smider den denne catch
         {
-            
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Crash");
             alert.setHeaderText("Crash Report");
@@ -108,7 +104,6 @@ public class MovieDAO
                     + "\nbetween program and database");
 
             alert.showAndWait();
-            
 
         }
     }
@@ -145,33 +140,47 @@ public class MovieDAO
      */
     public void saveEdit(Movie editMovie)
     {
-        try (Connection con = dbc.getConnection())
+        try (Connection con = dbc.getConnection()) // opretter forbindelse til databasen ved hjælp af DataBaseConnector klassen
         {
             // create the java mysql update preparedstatement
-            String queryTitle = "Update Movie set name = ? where id =" + editMovie.getId();
+            // her bruger vi editMovie variabel som vi har sendt ned fra de ovre lag
+            // Vi laver en String med given navn, som vi giver en SQL statement som den skal køre.
+            // f.eks. den første queryTitle, giver vi en statement som skal update en given position i
+            // vores database tabel.
+            String queryTitle = "Update Movie set name = ? where id =" + editMovie.getId(); // i dette statement skal den update Titel hvor ID passer som den ID som valgt i Editmovie.
             String queryRating = "Update Movie set ratingIMDB = ? where id =" + editMovie.getId();
             String queryPRating = "Update Movie set RatingOwn = ? where id =" + editMovie.getId();
             String queryPath = "Update Movie set filelink = ? where id =" + editMovie.getId();
 
+            // her sætter vi prepared statments, som bruger queries som vi definere ovenfor
             PreparedStatement preparedStmtTitle = con.prepareStatement(queryTitle);
             PreparedStatement preparedStmtRating = con.prepareStatement(queryRating);
             PreparedStatement preparedStmtPRating = con.prepareStatement(queryPRating);
             PreparedStatement preparedStmtPath = con.prepareStatement(queryPath);
 
+            // Her sætter vi datatyper til det samme som de er i Vores Database
             preparedStmtTitle.setString(1, editMovie.getName());
             preparedStmtRating.setFloat(1, editMovie.getRating());
             preparedStmtPRating.setFloat(1, editMovie.getPersonalRating());
             preparedStmtPath.setString(1, editMovie.getFileLink());
 
             // execute the java preparedstatement
+            // kør de statements som vi har gjort klar til brug.
             preparedStmtTitle.executeUpdate();
             preparedStmtRating.executeUpdate();
             preparedStmtPRating.executeUpdate();
             preparedStmtPath.executeUpdate();
 
-        } catch (SQLException ex)
+        } catch (SQLException ex) // hvis der er problemer med kommunikationen meller program og database
         {
-            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Crash");
+            alert.setHeaderText("Crash Report");
+            alert.setContentText("Problem with communication"
+                    + "\nbetween program and database");
+
+            alert.showAndWait();
+            //Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -257,8 +266,5 @@ public class MovieDAO
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
 
 }
